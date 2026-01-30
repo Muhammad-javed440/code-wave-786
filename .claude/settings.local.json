@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv init:*)",
+      "Skill(skill-creator)",
+      "Skill(backend-developer)",
+      "Bash(uv python pin:*)",
+      "Bash(uv add:*)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\TECH ZONE\\\\study-notes\\\\.claude\\\\skills\\\\screen-audio-recorder\\\\scripts\\\\example.py\" -Force)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\TECH ZONE\\\\study-notes\\\\.claude\\\\skills\\\\screen-audio-recorder\\\\references\" -Recurse -Force)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\TECH ZONE\\\\study-notes\\\\.claude\\\\skills\\\\screen-audio-recorder\\\\assets\" -Recurse -Force)",
+      "Bash(python package_skill.py:*)",
+      "Bash(pip install:*)",
+      "Bash(python screen_recorder.py:*)",
+      "Bash(python:*)",
+      "Bash(npx playwright:*)"
+    ]
+  }
+}
