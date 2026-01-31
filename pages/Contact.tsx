@@ -10,6 +10,10 @@ const Contact: React.FC = () => {
   const [location, setLocation] = useState('');
   const [isLocating, setIsLocating] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // Office coordinates: 31.509318, 74.262818
+  const officeCoords = { lat: 31.509318, lng: 74.262818 };
+  const officeMapsUrl = 'https://www.google.com/maps/place/31%C2%B030\'33.5%22N+74%C2%B015\'46.1%22E/@31.5093225,74.2602431,17z';
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -95,15 +99,30 @@ const Contact: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-6 p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-3xl group hover:border-red-500 transition-all shadow-xl shadow-black/5">
-              <div className="p-4 bg-red-600/10 text-red-600 rounded-2xl group-hover:scale-110 transition-transform">
-                <MapPin className="w-6 h-6" />
+            <a href={officeMapsUrl} target="_blank" rel="noopener noreferrer" className="block bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-3xl group hover:border-red-500 transition-all shadow-xl shadow-black/5 overflow-hidden cursor-pointer">
+              <div className="flex items-center space-x-6 p-6">
+                <div className="p-4 bg-red-600/10 text-red-600 rounded-2xl group-hover:scale-110 transition-transform">
+                  <MapPin className="w-6 h-6" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Our Office</p>
+                  <p className="text-lg font-black text-black dark:text-white">Awan Town, Lahore</p>
+                </div>
               </div>
-              <div>
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Our Office</p>
-                <p className="text-lg font-black text-black dark:text-white">Awan town Lahore</p>
+              <div className="h-48 w-full relative">
+                <iframe
+                  title="Office Location"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                  src={`https://maps.google.com/maps?q=${officeCoords.lat},${officeCoords.lng}&z=16&output=embed`}
+                />
+                <div className="absolute inset-0" />
               </div>
-            </div>
+            </a>
 
             {user ? (
               <a href={`https://wa.me/923238300086?text=${encodeURIComponent(`Welcome to CodeWaveAI! I'm ${user.full_name} and I'd like to connect.`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-6 p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-3xl group hover:border-green-500 transition-all shadow-xl shadow-black/5 cursor-pointer">
