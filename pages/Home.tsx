@@ -49,39 +49,34 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const fetchRealData = async () => {
-      try {
-        // 1. Log current visit
-        await supabase.from('site_visits').insert([{ 
-          path: '/',
-          user_agent: navigator.userAgent
-        }]);
+      // 1. Log current visit (fire-and-forget, don't block stats)
+      supabase.from('site_visits').insert([{
+        path: '/',
+        user_agent: navigator.userAgent
+      }]).then(() => {});
 
-        // 2. Fetch all stats in parallel
-        const [
-          { count: visitsCount },
-          { count: projectsCount },
-          { count: usersCount }
-        ] = await Promise.all([
-          supabase.from('site_visits').select('*', { count: 'exact', head: true }),
+      // 2. Fetch stats via SECURITY DEFINER RPC (bypasses RLS)
+      const { data, error } = await supabase.rpc('get_public_stats');
+
+      if (!error && data) {
+        setStats({
+          totalVisits: data.total_visits || 0,
+          uniqueUsers: data.total_users || 0,
+          toolsBuilt: data.total_projects || 0,
+          happyUsers: data.total_users || 0
+        });
+      } else {
+        // Fallback: query tables individually (profiles & projects have public read)
+        console.warn("RPC failed, falling back to individual queries:", error);
+        const [projectsRes, usersRes] = await Promise.all([
           supabase.from('projects').select('*', { count: 'exact', head: true }),
           supabase.from('profiles').select('*', { count: 'exact', head: true })
         ]);
-
-        // 3. Update state with real data
         setStats({
-          totalVisits: visitsCount || 0,
-          uniqueUsers: Math.ceil((visitsCount || 0) * 0.7), // Approximation for demo
-          toolsBuilt: projectsCount || 0,
-          happyUsers: usersCount || 0
-        });
-
-      } catch (err) {
-        console.warn("Supabase data fetch failed. Using fallback simulation.", err);
-        setStats({
-          totalVisits: 1240,
-          uniqueUsers: 580,
-          toolsBuilt: 24,
-          happyUsers: 100
+          totalVisits: 0,
+          uniqueUsers: usersRes.count || 0,
+          toolsBuilt: projectsRes.count || 0,
+          happyUsers: usersRes.count || 0
         });
       }
     };
@@ -167,7 +162,7 @@ const Home: React.FC = () => {
             <div className="group bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-[2.5rem] overflow-hidden hover:border-orange-500 transition-all duration-300 shadow-xl shadow-black/5">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1531746790731-6c087fecd05a?auto=format&fit=crop&q=80&w=600" 
+                  src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&q=80&w=600" 
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   alt="Talking AI"
                 />
@@ -185,7 +180,7 @@ const Home: React.FC = () => {
             <div className="group bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-[2.5rem] overflow-hidden hover:border-green-500 transition-all duration-300 shadow-xl shadow-black/5">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=600" 
+                  src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=600" 
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   alt="Automation"
                 />
@@ -203,7 +198,7 @@ const Home: React.FC = () => {
             <div className="group bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-[2.5rem] overflow-hidden hover:border-red-500 transition-all duration-300 shadow-xl shadow-black/5">
               <div className="h-48 overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=600" 
+                  src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=600" 
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                   alt="Web Apps"
                 />

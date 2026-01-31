@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import { Send, Mail, MapPin, Phone, MessageSquare, CheckCircle2, Navigation, Loader2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { useAuth } from '../context/AuthContext';
 
 const Contact: React.FC = () => {
+  const { user } = useAuth();
   const [submitted, setSubmitted] = useState(false);
   const [location, setLocation] = useState('');
   const [isLocating, setIsLocating] = useState(false);
@@ -103,15 +105,28 @@ const Contact: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex items-center space-x-6 p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-3xl group hover:border-green-500 transition-all shadow-xl shadow-black/5">
-              <div className="p-4 bg-green-600/10 text-green-600 rounded-2xl group-hover:scale-110 transition-transform">
-                <Phone className="w-6 h-6" />
+            {user ? (
+              <a href={`https://wa.me/923238300086?text=${encodeURIComponent(`Welcome to CodeWaveAI! I'm ${user.full_name} and I'd like to connect.`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-6 p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-3xl group hover:border-green-500 transition-all shadow-xl shadow-black/5 cursor-pointer">
+                <div className="p-4 bg-green-600/10 text-green-600 rounded-2xl group-hover:scale-110 transition-transform">
+                  <MessageSquare className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">WhatsApp</p>
+                  <p className="text-lg font-black text-black dark:text-white">+923238300086</p>
+                </div>
+              </a>
+            ) : (
+              <div onClick={() => alert('Please log in to contact us on WhatsApp.')} className="flex items-center space-x-6 p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-3xl group hover:border-green-500 transition-all shadow-xl shadow-black/5 cursor-pointer opacity-60">
+                <div className="p-4 bg-green-600/10 text-green-600 rounded-2xl group-hover:scale-110 transition-transform">
+                  <MessageSquare className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">WhatsApp</p>
+                  <p className="text-lg font-black text-black dark:text-white">+923238300086</p>
+                  <p className="text-[10px] text-red-500 font-bold mt-1">Login required</p>
+                </div>
               </div>
-              <div>
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Call Us</p>
-                <p className="text-lg font-black text-black dark:text-white">+923024008502</p>
-              </div>
-            </div>
+            )}
           </div>
         </div>
 

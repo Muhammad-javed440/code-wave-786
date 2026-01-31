@@ -353,6 +353,29 @@ CREATE TRIGGER on_auth_user_created
 AFTER INSERT ON auth.users
 FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
+-- Public stats RPC (bypasses RLS so anonymous visitors can see counts)
+CREATE OR REPLACE FUNCTION public.get_public_stats()
+RETURNS JSON
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+DECLARE
+  _visits BIGINT;
+  _users BIGINT;
+  _projects BIGINT;
+BEGIN
+  SELECT COUNT(*) INTO _visits FROM site_visits;
+  SELECT COUNT(*) INTO _users FROM profiles;
+  SELECT COUNT(*) INTO _projects FROM projects;
+  RETURN json_build_object(
+    'total_visits', _visits,
+    'total_users', _users,
+    'total_projects', _projects
+  );
+END;
+$$;
+
 -- =================================================
 -- 6. STORAGE BUCKET
 -- =================================================
