@@ -19,30 +19,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 1. Initial Session Check
-    const initialize = async () => {
-      // Fix: Cast to any to resolve 'getSession' missing on SupabaseAuthClient type in this environment
-      const { data: { session } } = await (supabase.auth as any).getSession();
+    // 1. Listen for Auth Changes FIRST (fires INITIAL_SESSION synchronously in v2)
+    const { data: { subscription } } = (supabase.auth as any).onAuthStateChange((event: any, session: any) => {
       if (session) {
-        await fetchProfile(session.user.id);
-      }
-      setLoading(false);
-    };
-
-    initialize();
-
-    // 2. Listen for Auth Changes
-    // Fix: Cast to any to resolve 'onAuthStateChange' missing on SupabaseAuthClient type in this environment
-    const { data: { subscription } } = (supabase.auth as any).onAuthStateChange(async (event: any, session: any) => {
-      if (session) {
-        await fetchProfile(session.user.id);
+        // Defer async profile fetch to avoid blocking the auth state machine
+        setTimeout(() => {
+          fetchProfile(session.user.id).finally(() => setLoading(false));
+        }, 0);
       } else {
         setUser(null);
+        setLoading(false);
       }
-      setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    // 2. Fallback: if onAuthStateChange didn't fire, ensure loading clears
+    const timeout = setTimeout(() => setLoading(false), 5000);
+
+    return () => {
+      subscription.unsubscribe();
+      clearTimeout(timeout);
+    };
   }, []);
 
   const fetchProfile = async (userId: string) => {

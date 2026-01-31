@@ -526,7 +526,7 @@ const AdminProjects: React.FC = () => {
                             <input
                               type="file"
                               accept="image/*"
-                              ref={el => imageInputRefs.current[idx] = el}
+                              ref={el => { imageInputRefs.current[idx] = el; }}
                               className="absolute inset-0 opacity-0 cursor-pointer"
                               onChange={(e) => handleImageChange(idx, e)}
                             />

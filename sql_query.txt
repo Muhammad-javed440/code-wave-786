@@ -1,5 +1,5 @@
 -- =================================================
--- CODE WAVE AI PLATFORM - FINAL SQL (TYPES SAFE)
+-- CODE WAVE AI PLATFORM - COMPLETE SQL SCHEMA
 -- =================================================
 
 -- =================================================
@@ -116,6 +116,7 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   email TEXT NOT NULL,
   subject TEXT,
   message TEXT NOT NULL,
+  location_text TEXT,
   is_read BOOLEAN DEFAULT false,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -139,13 +140,21 @@ ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
 
 -- PROFILES
 CREATE POLICY "profiles_read" ON profiles FOR SELECT USING (true);
-CREATE POLICY "profiles_insert" ON profiles FOR INSERT WITH CHECK (auth.uid() = id);
+CREATE POLICY "profiles_insert" ON profiles FOR INSERT WITH CHECK (true);
 CREATE POLICY "profiles_update" ON profiles FOR UPDATE USING (auth.uid() = id);
 
--- PROJECTS (public read, admin write)
+-- PROJECTS (public read, admin insert/update/delete)
 CREATE POLICY "projects_read" ON projects FOR SELECT USING (true);
-CREATE POLICY "projects_admin_write" ON projects
-FOR ALL USING (
+CREATE POLICY "projects_admin_insert" ON projects
+FOR INSERT WITH CHECK (
+  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
+);
+CREATE POLICY "projects_admin_update" ON projects
+FOR UPDATE USING (
+  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
+);
+CREATE POLICY "projects_admin_delete" ON projects
+FOR DELETE USING (
   EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
 );
 
@@ -179,31 +188,47 @@ FOR DELETE USING (
   EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
 );
 
--- VISITS (anonymous insert, admin-only read)
+-- VISITS (anyone can insert, admin-only read)
 CREATE POLICY "visits_insert" ON site_visits
-FOR INSERT WITH CHECK (length(path) < 500);
+FOR INSERT WITH CHECK (true);
 CREATE POLICY "visits_admin_read" ON site_visits
 FOR SELECT USING (
   EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
 );
 
--- SKILLS (public read, admin write)
+-- SKILLS (public read, admin insert/update/delete)
 CREATE POLICY "skills_read" ON skills FOR SELECT USING (true);
-CREATE POLICY "skills_admin_write" ON skills
-FOR ALL USING (
+CREATE POLICY "skills_admin_insert" ON skills
+FOR INSERT WITH CHECK (
+  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
+);
+CREATE POLICY "skills_admin_update" ON skills
+FOR UPDATE USING (
+  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
+);
+CREATE POLICY "skills_admin_delete" ON skills
+FOR DELETE USING (
   EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
 );
 
--- TEAM MEMBERS (public read, admin write)
+-- TEAM MEMBERS (public read, admin insert/update/delete)
 CREATE POLICY "team_read" ON team_members FOR SELECT USING (true);
-CREATE POLICY "team_admin_write" ON team_members
-FOR ALL USING (
+CREATE POLICY "team_admin_insert" ON team_members
+FOR INSERT WITH CHECK (
+  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
+);
+CREATE POLICY "team_admin_update" ON team_members
+FOR UPDATE USING (
+  EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
+);
+CREATE POLICY "team_admin_delete" ON team_members
+FOR DELETE USING (
   EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
 );
 
--- CONTACT MESSAGES (anonymous insert, admin manage)
+-- CONTACT MESSAGES (anyone can insert, admin manage)
 CREATE POLICY "contact_insert" ON contact_messages
-FOR INSERT WITH CHECK (length(message) < 5000);
+FOR INSERT WITH CHECK (true);
 CREATE POLICY "contact_admin_read" ON contact_messages
 FOR SELECT USING (
   EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
@@ -221,7 +246,7 @@ FOR DELETE USING (
 -- 4. FUNCTIONS
 -- =================================================
 
--- updated_at
+-- updated_at trigger function
 CREATE OR REPLACE FUNCTION public.update_updated_at()
 RETURNS TRIGGER
 LANGUAGE plpgsql
@@ -234,7 +259,7 @@ BEGIN
 END;
 $$;
 
--- likes count
+-- likes count sync
 CREATE OR REPLACE FUNCTION public.update_project_likes_count()
 RETURNS TRIGGER
 LANGUAGE plpgsql
@@ -251,7 +276,7 @@ BEGIN
 END;
 $$;
 
--- rating avg
+-- rating average sync
 CREATE OR REPLACE FUNCTION public.update_project_rating()
 RETURNS TRIGGER
 LANGUAGE plpgsql
@@ -270,7 +295,7 @@ BEGIN
 END;
 $$;
 
--- auth → profile
+-- auto-create profile on signup
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER
 LANGUAGE plpgsql
@@ -278,11 +303,12 @@ SECURITY DEFINER
 SET search_path = public
 AS $$
 BEGIN
-  INSERT INTO profiles (id, email, full_name, role)
+  INSERT INTO public.profiles (id, email, full_name, phone_number, role)
   VALUES (
     NEW.id,
     NEW.email,
     COALESCE(NEW.raw_user_meta_data->>'full_name', split_part(NEW.email, '@', 1)),
+    NEW.raw_user_meta_data->>'phone_number',
     CASE
       WHEN NEW.email IN (
         'meherjaved440@gmail.com',
@@ -328,55 +354,33 @@ AFTER INSERT ON auth.users
 FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
 -- =================================================
--- 6. STORAGE BUCKETS & POLICIES
+-- 6. STORAGE BUCKET
 -- =================================================
 
--- Avatars bucket (public read, user uploads own)
-INSERT INTO storage.buckets (id, name, public) VALUES ('avatars', 'avatars', true);
+-- Single "projects" bucket used for all uploads (images, videos, team photos)
+INSERT INTO storage.buckets (id, name, public) VALUES ('projects', 'projects', true);
 
-CREATE POLICY "avatars_public_read" ON storage.objects
-FOR SELECT USING (bucket_id = 'avatars');
+-- Public read
+CREATE POLICY "storage_public_read" ON storage.objects
+FOR SELECT USING (bucket_id = 'projects');
 
-CREATE POLICY "avatars_upload_own" ON storage.objects
+-- Admin-only upload
+CREATE POLICY "storage_admin_insert" ON storage.objects
 FOR INSERT WITH CHECK (
-  bucket_id = 'avatars'
-  AND auth.role() = 'authenticated'
-  AND (storage.foldername(name))[1] = auth.uid()::text
+  bucket_id = 'projects'
+  AND EXISTS (SELECT 1 FROM public.profiles WHERE id = auth.uid() AND role = 'ADMIN')
 );
 
-CREATE POLICY "avatars_update_own" ON storage.objects
+-- Admin-only update
+CREATE POLICY "storage_admin_update" ON storage.objects
 FOR UPDATE USING (
-  bucket_id = 'avatars'
-  AND (storage.foldername(name))[1] = auth.uid()::text
+  bucket_id = 'projects'
+  AND EXISTS (SELECT 1 FROM public.profiles WHERE id = auth.uid() AND role = 'ADMIN')
 );
 
-CREATE POLICY "avatars_delete_own" ON storage.objects
+-- Admin-only delete
+CREATE POLICY "storage_admin_delete" ON storage.objects
 FOR DELETE USING (
-  bucket_id = 'avatars'
-  AND (storage.foldername(name))[1] = auth.uid()::text
+  bucket_id = 'projects'
+  AND EXISTS (SELECT 1 FROM public.profiles WHERE id = auth.uid() AND role = 'ADMIN')
 );
-
--- Project media bucket (public read, admin-only write)
-INSERT INTO storage.buckets (id, name, public) VALUES ('project-media', 'project-media', true);
-
-CREATE POLICY "project_media_public_read" ON storage.objects
-FOR SELECT USING (bucket_id = 'project-media');
-
-CREATE POLICY "project_media_admin_insert" ON storage.objects
-FOR INSERT WITH CHECK (
-  bucket_id = 'project-media'
-  AND EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
-);
-
-CREATE POLICY "project_media_admin_update" ON storage.objects
-FOR UPDATE USING (
-  bucket_id = 'project-media'
-  AND EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
-);
-
-CREATE POLICY "project_media_admin_delete" ON storage.objects
-FOR DELETE USING (
-  bucket_id = 'project-media'
-  AND EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'ADMIN')
-);
-
