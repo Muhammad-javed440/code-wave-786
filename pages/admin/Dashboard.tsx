@@ -129,6 +129,15 @@ const AdminDashboard: React.FC = () => {
                 <p className="text-[10px] text-gray-500 font-bold">Manage showcase</p>
               </div>
             </Link>
+            <Link to="/admin/team" className="flex items-center p-4 bg-gray-50 dark:bg-gray-950 border border-gray-100 dark:border-gray-900 rounded-2xl hover:border-blue-500 transition-all group">
+              <div className="p-3 bg-blue-600/10 text-blue-600 rounded-xl mr-4 group-hover:scale-110 transition-transform">
+                <Users className="w-5 h-5" />
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-black text-black dark:text-white uppercase">Team</p>
+                <p className="text-[10px] text-gray-500 font-bold">Manage team members</p>
+              </div>
+            </Link>
             <Link to="/admin/settings" className="flex items-center p-4 bg-gray-50 dark:bg-gray-950 border border-gray-100 dark:border-gray-900 rounded-2xl hover:border-purple-500 transition-all group">
               <div className="p-3 bg-purple-600/10 text-purple-500 rounded-xl mr-4 group-hover:scale-110 transition-transform">
                 <Users className="w-5 h-5" />

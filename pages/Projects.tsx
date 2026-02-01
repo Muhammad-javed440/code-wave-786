@@ -6,6 +6,20 @@ import DualImageFrame from '../components/DualImageFrame';
 import { Project } from '../types';
 import { supabase } from '../lib/supabase';
 
+const renderTextWithLinks = (text: string) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+  return parts.map((part, i) =>
+    urlRegex.test(part) ? (
+      <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline break-all">
+        {part}
+      </a>
+    ) : (
+      <React.Fragment key={i}>{part}</React.Fragment>
+    )
+  );
+};
+
 const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [commentCounts, setCommentCounts] = useState<Record<string, number>>({});
@@ -93,7 +107,7 @@ const Projects: React.FC = () => {
                 </div>
                 
                 <p className="text-gray-600 dark:text-gray-400 line-clamp-2 leading-relaxed">
-                  {project.description}
+                  {renderTextWithLinks(project.description)}
                 </p>
 
                 <div className="pt-4 flex items-center justify-between border-t border-gray-100 dark:border-gray-900">

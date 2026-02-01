@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Plus, Trash2, Edit3, User, X, Loader2, Save, AlertCircle, CheckCircle, Upload, Linkedin, Twitter, Github, GripVertical } from 'lucide-react';
+import { Plus, Trash2, Edit3, User, X, Loader2, Save, AlertCircle, CheckCircle, Upload } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { TeamMember } from '../../types';
 
@@ -15,15 +15,9 @@ const AdminTeam: React.FC = () => {
 
   // Form State
   const [name, setName] = useState('');
-  const [role, setRole] = useState('');
   const [description, setDescription] = useState('');
-  const [email, setEmail] = useState('');
-  const [linkedin, setLinkedin] = useState('');
-  const [twitter, setTwitter] = useState('');
-  const [github, setGithub] = useState('');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
-  const [displayOrder, setDisplayOrder] = useState(0);
 
   const imageInputRef = useRef<HTMLInputElement>(null);
 
@@ -53,15 +47,9 @@ const AdminTeam: React.FC = () => {
   // Reset form
   const resetForm = () => {
     setName('');
-    setRole('');
     setDescription('');
-    setEmail('');
-    setLinkedin('');
-    setTwitter('');
-    setGithub('');
     setImageFile(null);
     setImagePreview('');
-    setDisplayOrder(members.length);
     setIsEditing(null);
     setError(null);
   };
@@ -69,10 +57,8 @@ const AdminTeam: React.FC = () => {
   useEffect(() => {
     if (!isAdding) {
       resetForm();
-    } else if (!isEditing) {
-      setDisplayOrder(members.length);
     }
-  }, [isAdding, members.length]);
+  }, [isAdding]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -121,10 +107,6 @@ const AdminTeam: React.FC = () => {
       setError('Name is required');
       return false;
     }
-    if (!role.trim()) {
-      setError('Role/Position is required');
-      return false;
-    }
     if (!description.trim()) {
       setError('Description is required');
       return false;
@@ -152,16 +134,10 @@ const AdminTeam: React.FC = () => {
 
       const memberData = {
         name: name.trim(),
-        role: role.trim(),
+        role: 'Team Member',
         description: description.trim(),
-        email: email.trim() || null,
         image_url: imageUrl,
-        social_links: {
-          linkedin: linkedin.trim() || null,
-          twitter: twitter.trim() || null,
-          github: github.trim() || null,
-        },
-        display_order: displayOrder,
+        display_order: members.length,
         updated_at: new Date().toISOString(),
       };
 
@@ -217,14 +193,8 @@ const AdminTeam: React.FC = () => {
   const handleEditMember = (member: TeamMember) => {
     setIsEditing(member.id);
     setName(member.name);
-    setRole(member.role);
     setDescription(member.description);
-    setEmail(member.email || '');
-    setLinkedin(member.social_links?.linkedin || '');
-    setTwitter(member.social_links?.twitter || '');
-    setGithub(member.social_links?.github || '');
     setImagePreview(member.image_url || '');
-    setDisplayOrder(member.display_order);
     setIsAdding(true);
   };
 
@@ -312,94 +282,24 @@ const AdminTeam: React.FC = () => {
 
               {/* Basic Info */}
               <div className="md:col-span-2 space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Full Name *</label>
-                    <input
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-gray-50 dark:bg-gray-950 border-2 border-gray-200 dark:border-gray-900 rounded-2xl p-4 text-black dark:text-white focus:border-orange-500 outline-none transition-all font-bold"
-                      placeholder="John Doe"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Role / Position *</label>
-                    <input
-                      value={role}
-                      onChange={(e) => setRole(e.target.value)}
-                      className="w-full bg-gray-50 dark:bg-gray-950 border-2 border-gray-200 dark:border-gray-900 rounded-2xl p-4 text-black dark:text-white focus:border-orange-500 outline-none transition-all font-bold"
-                      placeholder="CEO & Founder"
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Full Name *</label>
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full bg-gray-50 dark:bg-gray-950 border-2 border-gray-200 dark:border-gray-900 rounded-2xl p-4 text-black dark:text-white focus:border-orange-500 outline-none transition-all font-bold"
+                    placeholder="John Doe"
+                  />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Job Description *</label>
+                  <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Bio *</label>
                   <textarea
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    rows={3}
+                    rows={4}
                     className="w-full bg-gray-50 dark:bg-gray-950 border-2 border-gray-200 dark:border-gray-900 rounded-2xl p-4 text-black dark:text-white focus:border-orange-500 outline-none transition-all font-medium"
-                    placeholder="Brief description about this team member's role and expertise..."
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Email (Optional)</label>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-gray-50 dark:bg-gray-950 border-2 border-gray-200 dark:border-gray-900 rounded-2xl p-4 text-black dark:text-white focus:border-orange-500 outline-none transition-all font-medium"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Display Order</label>
-                    <input
-                      type="number"
-                      min="0"
-                      value={displayOrder}
-                      onChange={(e) => setDisplayOrder(parseInt(e.target.value) || 0)}
-                      className="w-full bg-gray-50 dark:bg-gray-950 border-2 border-gray-200 dark:border-gray-900 rounded-2xl p-4 text-black dark:text-white focus:border-orange-500 outline-none transition-all font-bold"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="p-6 bg-gray-50 dark:bg-gray-950 rounded-3xl space-y-4">
-              <h3 className="text-xs font-black text-gray-500 uppercase tracking-widest">Social Links (Optional)</h3>
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="relative">
-                  <Linkedin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-blue-600" />
-                  <input
-                    value={linkedin}
-                    onChange={(e) => setLinkedin(e.target.value)}
-                    className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl py-3 pl-12 pr-4 text-sm text-black dark:text-white focus:border-blue-500 outline-none transition-all"
-                    placeholder="LinkedIn URL"
-                  />
-                </div>
-                <div className="relative">
-                  <Twitter className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-sky-500" />
-                  <input
-                    value={twitter}
-                    onChange={(e) => setTwitter(e.target.value)}
-                    className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl py-3 pl-12 pr-4 text-sm text-black dark:text-white focus:border-sky-500 outline-none transition-all"
-                    placeholder="Twitter URL"
-                  />
-                </div>
-                <div className="relative">
-                  <Github className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600 dark:text-gray-400" />
-                  <input
-                    value={github}
-                    onChange={(e) => setGithub(e.target.value)}
-                    className="w-full bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-xl py-3 pl-12 pr-4 text-sm text-black dark:text-white focus:border-gray-500 outline-none transition-all"
-                    placeholder="GitHub URL"
+                    placeholder="Brief description about this team member..."
                   />
                 </div>
               </div>
@@ -443,17 +343,12 @@ const AdminTeam: React.FC = () => {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {members.map((member, index) => (
+            {members.map((member) => (
               <div
                 key={member.id}
                 className="group bg-gray-50 dark:bg-gray-950 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 relative overflow-hidden"
               >
-                <div className="absolute top-4 left-4 flex items-center gap-1 text-gray-400">
-                  <GripVertical className="w-4 h-4" />
-                  <span className="text-[10px] font-bold">#{index + 1}</span>
-                </div>
-
-                <div className="flex flex-col items-center text-center pt-4">
+                <div className="flex flex-col items-center text-center">
                   <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white dark:border-gray-900 shadow-xl mb-4">
                     {member.image_url ? (
                       <img src={member.image_url} alt={member.name} className="w-full h-full object-cover" />
@@ -465,27 +360,7 @@ const AdminTeam: React.FC = () => {
                   </div>
 
                   <h3 className="font-black text-black dark:text-white text-lg uppercase tracking-tight">{member.name}</h3>
-                  <span className="text-xs font-bold text-orange-600 uppercase tracking-wider mb-3">{member.role}</span>
-                  <p className="text-sm text-gray-500 line-clamp-2 mb-4">{member.description}</p>
-
-                  {/* Social Links */}
-                  <div className="flex items-center gap-2 mb-4">
-                    {member.social_links?.linkedin && (
-                      <a href={member.social_links.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 bg-blue-500/10 text-blue-600 rounded-lg hover:bg-blue-500 hover:text-white transition-all">
-                        <Linkedin className="w-4 h-4" />
-                      </a>
-                    )}
-                    {member.social_links?.twitter && (
-                      <a href={member.social_links.twitter} target="_blank" rel="noopener noreferrer" className="p-2 bg-sky-500/10 text-sky-500 rounded-lg hover:bg-sky-500 hover:text-white transition-all">
-                        <Twitter className="w-4 h-4" />
-                      </a>
-                    )}
-                    {member.social_links?.github && (
-                      <a href={member.social_links.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-500/10 text-gray-600 dark:text-gray-400 rounded-lg hover:bg-gray-600 hover:text-white transition-all">
-                        <Github className="w-4 h-4" />
-                      </a>
-                    )}
-                  </div>
+                  <p className="text-sm text-gray-500 line-clamp-2 mb-4 mt-2">{member.description}</p>
 
                   {/* Actions */}
                   <div className="flex items-center gap-2 pt-4 border-t border-gray-200 dark:border-gray-800 w-full justify-center">

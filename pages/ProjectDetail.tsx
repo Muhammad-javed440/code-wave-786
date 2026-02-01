@@ -6,6 +6,20 @@ import { supabase } from '../lib/supabase';
 import { useAuth } from '../context/AuthContext';
 import { Project, Comment } from '../types';
 
+const renderTextWithLinks = (text: string) => {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const parts = text.split(urlRegex);
+  return parts.map((part, i) =>
+    urlRegex.test(part) ? (
+      <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline break-all">
+        {part}
+      </a>
+    ) : (
+      <React.Fragment key={i}>{part}</React.Fragment>
+    )
+  );
+};
+
 const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
@@ -183,7 +197,7 @@ const ProjectDetail: React.FC = () => {
             </span>
           )}
         </div>
-        <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">{project.description}</p>
+        <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">{renderTextWithLinks(project.description)}</p>
         <p className="text-gray-400 dark:text-gray-600 text-sm">
           {new Date(project.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </p>
