@@ -353,6 +353,65 @@ CREATE TRIGGER on_auth_user_created
 AFTER INSERT ON auth.users
 FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
+-- Admin stats RPC (bypasses RLS, only callable by admins)
+CREATE OR REPLACE FUNCTION public.get_admin_stats()
+RETURNS JSON
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+DECLARE
+  _visits BIGINT;
+  _users BIGINT;
+  _projects BIGINT;
+  _messages BIGINT;
+  _caller_role TEXT;
+BEGIN
+  SELECT role INTO _caller_role FROM profiles WHERE id = auth.uid();
+  IF _caller_role != 'ADMIN' THEN
+    RETURN json_build_object('error', 'unauthorized');
+  END IF;
+
+  SELECT COUNT(*) INTO _visits FROM site_visits;
+  SELECT COUNT(*) INTO _users FROM profiles;
+  SELECT COUNT(*) INTO _projects FROM projects;
+  SELECT COUNT(*) INTO _messages FROM contact_messages;
+  RETURN json_build_object(
+    'total_visits', _visits,
+    'total_users', _users,
+    'total_projects', _projects,
+    'total_messages', _messages
+  );
+END;
+$$;
+
+-- Admin chart data RPC (last 7 days visits)
+CREATE OR REPLACE FUNCTION public.get_visit_chart_data()
+RETURNS JSON
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+DECLARE
+  _caller_role TEXT;
+BEGIN
+  SELECT role INTO _caller_role FROM profiles WHERE id = auth.uid();
+  IF _caller_role != 'ADMIN' THEN
+    RETURN '[]'::json;
+  END IF;
+
+  RETURN (
+    SELECT json_agg(row_to_json(t)) FROM (
+      SELECT d::date AS date, COUNT(sv.id) AS visits
+      FROM generate_series(CURRENT_DATE - INTERVAL '6 days', CURRENT_DATE, '1 day') d
+      LEFT JOIN site_visits sv ON sv.created_at::date = d::date
+      GROUP BY d::date
+      ORDER BY d::date
+    ) t
+  );
+END;
+$$;
+
 -- Public stats RPC (bypasses RLS so anonymous visitors can see counts)
 CREATE OR REPLACE FUNCTION public.get_public_stats()
 RETURNS JSON

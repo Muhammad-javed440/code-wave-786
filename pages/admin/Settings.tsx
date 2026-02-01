@@ -1,14 +1,45 @@
 
-import React, { useState } from 'react';
-import { Camera, Facebook, Linkedin, Github, Globe, Save, Check } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Camera, Facebook, Linkedin, Github, Globe, Save, Check, Loader2 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
+import { supabase } from '../../lib/supabase';
 
 const AdminSettings: React.FC = () => {
   const { user, updateProfile } = useAuth();
   const [isSaved, setIsSaved] = useState(false);
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
+  const avatarInputRef = useRef<HTMLInputElement>(null);
+
+  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !user) return;
+    setUploadingAvatar(true);
+    try {
+      const ext = file.name.split('.').pop();
+      const filePath = `${user.id}/avatar.${ext}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(filePath, file, { upsert: true });
+
+      if (uploadError) throw uploadError;
+
+      const { data: urlData } = supabase.storage
+        .from('avatars')
+        .getPublicUrl(filePath);
+
+      const avatarUrl = `${urlData.publicUrl}?t=${Date.now()}`;
+      await updateProfile({ avatar_url: avatarUrl });
+    } catch (err) {
+      console.error('Avatar upload failed:', err);
+      alert('Failed to upload avatar. Make sure the "avatars" storage bucket exists in Supabase.');
+    } finally {
+      setUploadingAvatar(false);
+    }
+  };
   const [formData, setFormData] = useState({
     fullName: user?.full_name || '',
-    bio: user?.bio || '',
+    bio: user?.bio || 'Founder & Lead Developer at CodeWaveAI. I build intelligent AI-powered tools, voice automation systems, and modern web applications that help businesses scale and people work smarter. Passionate about turning complex problems into simple, elegant solutions.',
     facebook: user?.social_links?.facebook || '',
     linkedin: user?.social_links?.linkedin || '',
     github: user?.social_links?.github || ''
@@ -45,8 +76,20 @@ const AdminSettings: React.FC = () => {
             <div className="w-32 h-32 rounded-full bg-blue-600 flex items-center justify-center text-4xl font-black border-4 border-gray-800 shadow-2xl overflow-hidden">
               {user?.avatar_url ? <img src={user.avatar_url} className="w-full h-full object-cover" /> : user?.full_name[0]}
             </div>
-            <button type="button" className="absolute bottom-0 right-0 p-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full border-4 border-gray-900 shadow-lg group-hover:scale-110 transition-all">
-              <Camera className="w-4 h-4" />
+            <input
+              type="file"
+              accept="image/*"
+              ref={avatarInputRef}
+              className="hidden"
+              onChange={handleAvatarUpload}
+            />
+            <button
+              type="button"
+              onClick={() => avatarInputRef.current?.click()}
+              disabled={uploadingAvatar}
+              className="absolute bottom-0 right-0 p-3 bg-blue-600 hover:bg-blue-500 text-white rounded-full border-4 border-gray-900 shadow-lg group-hover:scale-110 transition-all disabled:opacity-50"
+            >
+              {uploadingAvatar ? <Loader2 className="w-4 h-4 animate-spin" /> : <Camera className="w-4 h-4" />}
             </button>
           </div>
           

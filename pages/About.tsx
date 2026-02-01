@@ -1,31 +1,32 @@
 
 import React, { useState, useEffect } from 'react';
-import { Target, Users, Shield, Rocket, Linkedin, Twitter, Github, User, Loader2, Mail } from 'lucide-react';
+import { Target, Users, Shield, Rocket, Linkedin, Twitter, Github, User, Loader2, Mail, Facebook } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { TeamMember } from '../types';
+import { TeamMember, Profile } from '../types';
 
 const About: React.FC = () => {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [founder, setFounder] = useState<Profile | null>(null);
   const [loadingTeam, setLoadingTeam] = useState(true);
 
   useEffect(() => {
-    const fetchTeamMembers = async () => {
+    const fetchData = async () => {
       try {
-        const { data, error } = await supabase
-          .from('team_members')
-          .select('*')
-          .order('display_order', { ascending: true });
+        const [teamRes, founderRes] = await Promise.all([
+          supabase.from('team_members').select('*').order('display_order', { ascending: true }),
+          supabase.from('profiles').select('*').eq('role', 'ADMIN').limit(1).single()
+        ]);
 
-        if (error) throw error;
-        setTeamMembers(data || []);
+        if (teamRes.data) setTeamMembers(teamRes.data);
+        if (founderRes.data) setFounder(founderRes.data);
       } catch (err) {
-        console.error('Error fetching team members:', err);
+        console.error('Error fetching data:', err);
       } finally {
         setLoadingTeam(false);
       }
     };
 
-    fetchTeamMembers();
+    fetchData();
   }, []);
 
   return (
@@ -95,6 +96,81 @@ const About: React.FC = () => {
             <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">Our tools work well for small jobs and big companies too.</p>
           </div>
         </div>
+
+        {/* Founder Section */}
+        {founder && (
+          <div className="mt-40">
+            <div className="text-center mb-16 space-y-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-600/10 border border-orange-500/20 rounded-full text-orange-600 text-sm font-bold uppercase tracking-wider">
+                <Rocket className="w-4 h-4" />
+                Founder
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-black dark:text-white uppercase tracking-tighter">
+                THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">VISIONARY</span> BEHIND
+              </h2>
+            </div>
+
+            <div className="max-w-3xl mx-auto bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-900 rounded-[2.5rem] p-10 md:p-14 relative overflow-hidden group hover:border-orange-500/50 transition-all duration-500 shadow-2xl">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-orange-600/10 to-red-600/10 blur-[100px] rounded-full"></div>
+
+              <div className="relative flex flex-col md:flex-row items-center gap-8">
+                {/* Avatar */}
+                <div className="relative flex-shrink-0">
+                  <div className="absolute -inset-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-full blur opacity-30 group-hover:opacity-60 transition-opacity"></div>
+                  <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-white dark:border-gray-900 shadow-2xl">
+                    {founder.avatar_url ? (
+                      <img src={founder.avatar_url} alt={founder.full_name} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                        <span className="text-5xl font-black text-white">{founder.full_name?.[0]}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="flex-grow text-center md:text-left space-y-4">
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-black text-black dark:text-white uppercase tracking-tight">
+                      {founder.full_name}
+                    </h3>
+                    <span className="inline-block px-3 py-1 bg-orange-600/10 text-orange-600 text-xs font-bold uppercase tracking-wider rounded-full mt-2">
+                      Founder & Lead Developer
+                    </span>
+                  </div>
+
+                  {founder.bio && (
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{founder.bio}</p>
+                  )}
+
+                  {/* Social Links */}
+                  <div className="flex items-center gap-3 justify-center md:justify-start pt-2">
+                    {founder.email && (
+                      <a href={`mailto:${founder.email}`} className="p-2.5 bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 rounded-xl hover:bg-orange-500 hover:text-white transition-all" title="Email">
+                        <Mail className="w-4 h-4" />
+                      </a>
+                    )}
+                    {founder.social_links?.facebook && (
+                      <a href={founder.social_links.facebook} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 rounded-xl hover:bg-blue-600 hover:text-white transition-all" title="Facebook">
+                        <Facebook className="w-4 h-4" />
+                      </a>
+                    )}
+                    {founder.social_links?.linkedin && (
+                      <a href={founder.social_links.linkedin} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 rounded-xl hover:bg-blue-700 hover:text-white transition-all" title="LinkedIn">
+                        <Linkedin className="w-4 h-4" />
+                      </a>
+                    )}
+                    {founder.social_links?.github && (
+                      <a href={founder.social_links.github} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 rounded-xl hover:bg-gray-800 hover:text-white transition-all" title="GitHub">
+                        <Github className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Team Section */}
         <div className="mt-40">

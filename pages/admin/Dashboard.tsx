@@ -5,11 +5,7 @@ import { Users, Eye, Layout, MessageSquare, TrendingUp, Plus, Loader2 } from 'lu
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { supabase } from '../../lib/supabase';
 
-const data = [
-  { name: 'Mon', visits: 400 }, { name: 'Tue', visits: 300 }, { name: 'Wed', visits: 200 },
-  { name: 'Thu', visits: 278 }, { name: 'Fri', visits: 189 }, { name: 'Sat', visits: 239 },
-  { name: 'Sun', visits: 349 },
-];
+const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const StatCard = ({ title, value, icon: Icon, trend, color, loading }: any) => (
   <div className="bg-white dark:bg-black border border-gray-200 dark:border-gray-900 p-6 rounded-3xl relative overflow-hidden group">
@@ -31,36 +27,36 @@ const StatCard = ({ title, value, icon: Icon, trend, color, loading }: any) => (
 
 const AdminDashboard: React.FC = () => {
   const [stats, setStats] = useState({ visits: 0, users: 0, projects: 0, messages: 0 });
+  const [chartData, setChartData] = useState<{ name: string; visits: number }[]>([]);
   const [loading, setLoading] = useState(true);
   const [chartReady, setChartReady] = useState(false);
   const chartContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchStats = async () => {
-      try {
-        const [
-          { count: visitsCount },
-          { count: usersCount },
-          { count: projectsCount },
-          { count: messagesCount }
-        ] = await Promise.all([
-          supabase.from('site_visits').select('*', { count: 'exact', head: true }),
-          supabase.from('profiles').select('*', { count: 'exact', head: true }),
-          supabase.from('projects').select('*', { count: 'exact', head: true }),
-          supabase.from('contact_messages').select('*', { count: 'exact', head: true })
-        ]);
-
+      // Use SECURITY DEFINER RPCs to bypass RLS
+      const { data: statsData } = await supabase.rpc('get_admin_stats');
+      if (statsData && !statsData.error) {
         setStats({
-          visits: visitsCount || 0,
-          users: usersCount || 0,
-          projects: projectsCount || 0,
-          messages: messagesCount || 0
+          visits: statsData.total_visits || 0,
+          users: statsData.total_users || 0,
+          projects: statsData.total_projects || 0,
+          messages: statsData.total_messages || 0
         });
-      } catch (err) {
-        console.error("Error fetching stats:", err);
-      } finally {
-        setLoading(false);
       }
+
+      // Fetch chart data via RPC
+      const { data: chartRows } = await supabase.rpc('get_visit_chart_data');
+      if (chartRows && Array.isArray(chartRows)) {
+        setChartData(
+          chartRows.map((row: any) => ({
+            name: dayNames[new Date(row.date + 'T00:00:00').getDay()],
+            visits: row.visits
+          }))
+        );
+      }
+
+      setLoading(false);
     };
 
     fetchStats();
@@ -100,7 +96,7 @@ const AdminDashboard: React.FC = () => {
           <div ref={chartContainerRef} className="h-[300px] w-full min-h-[300px]">
             {chartReady && (
               <ResponsiveContainer width="100%" height={300}>
-                <AreaChart data={data}>
+                <AreaChart data={chartData}>
                   <defs>
                     <linearGradient id="colorVisits" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="#f97316" stopOpacity={0.3}/>
