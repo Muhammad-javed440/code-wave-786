@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Zap, Bot, Code, Cpu, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import ChatBot from '../components/ChatBot';
 
 const Counter = ({ target, label }: { target: number, label: string }) => {
   const [count, setCount] = useState(0);
@@ -214,6 +215,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+      <ChatBot />
     </div>
   );
 };
