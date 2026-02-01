@@ -197,7 +197,22 @@ This rule is enforced at:
 
 ---
 
-### 5.3 Admin Settings
+### 5.3 Team Manager
+
+**Admin Capabilities:**
+
+* Add / Edit / Delete team members
+* Fields: Profile picture, Full Name, Bio only
+* Displayed on About page
+
+**Simplified Design:**
+
+* No role/position, email, social links, or display order fields in the form
+* Cards show picture, name, bio + edit/delete actions
+
+---
+
+### 5.4 Admin Settings
 
 **Admin Profile Management:**
 
@@ -250,6 +265,8 @@ This rule is enforced at:
 * `project_comments`
 * `site_visits`
 * `contact_messages`
+* `team_members`
+* `skills`
 
 All tables must enforce **RLS policies**.
 

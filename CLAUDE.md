@@ -29,6 +29,7 @@ code-wave-ai/
 │   ├── admin/               # Admin-only pages (protected)
 │   │   ├── Dashboard.tsx    # Admin dashboard with analytics
 │   │   ├── Projects.tsx     # Project CRUD management
+│   │   ├── Team.tsx         # Team member management (picture, name, bio)
 │   │   └── Settings.tsx     # Admin profile settings
 │   ├── About.tsx            # Company/brand story
 │   ├── Contact.tsx          # Contact form with geolocation
@@ -88,6 +89,8 @@ Core tables with RLS:
 - `project_likes`, `project_ratings`, `project_comments` - User interactions
 - `site_visits` - Analytics tracking
 - `contact_messages` - Contact form submissions
+- `team_members` - Team member profiles
+- `skills` - Skills & proficiency data
 
 ## Important Notes
 1. **Never change admin email policy** - Only the two specified emails can be admins

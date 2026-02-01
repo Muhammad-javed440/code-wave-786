@@ -22,6 +22,7 @@ Establishing a high-end digital presence for Code Wave AI through secure user ma
 │   ├── admin/           # Admin-only dashboard pages
 │   │   ├── Dashboard.tsx
 │   │   ├── Projects.tsx
+│   │   ├── Team.tsx
 │   │   └── Settings.tsx
 │   ├── About.tsx
 │   ├── Contact.tsx
@@ -65,8 +66,13 @@ Establishing a high-end digital presence for Code Wave AI through secure user ma
 ### 4. Project Showcase
 - **Media Gallery:** Support for multiple images and video highlights.
 - **Interaction:** Like system, rating displays, and detailed descriptions.
+- **Clickable Links:** URLs in project descriptions are auto-detected and rendered as clickable links.
 
-### 5. Contact & Leads
+### 5. Team Manager
+- **Admin Panel:** Add, edit, and delete team members.
+- **Simplified Form:** Profile picture, name, and bio only.
+
+### 6. Contact & Leads
 - **Smart Contact Form:** Captures messages and optional user location via Geolocation API.
 
 ## ⚙️ Setup Instructions
