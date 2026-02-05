@@ -10,6 +10,7 @@ interface AuthContextType {
   signup: (data: any) => Promise<void>;
   logout: () => void;
   updateProfile: (data: Partial<Profile>) => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -108,6 +109,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const resetPassword = async (email: string) => {
+    const { error } = await (supabase.auth as any).resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/#/login`,
+    });
+    if (error) throw error;
+  };
+
   const updateProfile = async (data: Partial<Profile>) => {
     if (!user) return;
     const { error } = await supabase
@@ -120,7 +128,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout, updateProfile }}>
+    <AuthContext.Provider value={{ user, loading, login, signup, logout, updateProfile, resetPassword }}>
       {children}
     </AuthContext.Provider>
   );
