@@ -33,7 +33,7 @@ const Counter = ({ target, label }: { target: number, label: string }) => {
   return (
     <div className="text-center p-6 bg-gray-800/80 border border-gray-700 rounded-2xl backdrop-blur-md transition-all hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10">
       <div className="text-4xl md:text-5xl font-extrabold text-green-400 mb-2">
-        {count.toLocaleString()}{label.includes("Happy") ? "" : "+"}
+        {count.toLocaleString()}+
       </div>
       <div className="text-gray-300 font-bold uppercase tracking-widest text-xs">{label}</div>
     </div>
@@ -41,11 +41,11 @@ const Counter = ({ target, label }: { target: number, label: string }) => {
 };
 
 const Home: React.FC = () => {
-  const [stats, setStats] = useState({ 
-    totalVisits: 0, 
-    uniqueUsers: 0, 
-    toolsBuilt: 0, 
-    happyUsers: 0 
+  const [stats, setStats] = useState({
+    totalVisits: 0,
+    uniqueUsers: 0,
+    toolsBuilt: 0,
+    totalLikes: 0
   });
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
           totalVisits: data.total_visits || 0,
           uniqueUsers: data.total_users || 0,
           toolsBuilt: data.total_projects || 0,
-          happyUsers: data.total_users || 0
+          totalLikes: data.total_likes || 0
         });
       } else {
         // Fallback: query tables individually (profiles & projects have public read)
@@ -77,7 +77,7 @@ const Home: React.FC = () => {
           totalVisits: 0,
           uniqueUsers: usersRes.count || 0,
           toolsBuilt: projectsRes.count || 0,
-          happyUsers: usersRes.count || 0
+          totalLikes: 0
         });
       }
     };
@@ -145,7 +145,7 @@ const Home: React.FC = () => {
             <Counter target={stats.totalVisits} label="Total Visits" />
             <Counter target={stats.uniqueUsers} label="New People" />
             <Counter target={stats.toolsBuilt} label="Tools Built" />
-            <Counter target={stats.happyUsers} label="Happy Users" />
+            <Counter target={stats.totalLikes} label="Total Likes" />
           </div>
         </div>
       </section>

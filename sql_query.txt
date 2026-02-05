@@ -426,14 +426,17 @@ DECLARE
   _visits BIGINT;
   _users BIGINT;
   _projects BIGINT;
+  _likes BIGINT;
 BEGIN
   SELECT COUNT(*) INTO _visits FROM site_visits;
   SELECT COUNT(*) INTO _users FROM profiles;
   SELECT COUNT(*) INTO _projects FROM projects;
+  SELECT COALESCE(SUM(likes_count), 0) INTO _likes FROM projects;
   RETURN json_build_object(
     'total_visits', _visits,
     'total_users', _users,
-    'total_projects', _projects
+    'total_projects', _projects,
+    'total_likes', _likes
   );
 END;
 $$;
