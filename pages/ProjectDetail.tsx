@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Heart, Star, Send, Loader2, Play } from 'lucide-react';
+import { ArrowLeft, Heart, Star, Send, Loader2, Play, ExternalLink, FileText } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../context/AuthContext';
 import { Project, Comment } from '../types';
@@ -198,6 +198,35 @@ const ProjectDetail: React.FC = () => {
           )}
         </div>
         <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg">{renderTextWithLinks(project.description)}</p>
+
+        {/* Project URL and PDF buttons */}
+        {(project.project_url || project.pdf_url) && (
+          <div className="flex flex-wrap gap-3 pt-2">
+            {project.project_url && (
+              <a
+                href={project.project_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-blue-600/20"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Visit Project
+              </a>
+            )}
+            {project.pdf_url && (
+              <a
+                href={project.pdf_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-red-600/20"
+              >
+                <FileText className="w-4 h-4" />
+                View PDF
+              </a>
+            )}
+          </div>
+        )}
+
         <p className="text-gray-400 dark:text-gray-600 text-sm">
           {new Date(project.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </p>

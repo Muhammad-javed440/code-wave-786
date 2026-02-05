@@ -1,0 +1,569 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Wave AI - Project Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1a1a2e;
+            background: #ffffff;
+            line-height: 1.6;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 40px 50px;
+            page-break-after: always;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #6c63ff;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #6c63ff;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .header .tagline {
+            font-size: 14px;
+            color: #555;
+            letter-spacing: 1px;
+        }
+
+        .header .divider {
+            width: 80px;
+            height: 3px;
+            background: #6c63ff;
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #6c63ff;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e8e6ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title .icon {
+            font-size: 22px;
+        }
+
+        .section p {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        /* TECH STACK */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .tech-item {
+            background: #f4f3ff;
+            border-left: 4px solid #6c63ff;
+            padding: 10px 15px;
+            border-radius: 4px;
+        }
+
+        .tech-item strong {
+            color: #6c63ff;
+            font-size: 13px;
+        }
+
+        .tech-item span {
+            font-size: 13px;
+            color: #444;
+        }
+
+        /* FEATURES LIST */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 13px;
+            color: #333;
+            padding: 8px 12px;
+            background: #fafafa;
+            border-radius: 6px;
+        }
+
+        .feature-item .check {
+            color: #6c63ff;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        /* PACKAGES TABLE */
+        .packages-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .packages-table th {
+            background: #6c63ff;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .packages-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+
+        .packages-table tr:nth-child(even) {
+            background: #f9f8ff;
+        }
+
+        .packages-table .pkg-name {
+            font-weight: bold;
+            color: #6c63ff;
+        }
+
+        /* PROCESS */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            padding: 15px 10px;
+            background: #f4f3ff;
+            border-radius: 8px;
+        }
+
+        .step .step-num {
+            width: 35px;
+            height: 35px;
+            background: #6c63ff;
+            color: white;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .step h4 {
+            font-size: 13px;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+
+        .step p {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* CONTACT */
+        .contact-box {
+            background: #6c63ff;
+            color: white;
+            padding: 25px 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .contact-box h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .contact-box p {
+            font-size: 14px;
+            color: #e0deff;
+            margin-bottom: 5px;
+        }
+
+        .contact-box .cta {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 30px;
+            background: white;
+            color: #6c63ff;
+            font-weight: bold;
+            border-radius: 25px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        /* PAGE 2 */
+        .structure-list {
+            font-size: 13px;
+            color: #333;
+        }
+
+        .structure-list .folder {
+            margin-bottom: 6px;
+            padding: 6px 12px;
+            background: #f4f3ff;
+            border-left: 3px solid #6c63ff;
+            border-radius: 3px;
+        }
+
+        .structure-list .folder strong {
+            color: #6c63ff;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .why-item {
+            padding: 15px;
+            background: #f4f3ff;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .why-item .emoji {
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+
+        .why-item h4 {
+            font-size: 14px;
+            color: #6c63ff;
+            margin-bottom: 4px;
+        }
+
+        .why-item p {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
+            padding: 12px 15px;
+            background: #fafafa;
+            border-radius: 6px;
+            border-left: 3px solid #6c63ff;
+        }
+
+        .faq-item strong {
+            font-size: 13px;
+            color: #1a1a2e;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .faq-item p {
+            font-size: 12px;
+            color: #555;
+            margin: 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid #e8e6ff;
+            margin-top: 30px;
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .footer .brand {
+            font-size: 16px;
+            color: #6c63ff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1 -->
+    <div class="page">
+        <div class="header">
+            <h1>CODE WAVE AI</h1>
+            <div class="divider"></div>
+            <p class="tagline">Modern Web Applications with AI Chatbot Integration</p>
+        </div>
+
+        <!-- About -->
+        <div class="section">
+            <div class="section-title">Project Overview</div>
+            <p>
+                Code Wave AI is a premium technology brand platform built with React 19, TypeScript, and Supabase.
+                It features role-based authentication, an admin dashboard with analytics, a public project showcase
+                with user interactions, AI voice chatbot integration, and a fully responsive dark/light mode UI.
+                Deployed with Docker and Nginx for production-ready performance.
+            </p>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="section">
+            <div class="section-title">Tech Stack</div>
+            <div class="tech-grid">
+                <div class="tech-item"><strong>Frontend:</strong> <span>React 19 + TypeScript</span></div>
+                <div class="tech-item"><strong>Styling:</strong> <span>Tailwind CSS 3.4</span></div>
+                <div class="tech-item"><strong>Backend:</strong> <span>Supabase (Auth + PostgreSQL)</span></div>
+                <div class="tech-item"><strong>Build Tool:</strong> <span>Vite 6</span></div>
+                <div class="tech-item"><strong>AI Feature:</strong> <span>Voice Chatbot Integration</span></div>
+                <div class="tech-item"><strong>Deployment:</strong> <span>Docker + Nginx</span></div>
+            </div>
+        </div>
+
+        <!-- Key Features -->
+        <div class="section">
+            <div class="section-title">Key Features</div>
+            <div class="features-grid">
+                <div class="feature-item"><span class="check">&#10003;</span> AI Voice Chatbot Integration</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Role-Based Authentication</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Admin Dashboard & Analytics</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Project Showcase with Likes & Ratings</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Dark / Light Mode</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Fully Responsive Design</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Contact Form with Geolocation</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Team Management System</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Visitor Tracking & Site Analytics</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Secure Database with RLS Policies</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Docker Containerized Deployment</div>
+                <div class="feature-item"><span class="check">&#10003;</span> REST API Integration</div>
+            </div>
+        </div>
+
+        <!-- Packages -->
+        <div class="section">
+            <div class="section-title">Packages & Pricing</div>
+            <table class="packages-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Basic - $350</th>
+                        <th>Standard - $650</th>
+                        <th>Premium - $1500</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pages</td>
+                        <td>3 pages</td>
+                        <td>5 pages</td>
+                        <td>10 pages</td>
+                    </tr>
+                    <tr>
+                        <td>AI Chatbot</td>
+                        <td>&#10007;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003; Voice</td>
+                    </tr>
+                    <tr>
+                        <td>Authentication</td>
+                        <td>&#10007;</td>
+                        <td>Login / Signup</td>
+                        <td>Role-Based Auth</td>
+                    </tr>
+                    <tr>
+                        <td>Admin Dashboard</td>
+                        <td>&#10007;</td>
+                        <td>&#10007;</td>
+                        <td>&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>Responsive Design</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>Dark / Light Mode</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>Database Setup</td>
+                        <td>&#10007;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003; + RLS</td>
+                    </tr>
+                    <tr>
+                        <td>Deployment</td>
+                        <td>&#10007;</td>
+                        <td>Vercel/Netlify</td>
+                        <td>Docker + Nginx</td>
+                    </tr>
+                    <tr>
+                        <td>Source Code</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                        <td>&#10003;</td>
+                    </tr>
+                    <tr>
+                        <td>Revisions</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Delivery</td>
+                        <td>7 days</td>
+                        <td>14 days</td>
+                        <td>21 days</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+
+        <!-- Work Process -->
+        <div class="section">
+            <div class="section-title">My Work Process</div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h4>Requirement</h4>
+                    <p>Understand your project goals, features, and design preferences</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h4>Design</h4>
+                    <p>Create UI layout with responsive design and branding</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h4>Development</h4>
+                    <p>Build frontend, backend, chatbot, and authentication</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <h4>Testing</h4>
+                    <p>Test across devices, fix bugs, and optimize performance</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <h4>Delivery</h4>
+                    <p>Deploy, hand over source code, and provide support</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Choose Me -->
+        <div class="section">
+            <div class="section-title">Why Choose Me</div>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="emoji">&#128187;</div>
+                    <h4>Clean Code</h4>
+                    <p>Well-structured, maintainable, and scalable codebase</p>
+                </div>
+                <div class="why-item">
+                    <div class="emoji">&#9889;</div>
+                    <h4>Fast Delivery</h4>
+                    <p>On-time delivery with regular progress updates</p>
+                </div>
+                <div class="why-item">
+                    <div class="emoji">&#128274;</div>
+                    <h4>Secure Backend</h4>
+                    <p>Authentication and database security with RLS policies</p>
+                </div>
+                <div class="why-item">
+                    <div class="emoji">&#128241;</div>
+                    <h4>Responsive Design</h4>
+                    <p>Pixel-perfect UI on mobile, tablet, and desktop</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="section">
+            <div class="section-title">Frequently Asked Questions</div>
+            <div class="faq-item">
+                <strong>Q: What tech stack do you use?</strong>
+                <p>React 19, TypeScript, Tailwind CSS, Supabase, and Vite for fast, modern web apps.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Can you integrate an AI chatbot?</strong>
+                <p>Yes, I build custom AI voice chatbots that interact with users in real-time.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Do you provide the source code?</strong>
+                <p>Yes, full source code is included in every package.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Will the website be mobile responsive?</strong>
+                <p>Yes, every project is fully responsive across all devices.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Do you offer post-delivery support?</strong>
+                <p>Yes, I provide free bug fixes for 7 days after delivery.</p>
+            </div>
+        </div>
+
+        <!-- Contact CTA -->
+        <div class="contact-box">
+            <h3>Ready to Build Your Project?</h3>
+            <p>Send me your project details and let's create something amazing together.</p>
+            <p>Fast response &bull; On-time delivery &bull; 100% satisfaction</p>
+            <a href="#" class="cta">Contact Me on Fiverr</a>
+        </div>
+
+        <div class="footer">
+            <p class="brand">Code Wave AI</p>
+            <p>Full-Stack Developer | React | TypeScript | AI Chatbot | Supabase</p>
+        </div>
+    </div>
+
+</body>
+</html>
