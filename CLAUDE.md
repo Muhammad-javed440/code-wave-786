@@ -34,12 +34,13 @@ code-wave-ai/
 │   ├── About.tsx            # Company/brand story
 │   ├── Contact.tsx          # Contact form with geolocation
 │   ├── Home.tsx             # Landing page with visitor tracking
-│   ├── Login.tsx            # User login
+│   ├── Login.tsx            # User login with password recovery
 │   ├── Projects.tsx         # Public project showcase
+│   ├── ProjectDetail.tsx    # Single project view with FAQs, comments, ratings
 │   └── Signup.tsx           # User registration
 ├── App.tsx               # Main app with routing & protected routes
 ├── constant.ts           # App-wide constants
-├── types.ts              # TypeScript interfaces & enums
+├── types.ts              # TypeScript interfaces & enums (includes FAQ interface)
 ├── index.tsx             # Application entry point
 ├── index.html            # HTML template
 ├── sql_query.txt         # Supabase database initialization SQL
@@ -66,7 +67,7 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 - Two roles only: `Admin` and `User` (defined in `types.ts` as `UserRole` enum)
 - Admin emails are hardcoded: `meherjaved440@gmail.com`, `javedstore1013@gmail.com`, and `codewaveai44@gmail.com`
 - Protected routes use `ProtectedRoute` component in `App.tsx`
-- Auth state managed via `AuthContext`
+- Auth state managed via `AuthContext` (includes `resetPassword` for recovery emails)
 
 ### Routing
 - Uses `HashRouter` for compatibility
@@ -84,7 +85,7 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 ### Database (Supabase)
 Core tables with RLS:
 - `profiles` - User profiles
-- `projects` - Project data
+- `projects` - Project data (includes `faqs` JSONB column for FAQ entries)
 - `project_media` - Project images/videos
 - `project_likes`, `project_ratings`, `project_comments` - User interactions
 - `site_visits` - Analytics tracking

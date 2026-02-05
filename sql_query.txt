@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS projects (
   video_url TEXT,
   project_url TEXT,
   pdf_url TEXT,
+  faqs JSONB DEFAULT '[]'::jsonb,
   price NUMERIC(10,2),
   rating NUMERIC(3,2) DEFAULT 0,
   likes_count INTEGER DEFAULT 0,

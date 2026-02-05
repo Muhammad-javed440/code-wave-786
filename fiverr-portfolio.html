@@ -342,8 +342,8 @@
             <div class="section-title">Project Overview</div>
             <p>
                 Code Wave AI is a premium technology brand platform built with React 19, TypeScript, and Supabase.
-                It features role-based authentication, an admin dashboard with analytics, a public project showcase
-                with user interactions, AI voice chatbot integration, and a fully responsive dark/light mode UI.
+                It features role-based authentication with password recovery, an admin dashboard with analytics, a public project showcase
+                with user interactions and per-project FAQs, AI voice chatbot integration, and a fully responsive dark/light mode UI.
                 Deployed with Docker and Nginx for production-ready performance.
             </p>
         </div>
@@ -366,9 +366,9 @@
             <div class="section-title">Key Features</div>
             <div class="features-grid">
                 <div class="feature-item"><span class="check">&#10003;</span> AI Voice Chatbot Integration</div>
-                <div class="feature-item"><span class="check">&#10003;</span> Role-Based Authentication</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Role-Based Auth & Password Recovery</div>
                 <div class="feature-item"><span class="check">&#10003;</span> Admin Dashboard & Analytics</div>
-                <div class="feature-item"><span class="check">&#10003;</span> Project Showcase with Likes & Ratings</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Project Showcase with Likes, Ratings & FAQs</div>
                 <div class="feature-item"><span class="check">&#10003;</span> Dark / Light Mode</div>
                 <div class="feature-item"><span class="check">&#10003;</span> Fully Responsive Design</div>
                 <div class="feature-item"><span class="check">&#10003;</span> Contact Form with Geolocation</div>
@@ -376,7 +376,7 @@
                 <div class="feature-item"><span class="check">&#10003;</span> Visitor Tracking & Site Analytics</div>
                 <div class="feature-item"><span class="check">&#10003;</span> Secure Database with RLS Policies</div>
                 <div class="feature-item"><span class="check">&#10003;</span> Docker Containerized Deployment</div>
-                <div class="feature-item"><span class="check">&#10003;</span> REST API Integration</div>
+                <div class="feature-item"><span class="check">&#10003;</span> Per-Project FAQ Management</div>
             </div>
         </div>
 
@@ -409,7 +409,13 @@
                         <td>Authentication</td>
                         <td>&#10007;</td>
                         <td>Login / Signup</td>
-                        <td>Role-Based Auth</td>
+                        <td>Role-Based Auth + Recovery</td>
+                    </tr>
+                    <tr>
+                        <td>Project FAQs</td>
+                        <td>&#10007;</td>
+                        <td>&#10007;</td>
+                        <td>&#10003; Accordion UI</td>
                     </tr>
                     <tr>
                         <td>Admin Dashboard</td>
@@ -544,6 +550,10 @@
             <div class="faq-item">
                 <strong>Q: Will the website be mobile responsive?</strong>
                 <p>Yes, every project is fully responsive across all devices.</p>
+            </div>
+            <div class="faq-item">
+                <strong>Q: Can you add FAQs to each project page?</strong>
+                <p>Yes, admins can add dynamic FAQ entries per project with an accordion display on the detail page.</p>
             </div>
             <div class="faq-item">
                 <strong>Q: Do you offer post-delivery support?</strong>

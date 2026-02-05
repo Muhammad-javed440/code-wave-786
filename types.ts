@@ -19,6 +19,11 @@ export interface Profile {
   };
 }
 
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -28,6 +33,7 @@ export interface Project {
   project_url?: string; // External project link
   pdf_url?: string; // PDF file URL
   price?: number; // Price in USD
+  faqs?: FAQ[]; // FAQ items
   rating: number; // Avg rating
   likes_count: number;
   created_at: string;

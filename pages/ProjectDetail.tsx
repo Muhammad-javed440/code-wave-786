@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Heart, Star, Send, Loader2, Play, ExternalLink, FileText } from 'lucide-react';
+import { ArrowLeft, Heart, Star, Send, Loader2, Play, ExternalLink, FileText, ChevronDown } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../context/AuthContext';
 import { Project, Comment } from '../types';
@@ -36,6 +36,7 @@ const ProjectDetail: React.FC = () => {
   const [commentText, setCommentText] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (!id) return;
@@ -271,6 +272,40 @@ const ProjectDetail: React.FC = () => {
 
         {!user && <span className="text-xs text-gray-400">Log in to like, rate & comment</span>}
       </div>
+
+      {/* FAQs */}
+      {project.faqs && project.faqs.length > 0 && (
+        <div className="mb-12">
+          <h2 className="text-2xl font-black text-black dark:text-white uppercase tracking-tighter mb-6">
+            FAQs <span className="text-orange-600">({project.faqs.length})</span>
+          </h2>
+          <div className="space-y-3">
+            {project.faqs.map((faq, idx) => (
+              <div
+                key={idx}
+                className="border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden transition-all"
+              >
+                <button
+                  onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+                  className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors"
+                >
+                  <span className="font-bold text-black dark:text-white pr-4">{faq.question}</span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-orange-600 flex-shrink-0 transition-transform duration-300 ${
+                      openFaqIndex === idx ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                {openFaqIndex === idx && (
+                  <div className="px-5 pb-5 text-gray-600 dark:text-gray-400 leading-relaxed border-t border-gray-100 dark:border-gray-800 pt-4">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Comments */}
       <div>

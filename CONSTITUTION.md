@@ -122,6 +122,9 @@ This rule is enforced at:
 
   * Images
   * Videos
+* Project URL (external link)
+* PDF upload (optional)
+* FAQs (optional, dynamic question/answer pairs stored as JSONB)
 * Rating system (⭐ 1–5)
 * Like button
 * Comment system
@@ -185,6 +188,7 @@ This rule is enforced at:
 * Edit project
 * Delete project
 * Upload multiple images & videos
+* Add/edit/remove FAQ entries per project
 
 **Advanced UI Requirement:**
 

@@ -1,8 +1,8 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Plus, Trash2, Edit3, Image as ImageIcon, X, Loader2, Save, Clock, Film, Calendar, Upload, AlertCircle, CheckCircle, DollarSign, Link, FileText } from 'lucide-react';
+import { Plus, Trash2, Edit3, Image as ImageIcon, X, Loader2, Save, Clock, Film, Calendar, Upload, AlertCircle, CheckCircle, DollarSign, Link, FileText, HelpCircle } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
-import { Project } from '../../types';
+import { Project, FAQ } from '../../types';
 
 const MAX_IMAGE_SIZE_MB = 5;
 const MAX_VIDEO_SIZE_MB = 50;
@@ -44,6 +44,7 @@ const AdminProjects: React.FC = () => {
   const [projectUrl, setProjectUrl] = useState('');
   const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [pdfPreview, setPdfPreview] = useState<string | null>(null);
+  const [faqs, setFaqs] = useState<FAQ[]>([]);
 
   const videoInputRef = useRef<HTMLInputElement>(null);
   const pdfInputRef = useRef<HTMLInputElement>(null);
@@ -86,6 +87,7 @@ const AdminProjects: React.FC = () => {
     setProjectUrl('');
     setPdfFile(null);
     setPdfPreview(null);
+    setFaqs([]);
     setIsEditing(null);
     setError(null);
     setSuccess(null);
@@ -290,6 +292,12 @@ const AdminProjects: React.FC = () => {
 
       setUploadProgress('Saving project...');
 
+      // Filter out empty FAQ entries
+      const cleanFaqs = faqs.filter(f => f.question.trim() && f.answer.trim()).map(f => ({
+        question: f.question.trim(),
+        answer: f.answer.trim(),
+      }));
+
       const projectData = {
         title: projectTitle.trim(),
         description: description.trim(),
@@ -298,6 +306,7 @@ const AdminProjects: React.FC = () => {
         project_url: projectUrl.trim() || null,
         pdf_url: pdfUrl,
         price: projectPrice ? parseFloat(projectPrice) : null,
+        faqs: cleanFaqs.length > 0 ? cleanFaqs : null,
         updated_at: new Date().toISOString(),
       };
 
@@ -380,6 +389,9 @@ const AdminProjects: React.FC = () => {
     if (project.pdf_url) {
       setPdfPreview(project.pdf_url);
     }
+
+    // Set FAQs if exists
+    setFaqs(project.faqs || []);
 
     setIsAdding(true);
   };
@@ -543,6 +555,68 @@ const AdminProjects: React.FC = () => {
                       </>
                     )}
                   </div>
+                </div>
+
+                {/* FAQ Section */}
+                <div className="bg-purple-600/5 border-2 border-purple-500/20 p-6 rounded-3xl space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2 text-purple-600">
+                      <HelpCircle className="w-5 h-5" />
+                      <h3 className="font-black uppercase tracking-widest text-sm">FAQs (Optional)</h3>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setFaqs([...faqs, { question: '', answer: '' }])}
+                      className="px-3 py-1.5 bg-purple-600 hover:bg-purple-500 text-white text-[10px] font-black rounded-xl flex items-center gap-1 uppercase tracking-widest transition-all"
+                    >
+                      <Plus className="w-3 h-3" /> Add FAQ
+                    </button>
+                  </div>
+
+                  {faqs.length === 0 ? (
+                    <p className="text-center text-gray-400 text-xs font-bold uppercase tracking-tight py-4">No FAQs added yet. Click "Add FAQ" to start.</p>
+                  ) : (
+                    <div className="space-y-4">
+                      {faqs.map((faq, idx) => (
+                        <div key={idx} className="bg-white dark:bg-black/50 border border-purple-500/20 rounded-2xl p-4 space-y-3 relative">
+                          <button
+                            type="button"
+                            onClick={() => setFaqs(faqs.filter((_, i) => i !== idx))}
+                            className="absolute top-3 right-3 p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                          <div className="space-y-1 pr-8">
+                            <label className="text-[10px] font-black text-purple-600 uppercase tracking-widest">Question {idx + 1}</label>
+                            <input
+                              value={faq.question}
+                              onChange={(e) => {
+                                const updated = [...faqs];
+                                updated[idx] = { ...updated[idx], question: e.target.value };
+                                setFaqs(updated);
+                              }}
+                              className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-900 rounded-xl py-2.5 px-3 text-sm text-black dark:text-white focus:border-purple-500 outline-none transition-all font-bold"
+                              placeholder="e.g. What technologies were used?"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[10px] font-black text-purple-600 uppercase tracking-widest">Answer</label>
+                            <textarea
+                              value={faq.answer}
+                              onChange={(e) => {
+                                const updated = [...faqs];
+                                updated[idx] = { ...updated[idx], answer: e.target.value };
+                                setFaqs(updated);
+                              }}
+                              rows={2}
+                              className="w-full bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-900 rounded-xl py-2.5 px-3 text-sm text-black dark:text-white focus:border-purple-500 outline-none transition-all font-medium"
+                              placeholder="Provide the answer..."
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 {/* Video Section */}

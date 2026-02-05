@@ -29,6 +29,7 @@ Establishing a high-end digital presence for Code Wave AI through secure user ma
 │   ├── Home.tsx
 │   ├── Login.tsx
 │   ├── Projects.tsx
+│   ├── ProjectDetail.tsx
 │   └── Signup.tsx
 ├── App.tsx              # Main routing and app structure
 ├── constants.ts         # App-wide configuration and static data
@@ -51,6 +52,7 @@ Establishing a high-end digital presence for Code Wave AI through secure user ma
 ### 1. Authentication & Security
 - **Role-Based Access:** Standard users and specific Admins.
 - **Admin Lock:** Exclusive admin access for `meherjaved440@gmail.com` and `codewaveai44@gmail.com`.
+- **Password Recovery:** Forgot password flow with Supabase recovery email.
 - **Row Level Security (RLS):** Data is protected at the database level.
 
 ### 2. Modern UI/UX
@@ -66,6 +68,7 @@ Establishing a high-end digital presence for Code Wave AI through secure user ma
 ### 4. Project Showcase
 - **Media Gallery:** Support for multiple images and video highlights.
 - **Interaction:** Like system, rating displays, and detailed descriptions.
+- **FAQs:** Per-project FAQ section with accordion UI on project detail page (stored as JSONB).
 - **Clickable Links:** URLs in project descriptions are auto-detected and rendered as clickable links.
 
 ### 5. Team Manager
