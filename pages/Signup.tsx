@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, User, Mail, Lock, Phone, Loader2, AlertCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { greetUserWhatsApp } from '../lib/whatsapp';
 
 const Signup: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -29,6 +30,7 @@ const Signup: React.FC = () => {
     
     try {
       await signup(formData);
+      greetUserWhatsApp(formData.phone);
       navigate('/');
     } catch (err: any) {
       setError(err.message || 'Something went wrong. Please try again.');

@@ -11,6 +11,8 @@ export const SOCIAL_LINKS = {
   linkedin: 'https://www.linkedin.com/in/muhammad-javed-383914200/'
 };
 
+export const WHATSAPP_NUMBER = '923238300086';
+
 export const COLORS = {
   primary: '#f97316', // Orange 500
   secondary: '#ef4444', // Red 500
