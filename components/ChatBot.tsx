@@ -71,14 +71,14 @@ const ChatBot: React.FC = () => {
       {/* Floating bubble */}
       <button
         onClick={() => setOpen(o => !o)}
-        className={`fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-200 ${open ? 'scale-0' : 'scale-100'}`}
+        className={`fixed bottom-4 right-4 2xs:bottom-6 2xs:right-6 z-50 w-12 h-12 2xs:w-14 2xs:h-14 rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-white shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-200 ${open ? 'scale-0' : 'scale-100'}`}
         aria-label="Open chat"
       >
         <MessageCircle className="w-6 h-6" />
       </button>
 
       {/* Chat popup */}
-      <div className={`fixed bottom-6 right-6 z-50 w-[380px] h-[500px] flex flex-col rounded-2xl shadow-2xl overflow-hidden backdrop-blur-xl bg-white/90 dark:bg-black/90 border border-gray-200 dark:border-gray-800 transition-all duration-300 origin-bottom-right ${open ? 'scale-100 opacity-100' : 'scale-0 opacity-0 pointer-events-none'}`}>
+      <div className={`fixed z-50 flex flex-col shadow-2xl overflow-hidden backdrop-blur-xl bg-white/95 dark:bg-black/95 border border-gray-200 dark:border-gray-800 transition-all duration-300 origin-bottom-right bottom-0 right-0 w-full h-[100dvh] rounded-none xs:bottom-4 xs:right-4 xs:w-[calc(100%-2rem)] xs:h-[70vh] xs:rounded-2xl sm:bottom-6 sm:right-6 sm:w-[380px] sm:h-[500px] ${open ? 'scale-100 opacity-100' : 'scale-0 opacity-0 pointer-events-none'}`}>
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white">
           <span className="font-bold text-sm">CodeWaveAI Assistant</span>
@@ -107,8 +107,8 @@ const ChatBot: React.FC = () => {
         </div>
 
         {/* Input */}
-        <div className="flex items-center gap-2 p-3 border-t border-gray-200 dark:border-gray-800">
-          <button onClick={toggleVoice} className={`p-2 rounded-full transition-colors ${listening ? 'bg-red-500 text-white animate-pulse' : 'text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-800'}`} aria-label="Voice input">
+        <div className="flex items-center gap-2 p-3 pb-safe-bottom border-t border-gray-200 dark:border-gray-800">
+          <button onClick={toggleVoice} className={`p-2.5 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full transition-colors ${listening ? 'bg-red-500 text-white animate-pulse' : 'text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-800'}`} aria-label="Voice input">
             <Mic className="w-4 h-4" />
           </button>
           <input
@@ -116,9 +116,9 @@ const ChatBot: React.FC = () => {
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && sendMessage()}
             placeholder="Ask about CodeWaveAI..."
-            className="flex-1 bg-transparent outline-none text-sm text-black dark:text-white placeholder-gray-400"
+            className="flex-1 bg-transparent outline-none text-sm text-black dark:text-white placeholder-gray-400 min-h-[40px]"
           />
-          <button onClick={sendMessage} disabled={loading || !input.trim()} className="p-2 rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-white disabled:opacity-50 transition-opacity" aria-label="Send">
+          <button onClick={sendMessage} disabled={loading || !input.trim()} className="p-2.5 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-red-600 text-white disabled:opacity-50 transition-opacity" aria-label="Send">
             <Send className="w-4 h-4" />
           </button>
         </div>

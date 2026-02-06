@@ -41,25 +41,41 @@ Read the existing HTML/CSS/React files to understand:
 - User wants modern, professional components
 - Templates in `assets/html-templates/` or `assets/react-templates/` match needs
 
-### Step 3: Make Responsive
+### Step 3: Make Responsive (All 17 Target Devices)
 
-Apply mobile-first responsive design patterns. Reference `references/responsive-patterns.md` for:
-- Standard breakpoints (sm, md, lg, xl, 2xl)
+Apply mobile-first responsive design for all 17 target devices. Reference `references/device-breakpoints.md` for:
+- Complete device specs (9 phones, 4 tablets, 3 foldables, 2 smart displays)
+- Custom Tailwind breakpoint configuration
+- Device-specific patterns and safe area handling
+- Universal responsive component patterns
+
+Reference `references/responsive-patterns.md` for:
 - Layout patterns (fluid grids, responsive flexbox)
 - Common responsive issues and fixes
 
 Reference `references/tailwind-guide.md` for:
-- Responsive utility classes
-- Container patterns
-- Common component patterns (navigation, hero, cards, footer)
+- Responsive utility classes and container patterns
+
+**17 Target Devices:**
+| Category | Devices | Widths |
+|----------|---------|--------|
+| Narrow Phone | Galaxy Z Fold 5 (cover) | 344px |
+| Small Phones | Galaxy S8+, iPhone SE | 360px, 375px |
+| Mid Phones | iPhone 12 Pro, iPhone 14 Pro | 390px, 393px |
+| Standard Phones | Pixel 7, Galaxy S20 Ultra, Galaxy A51/71, iPhone XR | 412-414px |
+| Tablets | iPad Mini, iPad Air, Surface Pro 7, iPad Pro | 768-1024px |
+| Foldables | Galaxy Z Fold 5, Surface Duo, Asus Zenbook Fold | 344-1280px |
+| Smart Displays | Nest Hub, Nest Hub Max | 1024×600, 1280×800 |
 
 **Priority fixes:**
-1. **Navigation**: Mobile hamburger menu, desktop horizontal nav
+1. **Navigation**: Mobile hamburger → tablet horizontal → desktop full nav
 2. **Images**: `w-full h-auto` or `object-cover` with constrained heights
-3. **Typography**: Responsive text sizes (`text-2xl md:text-3xl lg:text-4xl`)
-4. **Spacing**: Responsive padding/margin (`p-4 md:p-6 lg:p-8`)
-5. **Layouts**: Stack on mobile, grid/flex on desktop
-6. **Touch targets**: Minimum 44×44px for buttons/links on mobile
+3. **Typography**: Scale across all breakpoints (`text-xl phone-standard:text-2xl md:text-3xl lg:text-4xl`)
+4. **Spacing**: Tight on narrow → comfortable on standard → generous on desktop
+5. **Layouts**: 1 col → 2 col → 3 col → 4 col grid progression
+6. **Touch targets**: 44px phones, 48px touch tablets, 64px smart displays
+7. **Safe areas**: iPhone notch/Dynamic Island, Android gesture nav, foldable hinges
+8. **Smart displays**: No-scroll layouts, large text (18px+), distance readability
 
 ### Step 4: Enhance Visual Design
 
@@ -142,32 +158,49 @@ Reference `references/accessibility.md` for comprehensive guidelines. Check:
 <a href="#main" class="sr-only focus:not-sr-only">Skip to content</a>
 ```
 
-### Step 7: Test Across All Breakpoints
+### Step 7: Test Across All 17 Target Devices
 
-Reference `references/device-breakpoints.md` for comprehensive device sizes and custom Tailwind configuration.
+Reference `references/device-breakpoints.md` for complete device specs, exact media queries, and testing checklist.
 
-**Essential test points:**
+**All 17 device test points:**
 
-| Category | Widths to Test |
-|----------|----------------|
-| Small Phone | 320px, 360px |
-| Phone | 375px, 390px, 412px |
-| Large Phone | 428px, 430px |
-| Tablet Portrait | 744px, 768px, 820px |
-| Tablet Landscape | 1024px, 1180px |
-| Laptop | 1280px, 1366px |
-| Desktop | 1440px, 1920px |
-| Large Desktop | 2560px+ |
+| # | Device | Width | Category |
+|---|--------|-------|----------|
+| 1 | Galaxy Z Fold 5 (cover) | 344px | Narrow Phone |
+| 2 | Samsung Galaxy S8+ | 360px | Small Phone |
+| 3 | iPhone SE | 375×667 | Small Phone (short viewport) |
+| 4 | iPhone 12 Pro | 390px | Mid Phone |
+| 5 | iPhone 14 Pro | 393px | Mid Phone |
+| 6 | Pixel 7 | 412px | Standard Phone |
+| 7 | Samsung Galaxy S20 Ultra | 412px | Standard Phone |
+| 8 | Samsung Galaxy A51/71 | 412px | Standard Phone |
+| 9 | iPhone XR | 414px | Standard Phone |
+| 10 | iPad Mini | 768px | Small Tablet |
+| 11 | iPad Air | 820px | Standard Tablet |
+| 12 | Surface Pro 7 | 912px | Large Tablet |
+| 13 | iPad Pro | 1024px | Large Tablet |
+| 14 | Surface Duo | 540px / 1080px | Foldable |
+| 15 | Galaxy Z Fold 5 (inner) | 882px | Foldable |
+| 16 | Asus Zenbook Fold | 853px / 1280px | Foldable Laptop |
+| 17a | Nest Hub | 1024×600 | Smart Display |
+| 17b | Nest Hub Max | 1280×800 | Smart Display |
 
-**What to verify at each breakpoint:**
+**15-point verification at each breakpoint:**
 - [ ] No horizontal scrolling
-- [ ] Text readable (min 16px body on mobile)
-- [ ] Images scale properly (no overflow)
-- [ ] Navigation works (hamburger on mobile, horizontal on desktop)
-- [ ] Touch targets ≥ 44×44px on touch devices
-- [ ] Spacing appropriate (not too dense on mobile, not too sparse on desktop)
-- [ ] Grid columns adjust (1 col → 2 col → 3 col → 4 col)
-- [ ] Content doesn't stretch too wide on large screens (use max-w-7xl)
+- [ ] Text readable (14px narrow, 16px standard, 18px+ smart displays)
+- [ ] Images scale properly (no overflow, correct aspect ratios)
+- [ ] Navigation works (hamburger → horizontal → full nav)
+- [ ] Touch targets ≥ 44px phones, ≥ 48px tablets, ≥ 64px smart displays
+- [ ] Spacing appropriate (tight narrow, comfortable standard, generous desktop)
+- [ ] Grid columns adjust (1→2→3→4 progression)
+- [ ] Content constrained on ultra-wide (max-w-7xl or max-w-screen-2xl)
+- [ ] Text overflow handled (line-clamp, truncate)
+- [ ] Safe areas respected (iPhone notch/Dynamic Island, Android nav, hinges)
+- [ ] Fold transitions smooth (cover→inner content reflow)
+- [ ] Smart displays: no scroll, distance-readable, glanceable
+- [ ] Dark mode works at all breakpoints
+- [ ] Both portrait and landscape tested
+- [ ] Touch vs mouse input handled
 
 ## Component Templates
 
@@ -211,34 +244,36 @@ Load these as needed for detailed guidance:
 
 When time is limited, prioritize these high-impact changes:
 
-1. **Add responsive navigation** (mobile hamburger menu)
-2. **Make images responsive** (`w-full h-auto`)
-3. **Add container constraints** (`max-w-7xl mx-auto`)
-4. **Responsive text sizes** (`text-base md:text-lg lg:text-xl`)
-5. **Stack layouts on mobile** (`flex flex-col md:flex-row`)
-6. **Increase mobile spacing** (`p-4 md:p-6 lg:p-8`)
+1. **Add responsive navigation** (hamburger on phones, horizontal on tablets+)
+2. **Make images responsive** (`w-full h-auto object-cover`)
+3. **Add container constraints** (`max-w-7xl mx-auto px-2 phone-small:px-3 md:px-6 lg:px-8`)
+4. **Responsive text sizes** (`text-sm phone-mid:text-base md:text-lg lg:text-xl`)
+5. **Stack layouts on mobile** (`flex flex-col md:flex-row`, `grid grid-cols-1 phone-standard:grid-cols-2 md:grid-cols-3`)
+6. **Responsive spacing** (`p-2 phone-small:p-3 md:p-6 lg:p-8`)
 7. **Add hover effects** (`hover:shadow-xl transition-shadow`)
-8. **Fix color contrast** (minimum 4.5:1)
+8. **Fix touch targets** (`min-h-[44px] touch:min-h-[48px]`)
+9. **Add safe areas** (`pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]`)
+10. **Fix color contrast** (minimum 4.5:1)
 
 ## Common Patterns
 
-### Responsive Container
+### Responsive Container (All 17 Devices)
 ```html
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <!-- Content -->
+<div class="max-w-7xl mx-auto px-2 phone-small:px-3 phone-mid:px-4 md:px-6 lg:px-8 xl:px-12 fold-cover:px-1 smart-display:px-6">
+  <!-- Content adapts from Z Fold 5 cover (344px) to 4K desktop -->
 </div>
 ```
 
-### Responsive Grid
+### Responsive Grid (All 17 Devices)
 ```html
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 phone-standard:grid-cols-2 md:grid-cols-2 md-lg:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-2 phone-standard:gap-3 md:gap-4 lg:gap-6 xl:gap-8 fold-cover:grid-cols-1 fold-inner:grid-cols-2 smart-display:grid-cols-3 nest-hub-max:grid-cols-4">
   <!-- Items -->
 </div>
 ```
 
-### Responsive Section
+### Responsive Section (All 17 Devices)
 ```html
-<section class="py-12 md:py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
+<section class="py-6 phone-standard:py-8 md:py-12 lg:py-16 xl:py-24 px-2 phone-small:px-3 md:px-6 lg:px-8 short:py-4 smart-display:py-4">
   <div class="max-w-7xl mx-auto">
     <!-- Content -->
   </div>

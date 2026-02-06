@@ -137,7 +137,7 @@ const ProjectDetail: React.FC = () => {
   const images = project.media?.length ? project.media : ['https://via.placeholder.com/800x450'];
 
   return (
-    <div className="py-12 md:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-6 sm:py-12 md:py-24 max-w-5xl mx-auto px-3 sm:px-6 lg:px-8">
       {/* Lightbox */}
       {lightbox && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={() => setLightbox(null)}>
@@ -151,7 +151,7 @@ const ProjectDetail: React.FC = () => {
       </Link>
 
       {/* Hero Image */}
-      <div className="rounded-[2rem] overflow-hidden border border-gray-200 dark:border-gray-800 mb-4">
+      <div className="rounded-xl sm:rounded-[2rem] overflow-hidden border border-gray-200 dark:border-gray-800 mb-3 sm:mb-4">
         <img
           src={images[selectedImage]}
           alt={project.title}
@@ -162,12 +162,12 @@ const ProjectDetail: React.FC = () => {
 
       {/* Thumbnail Strip */}
       {images.length > 1 && (
-        <div className="flex gap-3 mb-10 overflow-x-auto pb-2">
+        <div className="flex gap-2 sm:gap-3 mb-6 sm:mb-10 overflow-x-auto pb-2 -mx-1 px-1">
           {images.map((img, i) => (
             <button
               key={i}
               onClick={() => setSelectedImage(i)}
-              className={`flex-shrink-0 w-20 h-14 rounded-xl overflow-hidden border-2 transition-all ${
+              className={`flex-shrink-0 w-16 h-11 sm:w-20 sm:h-14 rounded-lg sm:rounded-xl overflow-hidden border-2 transition-all min-w-[44px] ${
                 i === selectedImage ? 'border-orange-600 scale-105' : 'border-gray-200 dark:border-gray-800 opacity-60 hover:opacity-100'
               }`}
             >
@@ -187,9 +187,9 @@ const ProjectDetail: React.FC = () => {
       )}
 
       {/* Project Info */}
-      <div className="mb-10 space-y-4">
-        <div className="flex flex-wrap items-center gap-4">
-          <h1 className="text-3xl md:text-5xl font-black text-black dark:text-white uppercase tracking-tighter">
+      <div className="mb-6 sm:mb-10 space-y-3 sm:space-y-4">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+          <h1 className="text-2xl 2xs:text-3xl md:text-5xl font-black text-black dark:text-white uppercase tracking-tighter">
             {project.title}
           </h1>
           {project.price != null && (
@@ -234,7 +234,7 @@ const ProjectDetail: React.FC = () => {
       </div>
 
       {/* Actions */}
-      <div className="flex flex-wrap items-center gap-6 mb-12 pb-8 border-b border-gray-200 dark:border-gray-800">
+      <div className="flex flex-wrap items-center gap-3 sm:gap-6 mb-8 sm:mb-12 pb-6 sm:pb-8 border-b border-gray-200 dark:border-gray-800">
         <button
           onClick={toggleLike}
           disabled={!user}
@@ -314,18 +314,18 @@ const ProjectDetail: React.FC = () => {
         </h2>
 
         {user && (
-          <form onSubmit={submitComment} className="flex gap-3 mb-8">
+          <form onSubmit={submitComment} className="flex gap-2 sm:gap-3 mb-6 sm:mb-8">
             <input
               type="text"
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
               placeholder="Add a comment..."
-              className="flex-grow px-5 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl focus:outline-none focus:border-orange-600 transition-colors"
+              className="flex-grow min-w-0 px-3 sm:px-5 py-3 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl focus:outline-none focus:border-orange-600 transition-colors text-sm sm:text-base"
             />
             <button
               type="submit"
               disabled={submitting || !commentText.trim()}
-              className="px-5 py-3 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-colors disabled:opacity-50"
+              className="px-4 sm:px-5 py-3 bg-orange-600 text-white font-bold rounded-xl hover:bg-orange-700 transition-colors disabled:opacity-50 flex-shrink-0 min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               {submitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
             </button>

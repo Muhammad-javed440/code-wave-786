@@ -28,14 +28,14 @@ const Navbar: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-900 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+    <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-900 transition-colors pt-safe-top">
+      <div className="max-w-7xl mx-auto px-3 2xs:px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 2xs:h-16 sm:h-20">
           <Link to="/" className="flex items-center space-x-2 group">
             <div className="p-2 bg-orange-600 rounded-lg group-hover:bg-red-600 transition-colors">
               <Code2 className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-extrabold tracking-tighter text-black dark:text-white">
+            <span className="text-base 2xs:text-lg sm:text-xl font-extrabold tracking-tighter text-black dark:text-white">
               CODE WAVE <span className="text-orange-600">AI</span>
             </span>
           </Link>
@@ -100,18 +100,19 @@ const Navbar: React.FC = () => {
             ) : (
               <Link
                 to="/login"
-                className="px-5 py-2.5 bg-orange-600 hover:bg-red-600 text-white text-sm font-black rounded-xl transition-all shadow-lg shadow-orange-600/20"
+                className="px-4 py-2 md:px-5 md:py-2.5 bg-orange-600 hover:bg-red-600 text-white text-xs md:text-sm font-black rounded-xl transition-all shadow-lg shadow-orange-600/20"
               >
                 JOIN US
               </Link>
             )}
           </div>
 
-          <div className="md:hidden flex items-center space-x-4">
+          <div className="md:hidden flex items-center space-x-2 2xs:space-x-3">
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-black dark:text-gray-400 hover:text-orange-600 dark:hover:text-white"
+              className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-black dark:text-gray-400 hover:text-orange-600 dark:hover:text-white rounded-xl active:bg-gray-100 dark:active:bg-gray-900 transition-colors"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -120,39 +121,52 @@ const Navbar: React.FC = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-white dark:bg-black border-b border-gray-200 dark:border-gray-900 animate-in slide-in-from-top duration-300">
-          <div className="px-4 pt-2 pb-6 space-y-2">
+        <div className="md:hidden bg-white dark:bg-black border-b border-gray-200 dark:border-gray-900 animate-in slide-in-from-top duration-300 max-h-[calc(100vh-3.5rem)] overflow-y-auto">
+          <div className="px-3 2xs:px-4 pt-2 pb-6 pb-safe-bottom space-y-1.5">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className={`block px-3 py-4 rounded-xl text-base font-bold uppercase tracking-widest ${
-                  isActive(link.path) ? 'bg-orange-50 dark:bg-gray-900 text-orange-600' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-900'
+                className={`block px-4 py-3.5 min-h-[48px] flex items-center rounded-xl text-sm 2xs:text-base font-bold uppercase tracking-widest transition-colors ${
+                  isActive(link.path) ? 'bg-orange-50 dark:bg-gray-900 text-orange-600' : 'text-gray-700 dark:text-gray-300 active:bg-gray-100 dark:active:bg-gray-900'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-            {!user ? (
-              <Link
-                to="/login"
-                onClick={() => setIsOpen(false)}
-                className="block w-full text-center py-4 bg-orange-600 text-white rounded-xl font-black"
-              >
-                JOIN US NOW
-              </Link>
-            ) : (
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setIsOpen(false);
-                }}
-                className="block w-full text-center py-4 bg-red-600/10 text-red-600 rounded-xl font-black"
-              >
-                LOG OUT
-              </button>
-            )}
+            <div className="pt-2">
+              {!user ? (
+                <Link
+                  to="/login"
+                  onClick={() => setIsOpen(false)}
+                  className="block w-full text-center py-4 min-h-[48px] bg-orange-600 text-white rounded-xl font-black active:bg-orange-700 transition-colors"
+                >
+                  JOIN US NOW
+                </Link>
+              ) : (
+                <>
+                  {user.role === UserRole.ADMIN && (
+                    <Link
+                      to="/admin"
+                      onClick={() => setIsOpen(false)}
+                      className="block w-full text-center py-4 min-h-[48px] bg-orange-600/10 text-orange-600 rounded-xl font-black mb-2"
+                    >
+                      ADMIN PANEL
+                    </Link>
+                  )}
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setIsOpen(false);
+                    }}
+                    className="block w-full text-center py-4 min-h-[48px] bg-red-600/10 text-red-600 rounded-xl font-black active:bg-red-600/20 transition-colors"
+                  >
+                    LOG OUT
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       )}

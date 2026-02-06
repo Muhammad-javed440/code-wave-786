@@ -10,29 +10,35 @@
 
 ## Breakpoint Strategy
 
-### Standard Tailwind Breakpoints
+### Extended Tailwind Breakpoints (17-Device Coverage)
 ```
-xs:  320px  - Extra small phones (optional custom)
-sm:  640px  - Large phones / Small tablets
-md:  768px  - Tablets
-lg:  1024px - Laptops / Large tablets
-xl:  1280px - Desktops
-2xl: 1536px - Large desktops
-3xl: 1920px - Full HD (optional custom)
+xs:     344px  - Galaxy Z Fold 5 cover (narrowest device)
+2xs:    360px  - Samsung Galaxy S8+
+sm:     640px  - Large phones landscape / phablets
+md:     768px  - iPad Mini, standard tablets
+md-lg:  820px  - iPad Air
+lg:     1024px - iPad Pro, Nest Hub, laptops
+xl:     1280px - Nest Hub Max, desktops, Zenbook Fold laptop
+2xl:    1536px - Large desktops
+3xl:    1920px - Full HD monitors
+4xl:    2560px - QHD/2K monitors
 ```
 
-### Device Categories
+### Device Categories (All 17 Target Devices)
 
-| Category | Width Range | Common Devices |
+| Category | Width Range | Target Devices |
 |----------|-------------|----------------|
-| Small Phone | 320-374px | iPhone SE, Galaxy Fold |
-| Phone | 375-639px | iPhone 12-15, Pixel, Galaxy S |
-| Large Phone/Phablet | 640-767px | Phone landscape, small tablets |
-| Tablet | 768-1023px | iPad, Android tablets |
-| Laptop | 1024-1279px | MacBook Air, small laptops |
-| Desktop | 1280-1535px | Standard monitors |
-| Large Desktop | 1536-1919px | Large monitors |
-| Full HD+ | 1920px+ | HD, QHD, 4K monitors |
+| Narrow Phone | 344-359px | Galaxy Z Fold 5 (cover) |
+| Small Phone | 360-379px | Samsung Galaxy S8+ (360px), iPhone SE (375px) |
+| Mid Phone | 380-399px | iPhone 12 Pro (390px), iPhone 14 Pro (393px) |
+| Standard Phone | 400-430px | Pixel 7 (412px), Galaxy S20 Ultra (412px), Galaxy A51/71 (412px), iPhone XR (414px) |
+| Compact Tablet | 540-639px | Surface Duo single (540px) |
+| Small Tablet | 768-819px | iPad Mini (768px) |
+| Standard Tablet | 820-899px | iPad Air (820px), Zenbook Fold tablet (853px), Z Fold 5 inner (882px) |
+| Large Tablet | 900-1024px | Surface Pro 7 (912px), iPad Pro (1024px) |
+| Foldable Dual | 1060-1100px | Surface Duo dual (1080px) |
+| Desktop | 1280px+ | Zenbook Fold laptop (1280px), Nest Hub Max (1280px), monitors |
+| Smart Display | 1024-1280px (short) | Nest Hub (1024×600), Nest Hub Max (1280×800) |
 
 ### Best Practices
 - **Mobile-first**: Start with smallest screen, add complexity for larger

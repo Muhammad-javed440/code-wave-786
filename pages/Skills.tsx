@@ -66,27 +66,27 @@ const Skills: React.FC = () => {
   }, {} as Record<string, Skill[]>);
 
   return (
-    <div className="py-12 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="py-8 sm:py-12 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header */}
-      <div className="text-center mb-16 space-y-6">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-600/10 border border-orange-500/20 rounded-full text-orange-600 text-sm font-bold uppercase tracking-wider">
-          <Award className="w-4 h-4" />
+      <div className="text-center mb-10 sm:mb-16 space-y-4 sm:space-y-6">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-orange-600/10 border border-orange-500/20 rounded-full text-orange-600 text-xs sm:text-sm font-bold uppercase tracking-wider">
+          <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           Our Expertise
         </div>
-        <h1 className="text-4xl md:text-6xl font-black text-black dark:text-white uppercase tracking-tighter">
+        <h1 className="text-3xl 2xs:text-4xl md:text-6xl font-black text-black dark:text-white uppercase tracking-tighter">
           SKILLS & <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">TECHNOLOGIES</span>
         </h1>
-        <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-500 dark:text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
           The tools and technologies we master to build innovative solutions for your business needs.
         </p>
       </div>
 
       {/* Category Filter */}
       {categories.length > 0 && (
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12">
           <button
             onClick={() => setSelectedCategory(null)}
-            className={`px-6 py-3 rounded-2xl font-bold text-sm uppercase tracking-wider transition-all ${
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all min-h-[44px] ${
               selectedCategory === null
                 ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
                 : 'bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800'
@@ -98,14 +98,14 @@ const Skills: React.FC = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-6 py-3 rounded-2xl font-bold text-sm uppercase tracking-wider transition-all flex items-center gap-2 ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center gap-1.5 sm:gap-2 min-h-[44px] ${
                 selectedCategory === cat
                   ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/30'
                   : 'bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800'
               }`}
             >
               {categoryIcons[cat] || <Code2 className="w-4 h-4" />}
-              {cat}
+              <span className="hidden 2xs:inline">{cat}</span>
             </button>
           ))}
         </div>
@@ -137,11 +137,11 @@ const Skills: React.FC = () => {
               </div>
 
               {/* Skills Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {categorySkills.map(skill => (
                   <div
                     key={skill.id}
-                    className="group bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-900 rounded-3xl p-6 hover:border-orange-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-orange-600/5"
+                    className="group bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-900 rounded-2xl sm:rounded-3xl p-4 sm:p-6 hover:border-orange-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-orange-600/5"
                   >
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
@@ -199,24 +199,24 @@ const Skills: React.FC = () => {
 
       {/* Stats Section */}
       {skills.length > 0 && (
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-3xl p-8 text-center text-white">
-            <div className="text-5xl font-black mb-2">{skills.length}</div>
-            <div className="text-sm font-bold uppercase tracking-wider opacity-80">Total Skills</div>
+        <div className="mt-12 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
+          <div className="bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-center text-white">
+            <div className="text-3xl sm:text-5xl font-black mb-1 sm:mb-2">{skills.length}</div>
+            <div className="text-[10px] sm:text-sm font-bold uppercase tracking-wider opacity-80">Total Skills</div>
           </div>
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl p-8 text-center text-white">
-            <div className="text-5xl font-black mb-2">{categories.length}</div>
-            <div className="text-sm font-bold uppercase tracking-wider opacity-80">Categories</div>
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-center text-white">
+            <div className="text-3xl sm:text-5xl font-black mb-1 sm:mb-2">{categories.length}</div>
+            <div className="text-[10px] sm:text-sm font-bold uppercase tracking-wider opacity-80">Categories</div>
           </div>
-          <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl p-8 text-center text-white">
-            <div className="text-5xl font-black mb-2">{skills.filter(s => s.proficiency >= 80).length}</div>
-            <div className="text-sm font-bold uppercase tracking-wider opacity-80">Expert Level</div>
+          <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-center text-white">
+            <div className="text-3xl sm:text-5xl font-black mb-1 sm:mb-2">{skills.filter(s => s.proficiency >= 80).length}</div>
+            <div className="text-[10px] sm:text-sm font-bold uppercase tracking-wider opacity-80">Expert Level</div>
           </div>
-          <div className="bg-gradient-to-br from-green-500 to-emerald-500 rounded-3xl p-8 text-center text-white">
-            <div className="text-5xl font-black mb-2">
+          <div className="bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl sm:rounded-3xl p-5 sm:p-8 text-center text-white">
+            <div className="text-3xl sm:text-5xl font-black mb-1 sm:mb-2">
               {Math.round(skills.reduce((sum, s) => sum + s.proficiency, 0) / skills.length || 0)}%
             </div>
-            <div className="text-sm font-bold uppercase tracking-wider opacity-80">Avg Proficiency</div>
+            <div className="text-[10px] sm:text-sm font-bold uppercase tracking-wider opacity-80">Avg Proficiency</div>
           </div>
         </div>
       )}

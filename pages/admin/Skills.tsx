@@ -170,18 +170,18 @@ const AdminSkills: React.FC = () => {
   }, {} as Record<string, Skill[]>);
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-12">
-      <div className="flex items-center justify-between">
+    <div className="p-3 sm:p-4 md:p-8 max-w-7xl mx-auto space-y-6 sm:space-y-12">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-black text-black dark:text-white uppercase tracking-tighter">SKILLS MANAGER</h1>
-          <p className="text-gray-500 font-medium">Showcase your technical expertise</p>
+          <h1 className="text-2xl sm:text-3xl font-black text-black dark:text-white uppercase tracking-tighter">SKILLS MANAGER</h1>
+          <p className="text-gray-500 font-medium text-sm sm:text-base">Showcase your technical expertise</p>
         </div>
         <button
           onClick={() => {
             if (isAdding) resetForm();
             setIsAdding(!isAdding);
           }}
-          className={`px-6 py-3 ${isAdding ? 'bg-red-600' : 'bg-orange-600'} hover:opacity-90 text-white text-sm font-black rounded-xl flex items-center justify-center transition-all shadow-xl shadow-orange-600/20`}
+          className={`px-5 sm:px-6 py-2.5 sm:py-3 ${isAdding ? 'bg-red-600' : 'bg-orange-600'} hover:opacity-90 text-white text-sm font-black rounded-xl flex items-center justify-center transition-all shadow-xl shadow-orange-600/20 min-h-[44px] w-full sm:w-auto`}
         >
           {isAdding ? <X className="w-4 h-4 mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
           {isAdding ? 'CANCEL' : 'ADD NEW SKILL'}
@@ -206,17 +206,17 @@ const AdminSkills: React.FC = () => {
 
       {/* Add/Edit Form */}
       {isAdding && (
-        <div className="bg-white dark:bg-black border-2 border-orange-500/20 dark:border-orange-500/10 p-6 md:p-10 rounded-[3rem] shadow-2xl animate-in slide-in-from-top-4 duration-500 relative overflow-hidden">
+        <div className="bg-white dark:bg-black border-2 border-orange-500/20 dark:border-orange-500/10 p-4 sm:p-6 md:p-10 rounded-2xl sm:rounded-[3rem] shadow-2xl animate-in slide-in-from-top-4 duration-500 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-24 bg-orange-600/5 blur-[100px] rounded-full -z-10"></div>
 
           {isEditing && (
-            <div className="mb-6 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl inline-flex items-center text-blue-600 text-sm font-bold">
+            <div className="mb-4 sm:mb-6 px-3 sm:px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl inline-flex items-center text-blue-600 text-sm font-bold">
               <Edit3 className="w-4 h-4 mr-2" /> Editing Skill
             </div>
           )}
 
-          <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid md:grid-cols-2 gap-8">
+          <form className="space-y-6 sm:space-y-8" onSubmit={(e) => e.preventDefault()}>
+            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
               {/* Skill Name */}
               <div className="space-y-2">
                 <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Skill Name *</label>
@@ -322,7 +322,7 @@ const AdminSkills: React.FC = () => {
       )}
 
       {/* Skills List */}
-      <div className="bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-950 rounded-[3rem] overflow-hidden shadow-xl">
+      <div className="bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-950 rounded-2xl sm:rounded-[3rem] overflow-hidden shadow-xl">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
             <Loader2 className="w-8 h-8 text-orange-600 animate-spin mb-4" />
@@ -336,7 +336,7 @@ const AdminSkills: React.FC = () => {
         ) : (
           <div className="divide-y divide-gray-100 dark:divide-gray-900">
             {Object.entries(groupedSkills).map(([cat, catSkills]) => (
-              <div key={cat} className="p-6 md:p-8">
+              <div key={cat} className="p-4 sm:p-6 md:p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-2 bg-orange-500/10 rounded-xl">
                     <Code2 className="w-5 h-5 text-orange-600" />
@@ -405,24 +405,24 @@ const AdminSkills: React.FC = () => {
 
       {/* Quick Stats */}
       {skills.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-orange-500/10 border border-orange-500/20 rounded-2xl p-6 text-center">
-            <div className="text-3xl font-black text-orange-600 mb-1">{skills.length}</div>
-            <div className="text-xs font-bold text-gray-500 uppercase">Total Skills</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center">
+            <div className="text-2xl sm:text-3xl font-black text-orange-600 mb-1">{skills.length}</div>
+            <div className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase">Total Skills</div>
           </div>
-          <div className="bg-green-500/10 border border-green-500/20 rounded-2xl p-6 text-center">
-            <div className="text-3xl font-black text-green-600 mb-1">{skills.filter(s => s.proficiency >= 80).length}</div>
-            <div className="text-xs font-bold text-gray-500 uppercase">Expert Level</div>
+          <div className="bg-green-500/10 border border-green-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center">
+            <div className="text-2xl sm:text-3xl font-black text-green-600 mb-1">{skills.filter(s => s.proficiency >= 80).length}</div>
+            <div className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase">Expert Level</div>
           </div>
-          <div className="bg-blue-500/10 border border-blue-500/20 rounded-2xl p-6 text-center">
-            <div className="text-3xl font-black text-blue-600 mb-1">{Object.keys(groupedSkills).length}</div>
-            <div className="text-xs font-bold text-gray-500 uppercase">Categories</div>
+          <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center">
+            <div className="text-2xl sm:text-3xl font-black text-blue-600 mb-1">{Object.keys(groupedSkills).length}</div>
+            <div className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase">Categories</div>
           </div>
-          <div className="bg-purple-500/10 border border-purple-500/20 rounded-2xl p-6 text-center">
-            <div className="text-3xl font-black text-purple-600 mb-1">
+          <div className="bg-purple-500/10 border border-purple-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center">
+            <div className="text-2xl sm:text-3xl font-black text-purple-600 mb-1">
               {Math.round(skills.reduce((sum, s) => sum + s.proficiency, 0) / skills.length)}%
             </div>
-            <div className="text-xs font-bold text-gray-500 uppercase">Avg Level</div>
+            <div className="text-[10px] sm:text-xs font-bold text-gray-500 uppercase">Avg Level</div>
           </div>
         </div>
       )}

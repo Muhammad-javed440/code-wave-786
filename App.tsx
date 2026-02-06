@@ -48,7 +48,7 @@ const AppRoutes = () => {
     <div className="min-h-screen flex flex-col transition-colors duration-500 bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
       <ScrollToTop />
       <Navbar />
-      <main className="flex-grow pt-20">
+      <main className="flex-grow pt-14 2xs:pt-16 sm:pt-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />

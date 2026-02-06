@@ -62,16 +62,16 @@ const Projects: React.FC = () => {
   }, []);
 
   return (
-    <div className="py-12 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-        <div className="space-y-4">
-          <h1 className="text-4xl md:text-6xl font-black text-black dark:text-white uppercase tracking-tighter">OUR PROJECTS</h1>
-          <p className="text-gray-500 dark:text-gray-400 text-lg max-w-xl">
+    <div className="py-8 sm:py-12 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 md:mb-16 gap-4 sm:gap-6">
+        <div className="space-y-2 sm:space-y-4">
+          <h1 className="text-3xl 2xs:text-4xl md:text-6xl font-black text-black dark:text-white uppercase tracking-tighter">OUR PROJECTS</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-base sm:text-lg max-w-xl">
             See the smart tools we built to help people and businesses grow.
           </p>
         </div>
-        <div className="flex items-center space-x-4">
-          <button className="flex items-center space-x-2 px-6 py-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-900 rounded-xl text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-500 transition-all">
+        <div className="flex items-center">
+          <button className="flex items-center space-x-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-900 rounded-xl text-sm font-bold text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-500 transition-all min-h-[44px]">
             <Filter className="w-4 h-4" /> <span>Sort</span>
           </button>
         </div>
@@ -87,10 +87,10 @@ const Projects: React.FC = () => {
           <p className="text-gray-500 font-bold uppercase tracking-widest">No projects found.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-10">
           {projects.map((project) => (
-            <div key={project.id} className="group bg-white dark:bg-black border border-gray-200 dark:border-gray-900 rounded-[2rem] overflow-hidden hover:border-orange-500 transition-all duration-500 flex flex-col">
-              <div className="p-3">
+            <div key={project.id} className="group bg-white dark:bg-black border border-gray-200 dark:border-gray-900 rounded-2xl sm:rounded-[2rem] overflow-hidden hover:border-orange-500 transition-all duration-500 flex flex-col">
+              <div className="p-2 sm:p-3">
                 <DualImageFrame 
                   image1={project.media?.[0] || 'https://via.placeholder.com/800x450'} 
                   image2={project.media?.[1] || 'https://via.placeholder.com/800x450'} 
@@ -98,9 +98,9 @@ const Projects: React.FC = () => {
                 />
               </div>
               
-              <div className="p-8 flex-grow space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-2xl font-black text-black dark:text-white uppercase tracking-tighter">{project.title}</h3>
+              <div className="p-4 sm:p-6 md:p-8 flex-grow space-y-3 sm:space-y-4">
+                <div className="flex items-start justify-between gap-2">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-black text-black dark:text-white uppercase tracking-tighter line-clamp-2">{project.title}</h3>
                   <div className="flex items-center text-orange-600 font-bold bg-orange-600/10 px-2 py-1 rounded-lg text-sm">
                     <Star className="w-4 h-4 mr-1 fill-current" /> {project.rating || 0}
                   </div>

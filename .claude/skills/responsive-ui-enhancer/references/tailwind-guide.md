@@ -12,13 +12,31 @@
 
 ## Responsive Utilities
 
-### Default Breakpoints
+### Default + Extended Breakpoints (17-Device Coverage)
 ```
-sm:  640px   - Large phones, small tablets
-md:  768px   - Tablets
-lg:  1024px  - Laptops, large tablets
-xl:  1280px  - Desktops
-2xl: 1536px  - Large desktops
+xs:     344px   - Galaxy Z Fold 5 cover (narrowest)
+2xs:    360px   - Samsung Galaxy S8+
+sm:     640px   - Large phones landscape, phablets
+md:     768px   - iPad Mini, tablets
+md-lg:  820px   - iPad Air
+lg:     1024px  - iPad Pro, Nest Hub, laptops
+xl:     1280px  - Nest Hub Max, Zenbook Fold laptop, desktops
+2xl:    1536px  - Large desktops
+3xl:    1920px  - Full HD monitors
+4xl:    2560px  - QHD/2K monitors
+```
+
+### Phone & Tablet Range Breakpoints
+```
+phone-narrow:    344-359px  - Z Fold 5 cover
+phone-small:     360-379px  - Galaxy S8+, iPhone SE
+phone-mid:       380-399px  - iPhone 12 Pro, iPhone 14 Pro
+phone-standard:  400-430px  - Pixel 7, Galaxy S20 Ultra, A51/71, iPhone XR
+tablet-compact:  540-639px  - Surface Duo single
+tablet-small:    768-819px  - iPad Mini
+tablet-medium:   820-899px  - iPad Air, Zenbook Fold, Z Fold 5 inner
+tablet-large:    900-1023px - Surface Pro 7
+tablet-xl:       1024-1100px - iPad Pro
 ```
 
 ### Prefix System
@@ -41,57 +59,120 @@ All utilities can be prefixed with breakpoint (mobile-first):
 
 ## Custom Breakpoints
 
-### Extended Configuration
-Add to `tailwind.config.js` for comprehensive device support:
+### Full 17-Device Configuration
+Add to `tailwind.config.js` — see `references/device-breakpoints.md` for the complete configuration with all breakpoints:
 
 ```javascript
 module.exports = {
   theme: {
     screens: {
-      'xs': '320px',    // Extra small phones
-      'sm': '640px',    // Large phones
-      'md': '768px',    // Tablets
-      'lg': '1024px',   // Laptops
-      'xl': '1280px',   // Desktops
-      '2xl': '1536px',  // Large desktops
-      '3xl': '1920px',  // Full HD
+      // Core breakpoints
+      'xs': '344px',      // Galaxy Z Fold 5 cover
+      '2xs': '360px',     // Samsung Galaxy S8+
+      'sm': '640px',      // Large phones landscape
+      'md': '768px',      // iPad Mini
+      'md-lg': '820px',   // iPad Air
+      'lg': '1024px',     // iPad Pro, Nest Hub
+      'xl': '1280px',     // Nest Hub Max, desktops
+      '2xl': '1536px',    // Large desktops
+      '3xl': '1920px',    // Full HD
+      '4xl': '2560px',    // QHD/2K
 
-      // Max-width breakpoints (desktop-first)
-      'max-sm': {'max': '639px'},
-      'max-md': {'max': '767px'},
-      'max-lg': {'max': '1023px'},
+      // Device categories
+      'mobile': {'max': '639px'},
+      'tablet': {'min': '640px', 'max': '1023px'},
+      'laptop': {'min': '1024px', 'max': '1279px'},
+      'desktop': {'min': '1280px'},
 
-      // Range breakpoints
-      'sm-only': {'min': '640px', 'max': '767px'},
-      'md-only': {'min': '768px', 'max': '1023px'},
-      'lg-only': {'min': '1024px', 'max': '1279px'},
+      // Phone ranges (covers all 9 target phones)
+      'phone-narrow': {'min': '344px', 'max': '359px'},
+      'phone-small': {'min': '360px', 'max': '379px'},
+      'phone-mid': {'min': '380px', 'max': '399px'},
+      'phone-standard': {'min': '400px', 'max': '430px'},
 
-      // Device-specific
-      'touch': {'raw': '(hover: none)'},
-      'mouse': {'raw': '(hover: hover)'},
+      // Tablet ranges (covers all 6 target tablets)
+      'tablet-compact': {'min': '540px', 'max': '639px'},
+      'tablet-small': {'min': '768px', 'max': '819px'},
+      'tablet-medium': {'min': '820px', 'max': '899px'},
+      'tablet-large': {'min': '900px', 'max': '1023px'},
+      'tablet-xl': {'min': '1024px', 'max': '1100px'},
+
+      // Foldable states
+      'fold-cover': {'min': '344px', 'max': '359px'},
+      'fold-single': {'min': '540px', 'max': '560px'},
+      'fold-inner': {'min': '853px', 'max': '900px'},
+      'fold-dual': {'min': '1060px', 'max': '1100px'},
+      'fold-laptop': {'min': '1260px', 'max': '1300px'},
+
+      // Smart displays
+      'nest-hub': {'raw': '(min-width: 1024px) and (max-height: 600px)'},
+      'nest-hub-max': {'raw': '(min-width: 1280px) and (max-height: 800px)'},
+      'smart-display': {'raw': '(min-width: 1024px) and (max-height: 800px)'},
+
+      // Orientation, input, retina, viewport height
       'portrait': {'raw': '(orientation: portrait)'},
       'landscape': {'raw': '(orientation: landscape)'},
+      'touch': {'raw': '(hover: none) and (pointer: coarse)'},
+      'stylus': {'raw': '(hover: none) and (pointer: fine)'},
+      'mouse': {'raw': '(hover: hover) and (pointer: fine)'},
+      'retina': {'raw': '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)'},
+      'retina-3x': {'raw': '(-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi)'},
+      'retina-4x': {'raw': '(-webkit-min-device-pixel-ratio: 4), (min-resolution: 384dpi)'},
+      'short': {'raw': '(max-height: 700px)'},
+      'tall': {'raw': '(min-height: 900px)'},
+      'dual-horizontal': {'raw': '(horizontal-viewport-segments: 2)'},
+      'dual-vertical': {'raw': '(vertical-viewport-segments: 2)'},
     }
   }
 }
 ```
 
-### Usage Examples
+### Usage Examples — By Device
 ```html
-<!-- Extra small phones -->
-<p class="text-sm xs:text-base">Scales up from extra small</p>
+<!-- Galaxy Z Fold 5 cover (344px) -->
+<div class="phone-narrow:px-1 phone-narrow:text-xs fold-cover:grid-cols-1">
 
-<!-- Mobile only (max-width) -->
-<div class="max-sm:flex-col max-sm:text-center">Mobile layout</div>
+<!-- Galaxy S8+ (360px) & iPhone SE (375px) -->
+<div class="phone-small:px-3 phone-small:text-sm phone-small:gap-2">
 
-<!-- Tablet only -->
-<div class="hidden sm-only:block">Tablet only content</div>
+<!-- iPhone 12 Pro (390px) & iPhone 14 Pro (393px) -->
+<div class="phone-mid:px-4 phone-mid:text-base phone-mid:gap-3">
+
+<!-- Pixel 7, Galaxy S20 Ultra, A51/71, iPhone XR (412-414px) -->
+<div class="phone-standard:grid-cols-2 phone-standard:px-4">
+
+<!-- iPad Mini (768px) -->
+<div class="tablet-small:grid-cols-2 tablet-small:px-6">
+
+<!-- iPad Air (820px) -->
+<div class="tablet-medium:grid-cols-3 md-lg:px-6">
+
+<!-- Surface Pro 7 (912px) -->
+<div class="tablet-large:grid-cols-3 tablet-large:px-8">
+
+<!-- iPad Pro (1024px) -->
+<div class="tablet-xl:grid-cols-4 lg:px-8">
+
+<!-- Foldable: folded vs unfolded -->
+<div class="fold-cover:flex-col fold-inner:flex-row">
+
+<!-- Surface Duo dual screen -->
+<div class="fold-dual:grid-cols-2 fold-dual:gap-[28px]">
+
+<!-- Nest Hub / Nest Hub Max -->
+<div class="nest-hub:h-screen nest-hub:overflow-hidden nest-hub-max:text-2xl">
+
+<!-- Smart display (both) -->
+<div class="smart-display:flex-row smart-display:items-center">
 
 <!-- Touch vs Mouse -->
-<button class="touch:min-h-[48px] mouse:min-h-[36px]">Adaptive button</button>
+<button class="touch:min-h-[48px] mouse:min-h-[36px]">
+
+<!-- Short viewport (iPhone SE, Nest Hub) -->
+<div class="short:py-2 short:gap-2">
 
 <!-- Orientation -->
-<div class="portrait:flex-col landscape:flex-row">Orientation-aware</div>
+<div class="portrait:flex-col landscape:flex-row">
 ```
 
 ## Container Usage

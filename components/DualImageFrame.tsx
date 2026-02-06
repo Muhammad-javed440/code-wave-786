@@ -45,9 +45,9 @@ const DualImageFrame: React.FC<DualImageFrameProps> = ({ image1, image2, alt, cl
       <div className="absolute inset-0 border-2 border-white/5 group-hover:border-orange-500/30 rounded-[2rem] pointer-events-none transition-colors duration-700"></div>
       
       {/* "View More" Indicator that slides in */}
-      <div className="absolute bottom-6 right-6 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-100 flex items-center space-x-2">
-        <div className="h-[2px] w-8 bg-orange-500"></div>
-        <span className="text-[10px] font-black text-white uppercase tracking-[0.3em]">Live Preview</span>
+      <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 delay-100 flex items-center space-x-2">
+        <div className="h-[2px] w-6 sm:w-8 bg-orange-500"></div>
+        <span className="text-[8px] sm:text-[10px] font-black text-white uppercase tracking-[0.3em]">Live Preview</span>
       </div>
     </div>
   );

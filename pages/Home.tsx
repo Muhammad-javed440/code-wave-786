@@ -31,11 +31,11 @@ const Counter = ({ target, label }: { target: number, label: string }) => {
   }, [target]);
 
   return (
-    <div className="text-center p-6 bg-gray-800/80 border border-gray-700 rounded-2xl backdrop-blur-md transition-all hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10">
-      <div className="text-4xl md:text-5xl font-extrabold text-green-400 mb-2">
+    <div className="text-center p-4 sm:p-6 bg-gray-800/80 border border-gray-700 rounded-2xl backdrop-blur-md transition-all hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10">
+      <div className="text-2xl 2xs:text-3xl sm:text-4xl md:text-5xl font-extrabold text-green-400 mb-1 sm:mb-2">
         {count.toLocaleString()}+
       </div>
-      <div className="text-gray-300 font-bold uppercase tracking-widest text-xs">{label}</div>
+      <div className="text-gray-300 font-bold uppercase tracking-widest text-[10px] 2xs:text-xs">{label}</div>
     </div>
   );
 };
@@ -88,49 +88,49 @@ const Home: React.FC = () => {
   return (
     <div className="relative overflow-hidden">
       {/* Dynamic Background Light Orbs */}
-      <div className="blur-orb w-[400px] h-[400px] bg-orange-500 top-[-100px] left-[-100px] animate-float"></div>
-      <div className="blur-orb w-[300px] h-[300px] bg-red-600 top-[20%] right-[-50px] animate-float-delayed"></div>
-      <div className="blur-orb w-[500px] h-[500px] bg-blue-600 bottom-[-200px] left-[10%] animate-float-slow"></div>
+      <div className="blur-orb w-[200px] h-[200px] sm:w-[400px] sm:h-[400px] bg-orange-500 top-[-50px] left-[-50px] sm:top-[-100px] sm:left-[-100px] animate-float"></div>
+      <div className="blur-orb w-[150px] h-[150px] sm:w-[300px] sm:h-[300px] bg-red-600 top-[20%] right-[-30px] sm:right-[-50px] animate-float-delayed"></div>
+      <div className="blur-orb w-[250px] h-[250px] sm:w-[500px] sm:h-[500px] bg-blue-600 bottom-[-100px] sm:bottom-[-200px] left-[10%] animate-float-slow"></div>
 
       {/* Hero Section */}
-      <section className="relative pt-12 pb-24 md:pt-24 md:pb-32 z-10">
+      <section className="relative pt-8 pb-16 sm:pt-12 sm:pb-24 md:pt-24 md:pb-32 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-left space-y-8 animate-in slide-in-from-left duration-700">
-              <div className="inline-flex items-center px-4 py-2 bg-orange-600/10 border border-orange-500/20 rounded-full text-orange-600 dark:text-orange-400 text-sm font-bold animate-pulse">
-                <Zap className="w-4 h-4 mr-2" />
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div className="text-left space-y-5 sm:space-y-8 animate-in slide-in-from-left duration-700">
+              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-orange-600/10 border border-orange-500/20 rounded-full text-orange-600 dark:text-orange-400 text-xs sm:text-sm font-bold animate-pulse">
+                <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />
                 New: Smart AI Tools
               </div>
-              
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-black dark:text-white leading-tight tracking-tighter">
+
+              <h1 className="text-3xl 2xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-black dark:text-white leading-tight tracking-tighter">
                 WE MAKE <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-red-500 to-orange-600">SMART</span> <br />
                 AI TECH
               </h1>
-              
-              <p className="max-w-xl text-lg md:text-xl text-gray-700 dark:text-gray-400 leading-relaxed">
-                Code Wave AI builds tools that talk, learn, and grow. 
+
+              <p className="max-w-xl text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-400 leading-relaxed">
+                Code Wave AI builds tools that talk, learn, and grow.
                 Our robots help you do your work faster and better every day.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Link to="/projects" className="w-full sm:w-auto px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl flex items-center justify-center transition-all shadow-xl shadow-red-600/30">
-                  SEE OUR WORK <ArrowRight className="ml-2 w-5 h-5" />
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+                <Link to="/projects" className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-red-600 hover:bg-red-700 text-white font-black rounded-2xl flex items-center justify-center transition-all shadow-xl shadow-red-600/30 text-sm sm:text-base active:scale-95">
+                  SEE OUR WORK <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                 </Link>
-                <Link to="/contact" className="w-full sm:w-auto px-8 py-4 bg-white/80 dark:bg-black/80 backdrop-blur-md hover:bg-gray-50 dark:hover:bg-gray-900 text-black dark:text-white font-bold border-2 border-black dark:border-white rounded-2xl flex items-center justify-center transition-all">
+                <Link to="/contact" className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-white/80 dark:bg-black/80 backdrop-blur-md hover:bg-gray-50 dark:hover:bg-gray-900 text-black dark:text-white font-bold border-2 border-black dark:border-white rounded-2xl flex items-center justify-center transition-all text-sm sm:text-base active:scale-95">
                   CONTACT US
                 </Link>
               </div>
             </div>
 
             {/* Hero Image */}
-            <div className="relative animate-in slide-in-from-right duration-1000 z-10">
-              <div className="absolute -inset-10 bg-orange-600/10 dark:bg-orange-600/20 blur-[100px] rounded-full"></div>
-              <div className="relative rounded-[3rem] overflow-hidden border-8 border-white dark:border-black shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
-                <img 
+            <div className="relative animate-in slide-in-from-right duration-1000 z-10 mt-4 lg:mt-0">
+              <div className="absolute -inset-6 sm:-inset-10 bg-orange-600/10 dark:bg-orange-600/20 blur-[60px] sm:blur-[100px] rounded-full"></div>
+              <div className="relative rounded-2xl sm:rounded-[3rem] overflow-hidden border-4 sm:border-8 border-white dark:border-black shadow-2xl rotate-1 sm:rotate-2 hover:rotate-0 transition-transform duration-500">
+                <img
                   src="https://media.licdn.com/dms/image/D4E12AQF1onXg1t3wfA/article-cover_image-shrink_720_1280/0/1719739445610?e=2147483647&v=beta&t=c1d8UwrB-DKcN7LRl2CTYMNBcRG4rz9Iwge3HfNBGHU"
-                  alt="AI Technology" 
-                  className="w-full h-full object-cover"
+                  alt="AI Technology"
+                  className="w-full h-auto aspect-video object-cover"
                 />
               </div>
             </div>
@@ -139,9 +139,9 @@ const Home: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="relative py-20 bg-black/90 dark:bg-black/80 transition-colors border-y border-gray-900 z-20 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="relative py-10 sm:py-16 md:py-20 bg-black/90 dark:bg-black/80 transition-colors border-y border-gray-900 z-20 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
             <Counter target={stats.totalVisits} label="Total Visits" />
             <Counter target={stats.uniqueUsers} label="New People" />
             <Counter target={stats.toolsBuilt} label="Tools Built" />
@@ -151,65 +151,65 @@ const Home: React.FC = () => {
       </section>
 
       {/* What We Do Section */}
-      <section className="py-24 relative bg-gray-50/50 dark:bg-black/50 backdrop-blur-3xl z-10">
+      <section className="py-14 sm:py-20 md:py-24 relative bg-gray-50/50 dark:bg-black/50 backdrop-blur-3xl z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black text-black dark:text-white mb-4 uppercase tracking-tighter">WHAT WE DO</h2>
-            <div className="w-20 h-2 bg-red-600 mx-auto rounded-full"></div>
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-black dark:text-white mb-3 sm:mb-4 uppercase tracking-tighter">WHAT WE DO</h2>
+            <div className="w-14 sm:w-20 h-1.5 sm:h-2 bg-red-600 mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-10">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
             {/* Feature 1 */}
-            <div className="group bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-[2.5rem] overflow-hidden hover:border-orange-500 transition-all duration-300 shadow-xl shadow-black/5">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&q=80&w=600" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+            <div className="group bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-2xl sm:rounded-[2.5rem] overflow-hidden hover:border-orange-500 transition-all duration-300 shadow-xl shadow-black/5">
+              <div className="h-36 sm:h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&q=80&w=600"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   alt="Talking AI"
                 />
               </div>
-              <div className="p-8">
-                <div className="w-12 h-12 bg-orange-600/10 rounded-xl flex items-center justify-center text-orange-600 mb-6 font-bold">
+              <div className="p-5 sm:p-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-600/10 rounded-xl flex items-center justify-center text-orange-600 mb-4 sm:mb-6 font-bold text-sm sm:text-base">
                   01
                 </div>
-                <h3 className="text-2xl font-black text-black dark:text-white mb-4">Talking AI</h3>
-                <p className="text-gray-600 dark:text-gray-400">Computers that talk and listen just like real people to help your customers.</p>
+                <h3 className="text-xl sm:text-2xl font-black text-black dark:text-white mb-3 sm:mb-4">Talking AI</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Computers that talk and listen just like real people to help your customers.</p>
               </div>
             </div>
 
             {/* Feature 2 */}
-            <div className="group bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-[2.5rem] overflow-hidden hover:border-green-500 transition-all duration-300 shadow-xl shadow-black/5">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=600" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+            <div className="group bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-2xl sm:rounded-[2.5rem] overflow-hidden hover:border-green-500 transition-all duration-300 shadow-xl shadow-black/5">
+              <div className="h-36 sm:h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=600"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   alt="Automation"
                 />
               </div>
-              <div className="p-8">
-                <div className="w-12 h-12 bg-green-600/10 rounded-xl flex items-center justify-center text-green-600 mb-6 font-bold">
+              <div className="p-5 sm:p-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-600/10 rounded-xl flex items-center justify-center text-green-600 mb-4 sm:mb-6 font-bold text-sm sm:text-base">
                   02
                 </div>
-                <h3 className="text-2xl font-black text-black dark:text-white mb-4">Auto Systems</h3>
-                <p className="text-gray-600 dark:text-gray-400">Smart tools that do boring work for you so you can save time every day.</p>
+                <h3 className="text-xl sm:text-2xl font-black text-black dark:text-white mb-3 sm:mb-4">Auto Systems</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Smart tools that do boring work for you so you can save time every day.</p>
               </div>
             </div>
 
             {/* Feature 3 */}
-            <div className="group bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-[2.5rem] overflow-hidden hover:border-red-500 transition-all duration-300 shadow-xl shadow-black/5">
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=600" 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+            <div className="group bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-2xl sm:rounded-[2.5rem] overflow-hidden hover:border-red-500 transition-all duration-300 shadow-xl shadow-black/5 sm:col-span-2 md:col-span-1">
+              <div className="h-36 sm:h-48 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80&w=600"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   alt="Web Apps"
                 />
               </div>
-              <div className="p-8">
-                <div className="w-12 h-12 bg-red-600/10 rounded-xl flex items-center justify-center text-red-600 mb-6 font-bold">
+              <div className="p-5 sm:p-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-red-600/10 rounded-xl flex items-center justify-center text-red-600 mb-4 sm:mb-6 font-bold text-sm sm:text-base">
                   03
                 </div>
-                <h3 className="text-2xl font-black text-black dark:text-white mb-4">Web Apps</h3>
-                <p className="text-gray-600 dark:text-gray-400">Fast and safe websites built with the best and newest smart technology.</p>
+                <h3 className="text-xl sm:text-2xl font-black text-black dark:text-white mb-3 sm:mb-4">Web Apps</h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Fast and safe websites built with the best and newest smart technology.</p>
               </div>
             </div>
           </div>

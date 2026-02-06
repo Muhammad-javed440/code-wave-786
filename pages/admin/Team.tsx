@@ -199,18 +199,18 @@ const AdminTeam: React.FC = () => {
   };
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-12">
-      <div className="flex items-center justify-between">
+    <div className="p-3 sm:p-4 md:p-8 max-w-7xl mx-auto space-y-6 sm:space-y-12">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-black text-black dark:text-white uppercase tracking-tighter">TEAM MANAGER</h1>
-          <p className="text-gray-500 font-medium">Manage your team members displayed on About page</p>
+          <h1 className="text-2xl sm:text-3xl font-black text-black dark:text-white uppercase tracking-tighter">TEAM MANAGER</h1>
+          <p className="text-gray-500 font-medium text-sm sm:text-base">Manage your team members displayed on About page</p>
         </div>
         <button
           onClick={() => {
             if (isAdding) resetForm();
             setIsAdding(!isAdding);
           }}
-          className={`px-6 py-3 ${isAdding ? 'bg-red-600' : 'bg-orange-600'} hover:opacity-90 text-white text-sm font-black rounded-xl flex items-center justify-center transition-all shadow-xl shadow-orange-600/20`}
+          className={`px-5 sm:px-6 py-2.5 sm:py-3 ${isAdding ? 'bg-red-600' : 'bg-orange-600'} hover:opacity-90 text-white text-sm font-black rounded-xl flex items-center justify-center transition-all shadow-xl shadow-orange-600/20 min-h-[44px] w-full sm:w-auto`}
         >
           {isAdding ? <X className="w-4 h-4 mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
           {isAdding ? 'CANCEL' : 'ADD MEMBER'}
@@ -235,17 +235,17 @@ const AdminTeam: React.FC = () => {
 
       {/* Add/Edit Form */}
       {isAdding && (
-        <div className="bg-white dark:bg-black border-2 border-orange-500/20 dark:border-orange-500/10 p-6 md:p-10 rounded-[3rem] shadow-2xl animate-in slide-in-from-top-4 duration-500 relative overflow-hidden">
+        <div className="bg-white dark:bg-black border-2 border-orange-500/20 dark:border-orange-500/10 p-4 sm:p-6 md:p-10 rounded-2xl sm:rounded-[3rem] shadow-2xl animate-in slide-in-from-top-4 duration-500 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-24 bg-orange-600/5 blur-[100px] rounded-full -z-10"></div>
 
           {isEditing && (
-            <div className="mb-6 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl inline-flex items-center text-blue-600 text-sm font-bold">
+            <div className="mb-4 sm:mb-6 px-3 sm:px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl inline-flex items-center text-blue-600 text-sm font-bold">
               <Edit3 className="w-4 h-4 mr-2" /> Editing Team Member
             </div>
           )}
 
-          <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid md:grid-cols-3 gap-8">
+          <form className="space-y-6 sm:space-y-8" onSubmit={(e) => e.preventDefault()}>
+            <div className="grid sm:grid-cols-3 gap-6 sm:gap-8">
               {/* Profile Picture Upload */}
               <div className="space-y-4">
                 <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Profile Picture *</label>
@@ -281,7 +281,7 @@ const AdminTeam: React.FC = () => {
               </div>
 
               {/* Basic Info */}
-              <div className="md:col-span-2 space-y-6">
+              <div className="sm:col-span-2 space-y-6">
                 <div className="space-y-2">
                   <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Full Name *</label>
                   <input
@@ -330,7 +330,7 @@ const AdminTeam: React.FC = () => {
       )}
 
       {/* Team Members Grid */}
-      <div className="bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-950 rounded-[3rem] overflow-hidden shadow-xl p-6 md:p-8">
+      <div className="bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-950 rounded-2xl sm:rounded-[3rem] overflow-hidden shadow-xl p-4 sm:p-6 md:p-8">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
             <Loader2 className="w-8 h-8 text-orange-600 animate-spin mb-4" />
@@ -342,7 +342,7 @@ const AdminTeam: React.FC = () => {
             <p className="text-gray-500 font-bold uppercase tracking-widest">No team members yet. Add your first member!</p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {members.map((member) => (
               <div
                 key={member.id}

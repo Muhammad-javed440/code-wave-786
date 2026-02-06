@@ -397,18 +397,18 @@ const AdminProjects: React.FC = () => {
   };
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-12">
-      <div className="flex items-center justify-between">
+    <div className="p-3 sm:p-4 md:p-8 max-w-7xl mx-auto space-y-6 sm:space-y-12">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-black text-black dark:text-white uppercase tracking-tighter">PROJECT MANAGER</h1>
-          <p className="text-gray-500 font-medium">Control your public showcase and media</p>
+          <h1 className="text-2xl sm:text-3xl font-black text-black dark:text-white uppercase tracking-tighter">PROJECT MANAGER</h1>
+          <p className="text-gray-500 font-medium text-sm sm:text-base">Control your public showcase and media</p>
         </div>
         <button
           onClick={() => {
             if (isAdding) resetForm();
             setIsAdding(!isAdding);
           }}
-          className={`px-6 py-3 ${isAdding ? 'bg-red-600' : 'bg-orange-600'} hover:opacity-90 text-white text-sm font-black rounded-xl flex items-center justify-center transition-all shadow-xl shadow-orange-600/20`}
+          className={`px-5 sm:px-6 py-2.5 sm:py-3 ${isAdding ? 'bg-red-600' : 'bg-orange-600'} hover:opacity-90 text-white text-sm font-black rounded-xl flex items-center justify-center transition-all shadow-xl shadow-orange-600/20 min-h-[44px] w-full sm:w-auto`}
         >
           {isAdding ? <X className="w-4 h-4 mr-2" /> : <Plus className="w-4 h-4 mr-2" />}
           {isAdding ? 'CANCEL' : 'ADD NEW WORK'}
@@ -432,17 +432,17 @@ const AdminProjects: React.FC = () => {
       )}
 
       {isAdding && (
-        <div className="bg-white dark:bg-black border-2 border-orange-500/20 dark:border-orange-500/10 p-6 md:p-10 rounded-[3rem] shadow-2xl animate-in slide-in-from-top-4 duration-500 relative overflow-hidden">
+        <div className="bg-white dark:bg-black border-2 border-orange-500/20 dark:border-orange-500/10 p-4 sm:p-6 md:p-10 rounded-2xl sm:rounded-[3rem] shadow-2xl animate-in slide-in-from-top-4 duration-500 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-24 bg-orange-600/5 blur-[100px] rounded-full -z-10"></div>
 
           {isEditing && (
-            <div className="mb-6 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl inline-flex items-center text-blue-600 text-sm font-bold">
+            <div className="mb-4 sm:mb-6 px-3 sm:px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-xl inline-flex items-center text-blue-600 text-sm font-bold">
               <Edit3 className="w-4 h-4 mr-2" /> Editing Project
             </div>
           )}
 
-          <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid lg:grid-cols-2 gap-12">
+          <form className="space-y-6 sm:space-y-10" onSubmit={(e) => e.preventDefault()}>
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
               {/* Left Column: Text Info */}
               <div className="space-y-8">
                 <div className="space-y-2">
@@ -455,7 +455,7 @@ const AdminProjects: React.FC = () => {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 2xs:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-xs font-black text-orange-600 uppercase tracking-widest ml-1">Date & Time (Auto-captured)</label>
                     <div className="relative">
@@ -751,7 +751,7 @@ const AdminProjects: React.FC = () => {
       )}
 
       {/* Existing Projects Table */}
-      <div className="bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-950 rounded-[3rem] overflow-hidden shadow-xl">
+      <div className="bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-950 rounded-2xl sm:rounded-[3rem] overflow-hidden shadow-xl">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
             <Loader2 className="w-8 h-8 text-orange-600 animate-spin mb-4" />
@@ -762,21 +762,21 @@ const AdminProjects: React.FC = () => {
             <p className="text-gray-500 font-bold uppercase tracking-widest">No projects yet. Add your first project!</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full">
+          <div className="overflow-x-auto -mx-0.5">
+            <table className="w-full min-w-[600px]">
               <thead className="bg-gray-50 dark:bg-gray-950/50">
                 <tr>
-                  <th className="px-8 py-6 text-left text-xs font-black text-gray-500 uppercase tracking-widest">Project Title</th>
-                  <th className="px-8 py-6 text-left text-xs font-black text-gray-500 uppercase tracking-widest">Media</th>
-                  <th className="px-8 py-6 text-left text-xs font-black text-gray-500 uppercase tracking-widest">Price</th>
-                  <th className="px-8 py-6 text-left text-xs font-black text-gray-500 uppercase tracking-widest">Date</th>
-                  <th className="px-8 py-6 text-right text-xs font-black text-gray-500 uppercase tracking-widest">Actions</th>
+                  <th className="px-4 sm:px-8 py-4 sm:py-6 text-left text-[10px] sm:text-xs font-black text-gray-500 uppercase tracking-widest">Project Title</th>
+                  <th className="px-4 sm:px-8 py-4 sm:py-6 text-left text-[10px] sm:text-xs font-black text-gray-500 uppercase tracking-widest">Media</th>
+                  <th className="px-4 sm:px-8 py-4 sm:py-6 text-left text-[10px] sm:text-xs font-black text-gray-500 uppercase tracking-widest">Price</th>
+                  <th className="px-4 sm:px-8 py-4 sm:py-6 text-left text-[10px] sm:text-xs font-black text-gray-500 uppercase tracking-widest hidden sm:table-cell">Date</th>
+                  <th className="px-4 sm:px-8 py-4 sm:py-6 text-right text-[10px] sm:text-xs font-black text-gray-500 uppercase tracking-widest">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100 dark:divide-gray-900">
                 {projects.map(p => (
                   <tr key={p.id} className="hover:bg-gray-50 dark:hover:bg-gray-900/30 transition-colors group">
-                    <td className="px-8 py-6">
+                    <td className="px-4 sm:px-8 py-4 sm:py-6">
                       <div className="flex items-center">
                         <div className="w-12 h-12 bg-orange-600/10 text-orange-600 rounded-2xl flex items-center justify-center mr-4 shadow-inner group-hover:bg-orange-600 group-hover:text-white transition-all overflow-hidden">
                           {p.media?.[0] ? (
@@ -793,42 +793,37 @@ const AdminProjects: React.FC = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-8 py-6">
-                      <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 bg-blue-500/10 text-blue-600 text-[10px] font-black rounded-full border border-blue-500/20 uppercase">
-                          {p.media?.length || 0} Images
+                    <td className="px-4 sm:px-8 py-4 sm:py-6">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="px-2 sm:px-3 py-1 bg-blue-500/10 text-blue-600 text-[10px] font-black rounded-full border border-blue-500/20 uppercase">
+                          {p.media?.length || 0} Img
                         </span>
                         {p.video_url && (
-                          <span className="px-3 py-1 bg-red-500/10 text-red-600 text-[10px] font-black rounded-full border border-red-500/20 uppercase">
-                            1 Video
+                          <span className="px-2 sm:px-3 py-1 bg-red-500/10 text-red-600 text-[10px] font-black rounded-full border border-red-500/20 uppercase">
+                            Vid
                           </span>
                         )}
                         {p.pdf_url && (
-                          <span className="px-3 py-1 bg-blue-500/10 text-blue-600 text-[10px] font-black rounded-full border border-blue-500/20 uppercase">
+                          <span className="px-2 sm:px-3 py-1 bg-blue-500/10 text-blue-600 text-[10px] font-black rounded-full border border-blue-500/20 uppercase">
                             PDF
-                          </span>
-                        )}
-                        {p.project_url && (
-                          <span className="px-3 py-1 bg-green-500/10 text-green-600 text-[10px] font-black rounded-full border border-green-500/20 uppercase">
-                            URL
                           </span>
                         )}
                       </div>
                     </td>
-                    <td className="px-8 py-6">
+                    <td className="px-4 sm:px-8 py-4 sm:py-6">
                       {p.price ? (
-                        <span className="px-3 py-1.5 bg-green-500/10 text-green-600 text-sm font-black rounded-xl border border-green-500/20">
+                        <span className="px-2 sm:px-3 py-1 sm:py-1.5 bg-green-500/10 text-green-600 text-xs sm:text-sm font-black rounded-lg sm:rounded-xl border border-green-500/20">
                           ${p.price.toLocaleString()}
                         </span>
                       ) : (
                         <span className="text-gray-400 text-sm font-medium">-</span>
                       )}
                     </td>
-                    <td className="px-8 py-6 text-sm font-bold text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
+                    <td className="px-4 sm:px-8 py-4 sm:py-6 text-sm font-bold text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors hidden sm:table-cell">
                       {new Date(p.created_at).toLocaleDateString()}
                     </td>
-                    <td className="px-8 py-6 text-right">
-                      <div className="flex items-center justify-end space-x-2">
+                    <td className="px-4 sm:px-8 py-4 sm:py-6 text-right">
+                      <div className="flex items-center justify-end space-x-1 sm:space-x-2">
                         <button
                           onClick={() => handleEditProject(p)}
                           className="p-3 text-gray-500 hover:text-orange-500 hover:bg-orange-500/10 rounded-xl transition-all"

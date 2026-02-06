@@ -93,38 +93,38 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="py-20 md:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid lg:grid-cols-2 gap-20 items-start">
-        <div className="space-y-12">
-          <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl font-black text-black dark:text-white tracking-tighter uppercase leading-none">GET IN <br /><span className="text-orange-600">TOUCH</span>.</h1>
-            <p className="text-xl text-gray-500 dark:text-gray-400 leading-relaxed max-w-md font-medium">
+    <div className="py-12 sm:py-20 md:py-32 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-20 items-start">
+        <div className="space-y-8 sm:space-y-12">
+          <div className="space-y-3 sm:space-y-4">
+            <h1 className="text-3xl 2xs:text-4xl sm:text-5xl md:text-7xl font-black text-black dark:text-white tracking-tighter uppercase leading-none">GET IN <br /><span className="text-orange-600">TOUCH</span>.</h1>
+            <p className="text-base sm:text-xl text-gray-500 dark:text-gray-400 leading-relaxed max-w-md font-medium">
               Do you have a smart idea? We want to hear from you.
             </p>
           </div>
 
           <div className="space-y-8">
-            <a href={`https://mail.google.com/mail/?view=cm&to=codewaveai44@gmail.com&su=${encodeURIComponent(`Inquiry from ${user?.full_name || 'Visitor'} — CodeWaveAI`)}&body=${encodeURIComponent(`Hi CodeWaveAI Team,\n\nMy name is ${user?.full_name || 'a visitor'} and I'm reaching out because I'm interested in your AI solutions.\n\nI'd love to discuss how we can work together.\n\nLooking forward to hearing from you!\n\nBest regards,\n${user?.full_name || 'Visitor'}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-6 p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-3xl group hover:border-orange-500 transition-all shadow-xl shadow-black/5 cursor-pointer">
-              <div className="p-4 bg-orange-600/10 text-orange-600 rounded-2xl group-hover:scale-110 transition-transform">
-                <Mail className="w-6 h-6" />
+            <a href={`https://mail.google.com/mail/?view=cm&to=codewaveai44@gmail.com&su=${encodeURIComponent(`Inquiry from ${user?.full_name || 'Visitor'} — CodeWaveAI`)}&body=${encodeURIComponent(`Hi CodeWaveAI Team,\n\nMy name is ${user?.full_name || 'a visitor'} and I'm reaching out because I'm interested in your AI solutions.\n\nI'd love to discuss how we can work together.\n\nLooking forward to hearing from you!\n\nBest regards,\n${user?.full_name || 'Visitor'}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-4 sm:space-x-6 p-4 sm:p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-2xl sm:rounded-3xl group hover:border-orange-500 transition-all shadow-xl shadow-black/5 cursor-pointer">
+              <div className="p-3 sm:p-4 bg-orange-600/10 text-orange-600 rounded-xl sm:rounded-2xl group-hover:scale-110 transition-transform flex-shrink-0">
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Send an Email</p>
-                <p className="text-lg font-black text-black dark:text-white">codewaveai44@gmail.com</p>
+                <p className="text-sm sm:text-lg font-black text-black dark:text-white truncate">codewaveai44@gmail.com</p>
               </div>
             </a>
 
-            <a href={officeMapsUrl} target="_blank" rel="noopener noreferrer" className="block bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-3xl group hover:border-red-500 transition-all shadow-xl shadow-black/5 overflow-hidden cursor-pointer">
-              <div className="flex items-center space-x-6 p-6">
-                <div className="p-4 bg-red-600/10 text-red-600 rounded-2xl group-hover:scale-110 transition-transform">
-                  <MapPin className="w-6 h-6" />
+            <a href={officeMapsUrl} target="_blank" rel="noopener noreferrer" className="block bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-2xl sm:rounded-3xl group hover:border-red-500 transition-all shadow-xl shadow-black/5 overflow-hidden cursor-pointer">
+              <div className="flex items-center space-x-4 sm:space-x-6 p-4 sm:p-6">
+                <div className="p-3 sm:p-4 bg-red-600/10 text-red-600 rounded-xl sm:rounded-2xl group-hover:scale-110 transition-transform flex-shrink-0">
+                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Our Office</p>
-                  <p className="text-lg font-black text-black dark:text-white">Awan Town, Lahore</p>
+                  <p className="text-sm sm:text-lg font-black text-black dark:text-white">Awan Town, Lahore</p>
                 </div>
               </div>
-              <div className="h-48 w-full relative">
+              <div className="h-36 sm:h-48 w-full relative">
                 <iframe
                   title="Office Location"
                   width="100%"
@@ -140,23 +140,23 @@ const Contact: React.FC = () => {
             </a>
 
             {user ? (
-              <a href={`https://wa.me/923238300086?text=${encodeURIComponent(`Hi CodeWaveAI Team,\n\nMy name is ${user.full_name} and I'm reaching out because I'm interested in your AI solutions.\n\nI'd love to discuss how we can work together.\n\nLooking forward to hearing from you!\n\nBest regards,\n${user.full_name}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-6 p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-3xl group hover:border-green-500 transition-all shadow-xl shadow-black/5 cursor-pointer">
-                <div className="p-4 bg-green-600/10 text-green-600 rounded-2xl group-hover:scale-110 transition-transform">
-                  <MessageSquare className="w-6 h-6" />
+              <a href={`https://wa.me/923238300086?text=${encodeURIComponent(`Hi CodeWaveAI Team,\n\nMy name is ${user.full_name} and I'm reaching out because I'm interested in your AI solutions.\n\nI'd love to discuss how we can work together.\n\nLooking forward to hearing from you!\n\nBest regards,\n${user.full_name}`)}`} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-4 sm:space-x-6 p-4 sm:p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-2xl sm:rounded-3xl group hover:border-green-500 transition-all shadow-xl shadow-black/5 cursor-pointer">
+                <div className="p-3 sm:p-4 bg-green-600/10 text-green-600 rounded-xl sm:rounded-2xl group-hover:scale-110 transition-transform flex-shrink-0">
+                  <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
                   <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">WhatsApp</p>
-                  <p className="text-lg font-black text-black dark:text-white">+923238300086</p>
+                  <p className="text-sm sm:text-lg font-black text-black dark:text-white">+923238300086</p>
                 </div>
               </a>
             ) : (
-              <div onClick={() => alert('Please log in to contact us on WhatsApp.')} className="flex items-center space-x-6 p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-3xl group hover:border-green-500 transition-all shadow-xl shadow-black/5 cursor-pointer opacity-60">
-                <div className="p-4 bg-green-600/10 text-green-600 rounded-2xl group-hover:scale-110 transition-transform">
-                  <MessageSquare className="w-6 h-6" />
+              <div onClick={() => alert('Please log in to contact us on WhatsApp.')} className="flex items-center space-x-4 sm:space-x-6 p-4 sm:p-6 bg-white dark:bg-black border border-gray-100 dark:border-gray-900 rounded-2xl sm:rounded-3xl group hover:border-green-500 transition-all shadow-xl shadow-black/5 cursor-pointer opacity-60">
+                <div className="p-3 sm:p-4 bg-green-600/10 text-green-600 rounded-xl sm:rounded-2xl group-hover:scale-110 transition-transform flex-shrink-0">
+                  <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
                   <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">WhatsApp</p>
-                  <p className="text-lg font-black text-black dark:text-white">+923238300086</p>
+                  <p className="text-sm sm:text-lg font-black text-black dark:text-white">+923238300086</p>
                   <p className="text-[10px] text-red-500 font-bold mt-1">Login required</p>
                 </div>
               </div>
@@ -167,7 +167,7 @@ const Contact: React.FC = () => {
         <div className="relative">
           <div className="absolute -inset-10 bg-orange-600/10 blur-[100px] rounded-full"></div>
           
-          <div className="bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-900 p-8 md:p-12 rounded-[3rem] shadow-2xl relative">
+          <div className="bg-white dark:bg-black border-2 border-gray-100 dark:border-gray-900 p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-[3rem] shadow-2xl relative">
             {submitted ? (
               <div className="py-20 text-center space-y-6 animate-in zoom-in duration-500">
                 <div className="w-20 h-20 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mx-auto">

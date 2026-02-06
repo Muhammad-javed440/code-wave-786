@@ -38,8 +38,8 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-lg space-y-8 bg-gray-900 border border-gray-800 p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+    <div className="min-h-[80vh] flex items-center justify-center px-3 sm:px-4 py-8 sm:py-12">
+      <div className="w-full max-w-lg space-y-6 sm:space-y-8 bg-gray-900 border border-gray-800 p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-[2.5rem] shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 left-0 p-12 bg-purple-600/5 blur-3xl rounded-full"></div>
         
         <div className="text-center space-y-2 relative">

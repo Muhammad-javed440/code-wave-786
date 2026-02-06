@@ -61,19 +61,19 @@ const AdminSettings: React.FC = () => {
   };
 
   return (
-    <div className="p-4 md:p-8 max-w-4xl mx-auto">
-      <div className="mb-12">
-        <h1 className="text-3xl font-black text-white">Admin Profile Settings</h1>
-        <p className="text-gray-500">Update your public presence and brand information</p>
+    <div className="p-3 sm:p-4 md:p-8 max-w-4xl mx-auto">
+      <div className="mb-8 sm:mb-12">
+        <h1 className="text-2xl sm:text-3xl font-black text-white">Admin Profile Settings</h1>
+        <p className="text-gray-500 text-sm sm:text-base">Update your public presence and brand information</p>
       </div>
 
-      <form onSubmit={handleSave} className="space-y-12">
+      <form onSubmit={handleSave} className="space-y-8 sm:space-y-12">
         {/* Profile Header Card */}
-        <div className="bg-gray-900 border border-gray-800 p-8 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+        <div className="bg-gray-900 border border-gray-800 p-5 sm:p-8 rounded-2xl sm:rounded-[2.5rem] flex flex-col md:flex-row items-center gap-5 sm:gap-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-16 bg-blue-600/5 blur-3xl rounded-full"></div>
           
           <div className="relative group">
-            <div className="w-32 h-32 rounded-full bg-blue-600 flex items-center justify-center text-4xl font-black border-4 border-gray-800 shadow-2xl overflow-hidden">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full bg-blue-600 flex items-center justify-center text-3xl sm:text-4xl font-black border-4 border-gray-800 shadow-2xl overflow-hidden">
               {user?.avatar_url ? <img src={user.avatar_url} className="w-full h-full object-cover" /> : user?.full_name[0]}
             </div>
             <input
@@ -109,7 +109,7 @@ const AdminSettings: React.FC = () => {
         </div>
 
         {/* Form Sections */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
           <div className="space-y-8">
             <div className="space-y-4">
               <h3 className="text-lg font-bold text-white flex items-center"><Globe className="w-5 h-5 mr-2 text-blue-500" /> General Info</h3>
