@@ -1,25 +1,37 @@
-import { WHATSAPP_NUMBER } from '../constants';
-
-// Send admin notification via CallMeBot (fire-and-forget)
+// Send professional admin notification via CallMeBot (fire-and-forget)
 export const notifyAdminWhatsApp = async (userData: { name: string; email: string; phone: string }) => {
-  const phone = import.meta.env.VITE_CALLMEBOT_PHONE;
+  const adminPhone = import.meta.env.VITE_CALLMEBOT_PHONE;
   const apikey = import.meta.env.VITE_CALLMEBOT_APIKEY;
-  if (!phone || !apikey) return;
+  if (!adminPhone || !apikey) return;
 
   const message = encodeURIComponent(
-    `🚀 New Signup on Code Wave AI!\n\n👤 Name: ${userData.name}\n📧 Email: ${userData.email}\n📱 Phone: ${userData.phone}\n⏰ Time: ${new Date().toLocaleString()}`
+    `Dear Admin,\n\nA new user has successfully registered on Code Wave AI.\n\n` +
+    `Name: ${userData.name}\n` +
+    `Email: ${userData.email}\n` +
+    `Phone: ${userData.phone}\n` +
+    `Registered At: ${new Date().toLocaleString()}\n\n` +
+    `Please welcome them to the platform.\n\n— Code Wave AI System`
   );
 
-  fetch(`https://api.callmebot.com/whatsapp.php?phone=${phone}&text=${message}&apikey=${apikey}`, {
+  fetch(`https://api.callmebot.com/whatsapp.php?phone=${adminPhone}&text=${message}&apikey=${apikey}`, {
     mode: 'no-cors'
-  }).catch(() => {}); // Silent fail - don't break signup
+  }).catch(() => {});
 };
 
-// Open WhatsApp greeting for the new user
-export const greetUserWhatsApp = (userPhone: string) => {
-  const adminPhone = import.meta.env.VITE_WHATSAPP_NUMBER || WHATSAPP_NUMBER;
+// Send welcome message to user's WhatsApp via CallMeBot (fire-and-forget)
+export const greetUserWhatsApp = async (userPhone: string) => {
+  const apikey = import.meta.env.VITE_CALLMEBOT_APIKEY;
+  if (!userPhone || !apikey) return;
+
   const greeting = encodeURIComponent(
-    `Hello! Welcome to Code Wave AI! 🌊\n\nWe build intelligent AI-powered tools, voice automation systems, and modern web applications.\n\n🌐 Visit us: codewaveai.com\n📧 Email: codewaveai44@gmail.com\n\nThank you for joining us!`
+    `Hello! Welcome to Code Wave AI!\n\n` +
+    `We build intelligent AI-powered tools, voice automation systems, and modern web applications.\n\n` +
+    `Visit us: code-vawe-786.vercel.app\n` +
+    `Email: codewaveai44@gmail.com\n\n` +
+    `Thank you for joining us!`
   );
-  window.open(`https://wa.me/${adminPhone}?text=${greeting}`, '_blank');
+
+  fetch(`https://api.callmebot.com/whatsapp.php?phone=${userPhone}&text=${greeting}&apikey=${apikey}`, {
+    mode: 'no-cors'
+  }).catch(() => {});
 };

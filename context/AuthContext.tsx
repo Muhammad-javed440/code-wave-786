@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Profile } from '../types';
 import { supabase } from '../lib/supabase';
-import { notifyAdminWhatsApp } from '../lib/whatsapp';
+import { notifyAdminWhatsApp, greetUserWhatsApp } from '../lib/whatsapp';
 
 interface AuthContextType {
   user: Profile | null;
@@ -96,12 +96,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         console.warn("Profile update warning:", updateError);
       }
 
-      // Notify admin via WhatsApp (fire-and-forget)
+      // WhatsApp notifications (fire-and-forget, won't block signup)
       notifyAdminWhatsApp({
         name: data.fullName,
         email: data.email,
         phone: data.phone
       });
+      greetUserWhatsApp(data.phone);
     }
   };
 
