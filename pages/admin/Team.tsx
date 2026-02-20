@@ -54,11 +54,6 @@ const AdminTeam: React.FC = () => {
     setError(null);
   };
 
-  useEffect(() => {
-    if (!isAdding) {
-      resetForm();
-    }
-  }, [isAdding]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -132,12 +127,13 @@ const AdminTeam: React.FC = () => {
         imageUrl = await uploadImage(imageFile);
       }
 
+      const existingMember = isEditing ? members.find(m => m.id === isEditing) : null;
       const memberData = {
         name: name.trim(),
         role: 'Team Member',
         description: description.trim(),
         image_url: imageUrl,
-        display_order: members.length,
+        display_order: existingMember ? existingMember.display_order : members.length,
         updated_at: new Date().toISOString(),
       };
 
@@ -191,11 +187,13 @@ const AdminTeam: React.FC = () => {
 
   // Edit member
   const handleEditMember = (member: TeamMember) => {
+    resetForm();
     setIsEditing(member.id);
     setName(member.name);
-    setDescription(member.description);
+    setDescription(member.description || '');
     setImagePreview(member.image_url || '');
     setIsAdding(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -207,8 +205,12 @@ const AdminTeam: React.FC = () => {
         </div>
         <button
           onClick={() => {
-            if (isAdding) resetForm();
-            setIsAdding(!isAdding);
+            if (isAdding) {
+              resetForm();
+              setIsAdding(false);
+            } else {
+              setIsAdding(true);
+            }
           }}
           className={`px-5 sm:px-6 py-2.5 sm:py-3 ${isAdding ? 'bg-red-600' : 'bg-orange-600'} hover:opacity-90 text-white text-sm font-black rounded-xl flex items-center justify-center transition-all shadow-xl shadow-orange-600/20 min-h-[44px] w-full sm:w-auto`}
         >
