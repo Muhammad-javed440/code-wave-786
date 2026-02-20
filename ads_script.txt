@@ -1,0 +1,952 @@
+================================================================================
+                    FACEBOOK AD SCRIPTS — CODE WAVE AI
+                 Website: code-vawe-786.vercel.app
+                 Email: codewaveai44@gmail.com
+                 WhatsApp: +92 323 8300086
+================================================================================
+
+
+================================================================================
+AD #1 — MAIN BRAND AWARENESS (Video/Image Ad)
+================================================================================
+
+HEADLINE (40 chars):
+Smart AI Tools That Work For You
+
+PRIMARY TEXT:
+Still doing everything manually? Let AI handle it.
+
+Code Wave AI builds intelligent tools that save you time, grow your business, and make your life easier.
+
+Here's what we offer:
+
+-> AI-Powered Voice Assistants — Computers that talk and listen like real people to help your customers 24/7.
+-> Smart Automation Systems — Stop wasting hours on repetitive tasks. Our tools do the boring work so you can focus on what matters.
+-> Modern Web Applications — Fast, secure, and beautifully designed websites built with the latest technology.
+-> Built-In AI Chatbot — Get instant answers about our services anytime, right on our website.
+
+Trusted by real users. Real projects. Real results.
+
+Visit us today and see what AI can do for your business.
+
+CALL TO ACTION: Learn More
+LINK: code-vawe-786.vercel.app
+BUTTON TEXT: Visit Website
+
+
+================================================================================
+AD #2 — PROJECT SHOWCASE (Carousel Ad)
+================================================================================
+
+HEADLINE:
+See What We've Built
+
+PRIMARY TEXT:
+We don't just talk about AI — we build it.
+
+Explore our live projects on Code Wave AI:
+
+-> Browse our full project gallery with ratings, likes, and real user reviews
+-> Watch project demos and see how they work
+-> Read detailed FAQs for every project
+-> Leave your own rating and feedback
+
+Every project is built with precision, speed, and smart technology.
+
+Don't just take our word for it — see the results yourself.
+
+CALL TO ACTION: See Our Projects
+LINK: code-vawe-786.vercel.app/#/projects
+
+CAROUSEL CARD 1:
+  Headline: AI Voice Solutions
+  Description: Talking AI that listens and responds like a real person.
+
+CAROUSEL CARD 2:
+  Headline: Automation Tools
+  Description: Smart systems that handle your repetitive tasks automatically.
+
+CAROUSEL CARD 3:
+  Headline: Web Applications
+  Description: Fast, modern, and secure websites built for growth.
+
+CAROUSEL CARD 4:
+  Headline: View All Projects
+  Description: Explore ratings, reviews, and live demos on our platform.
+
+
+================================================================================
+AD #3 — LEAD GENERATION (Contact/Sign Up Ad)
+================================================================================
+
+HEADLINE:
+Join Code Wave AI — It's Free
+
+PRIMARY TEXT:
+Ready to experience the future of technology?
+
+Sign up on Code Wave AI and get access to:
+
+-> Full project showcase with detailed descriptions
+-> Like, rate, and comment on any project
+-> Direct WhatsApp support with our team
+-> Smart AI chatbot for instant help
+-> Contact form with auto-location detection
+
+Signing up takes less than 30 seconds. All you need is your name, email, and phone number.
+
+Join hundreds of users who are already part of the Code Wave AI community.
+
+CALL TO ACTION: Sign Up
+LINK: code-vawe-786.vercel.app/#/signup
+
+
+================================================================================
+AD #4 — ENGAGEMENT / SOCIAL PROOF (Image Ad)
+================================================================================
+
+HEADLINE:
+Real Users. Real Results.
+
+PRIMARY TEXT:
+Code Wave AI is growing — and the numbers speak for themselves.
+
+-> Active users from around the world
+-> Multiple AI-powered projects live and running
+-> Real user ratings, comments, and likes on every project
+-> 99% success rate on delivered solutions
+-> 2.5 second average response time
+
+Our platform is built with React, TypeScript, and Supabase — the same technology trusted by top companies worldwide.
+
+We believe smart technology should be simple, fast, and accessible to everyone.
+
+See why people trust Code Wave AI.
+
+CALL TO ACTION: Learn More
+LINK: code-vawe-786.vercel.app/#/about
+
+
+================================================================================
+AD #5 — WHATSAPP DIRECT (Click-to-WhatsApp Ad)
+================================================================================
+
+HEADLINE:
+Got a Smart Idea? Let's Talk.
+
+PRIMARY TEXT:
+Have a project in mind? Need an AI solution for your business?
+
+Talk to us directly on WhatsApp — no forms, no waiting.
+
+Code Wave AI specializes in:
+-> Voice AI & Chatbot Development
+-> Business Process Automation
+-> Custom Web Application Development
+-> AI-Powered Tools & Solutions
+
+We're based in Lahore, Pakistan and we work with clients worldwide.
+
+Send us a message right now — we respond fast.
+
+CALL TO ACTION: Send WhatsApp Message
+WHATSAPP NUMBER: +923238300086
+PRE-FILLED MESSAGE: Hi Code Wave AI! I'm interested in your AI solutions. Can we discuss a project?
+
+
+================================================================================
+AD #6 — RETARGETING (For people who visited but didn't sign up)
+================================================================================
+
+HEADLINE:
+You Visited. Now Join Us.
+
+PRIMARY TEXT:
+You checked out Code Wave AI — now take the next step.
+
+When you sign up, you get:
+
+-> Access to all project details, demos, and documentation
+-> Ability to rate and review projects
+-> Comment and interact with the community
+-> Direct WhatsApp welcome message from our team
+-> Priority support through our AI chatbot
+
+It's completely free. No credit card. No hidden fees.
+
+Join the community that's building the future with AI.
+
+CALL TO ACTION: Sign Up Now
+LINK: code-vawe-786.vercel.app/#/signup
+
+
+================================================================================
+AD #7 — SHORT REEL / STORY AD (15-second script)
+================================================================================
+
+[SECOND 1-3]
+Text on screen: "Still doing everything manually?"
+Visual: Person overwhelmed at desk
+
+[SECOND 4-6]
+Text on screen: "Meet Code Wave AI"
+Visual: Website homepage loading with animations
+
+[SECOND 7-9]
+Text on screen: "AI Tools | Voice Bots | Web Apps"
+Visual: Quick scroll through project showcase
+
+[SECOND 10-12]
+Text on screen: "Built with Smart Technology"
+Visual: Show chatbot interaction + project ratings
+
+[SECOND 13-15]
+Text on screen: "Visit code-vawe-786.vercel.app"
+Visual: Logo + website URL + "Sign Up Free" button
+
+MUSIC: Upbeat, modern, tech-inspired
+VOICEOVER (optional): "Code Wave AI — Smart tools that work for you."
+
+
+================================================================================
+                         KEY WEBSITE FEATURES SUMMARY
+================================================================================
+
+PLATFORM FEATURES:
+  1. AI-Powered Chatbot — Built-in assistant with voice input support
+  2. Project Showcase — Gallery with dual-image hover cards
+  3. User Ratings & Reviews — 5-star rating system on every project
+  4. Likes & Comments — Community engagement on all projects
+  5. Project FAQs — Accordion-style Q&A for each project
+  6. Dark/Light Mode — Full theme toggle across the entire site
+  7. Role-Based Auth — Secure signup/login with admin & user roles
+  8. Contact Form — With auto geolocation detection
+  9. WhatsApp Integration — Direct chat + signup notifications
+  10. Email Integration — FormSubmit-powered contact delivery
+  11. Admin Dashboard — Full analytics, project CRUD, team management
+  12. Team Page — Dynamic team member profiles from database
+  13. Founder Section — Dedicated founder profile with social links
+  14. Visitor Analytics — Real-time visit tracking and stats counter
+  15. Responsive Design — Fully optimized for mobile, tablet, and desktop
+  16. Google Maps — Embedded office location on contact page
+  17. Social Links — GitHub, Facebook, LinkedIn integration
+  18. Password Recovery — Secure email-based password reset
+  19. Media Gallery — Image lightbox + video support per project
+  20. Professional Animations — Floating orbs, glassmorphism, smooth transitions
+
+TECH STACK (for technical audiences):
+  - React 19 + TypeScript
+  - Vite 6 (build tool)
+  - Tailwind CSS 3.4
+  - Supabase (Auth + PostgreSQL + Row Level Security)
+  - React Router v7
+  - Recharts (admin analytics)
+  - Lucide React (icons)
+  - CallMeBot WhatsApp API
+  - FormSubmit Email API
+
+TRUST SIGNALS:
+  - Open source codebase
+  - Real user stats displayed on homepage
+  - Live project demos
+  - Direct WhatsApp communication
+  - Physical office location (Awan Town, Lahore)
+
+================================================================================
+                          RECOMMENDED AD SETTINGS
+================================================================================
+
+TARGET AUDIENCE:
+  - Age: 18-45
+  - Interests: Technology, AI, Web Development, Startups, Automation,
+    Small Business, Digital Marketing, Programming
+  - Locations: Pakistan, UAE, Saudi Arabia, UK, USA (adjust per budget)
+  - Languages: English, Urdu
+
+BUDGET RECOMMENDATION:
+  - Start with Ad #1 (Brand Awareness) + Ad #5 (WhatsApp) together
+  - Once traffic grows, add Ad #3 (Lead Gen) and Ad #6 (Retargeting)
+  - Use Ad #7 (Reel) for Instagram/Facebook Stories placement
+
+PLACEMENTS:
+  - Facebook News Feed
+  - Instagram Feed + Stories + Reels
+  - Facebook Marketplace
+  - Audience Network
+
+################################################################################
+#                                                                              #
+#                     VIDEO AD SCRIPTS & PRODUCTION GUIDE                      #
+#                                                                              #
+################################################################################
+
+
+================================================================================
+VIDEO #1 — MAIN PROMO VIDEO (60 seconds)
+         "The Future Is Here"
+================================================================================
+
+PURPOSE: Brand introduction. Show what Code Wave AI is, what it does, and
+         why people should care. This is your flagship video.
+
+TONE: Confident, modern, inspiring
+MUSIC: Cinematic tech beat — builds energy gradually
+       (Royalty-free: search "cinematic tech" on Pixabay Music or Epidemic Sound)
+
+--------------------------------------------------------------------------------
+
+[0:00 - 0:03] HOOK — Grab attention immediately
+--------------------------------------------------------------------------------
+  VISUAL:   Black screen. Text types in like a terminal cursor:
+            "What if technology could think for you?"
+  AUDIO:    Single deep bass hit. Silence.
+  TEXT:      White text on pure black background.
+
+  ** WHY: The first 3 seconds decide if someone keeps watching.
+     A question makes the brain pause and want an answer. **
+
+[0:03 - 0:06] THE PROBLEM
+--------------------------------------------------------------------------------
+  VISUAL:   Quick cuts (1 second each):
+            - Person frustrated at laptop
+            - Piles of repetitive work / spreadsheets
+            - Clock ticking fast (time-lapse)
+  AUDIO:    Tense, fast ticking sound
+  TEXT:      "Manual work. Wasted time. Slow growth."
+
+[0:06 - 0:10] THE SOLUTION — Brand Reveal
+--------------------------------------------------------------------------------
+  VISUAL:   Screen goes black for half a second, then:
+            Code Wave AI logo animates in (glow effect).
+            Website homepage loads with the floating orb animations.
+  AUDIO:    Bass drop + upbeat tech music starts
+  TEXT:      "Meet Code Wave AI"
+  VOICEOVER: "Meet Code Wave AI — where smart technology works for you."
+
+[0:10 - 0:20] FEATURE SHOWCASE — What We Do (3 features, ~3 sec each)
+--------------------------------------------------------------------------------
+
+  [0:10 - 0:13] FEATURE 1: Talking AI
+  VISUAL:   Screen recording — chatbot opening on website,
+            user types a question, bot responds instantly.
+            Show the mic/voice input button being tapped.
+  TEXT:      "AI Chatbot — Instant Answers, Voice Support"
+  VOICEOVER: "An AI assistant that talks, listens, and helps your
+              customers around the clock."
+
+  [0:13 - 0:17] FEATURE 2: Automation
+  VISUAL:   Screen recording — admin dashboard with analytics charts,
+            project management interface, stats counter animating up.
+  TEXT:      "Smart Automation — Save Hours Every Day"
+  VOICEOVER: "Automation tools that handle the repetitive work,
+              so you can focus on growing."
+
+  [0:17 - 0:20] FEATURE 3: Web Apps
+  VISUAL:   Screen recording — scrolling through the project showcase,
+            hover over dual-image cards, click into a project detail page.
+            Show dark mode toggle switching themes.
+  TEXT:      "Modern Web Apps — Fast, Secure, Beautiful"
+  VOICEOVER: "Websites and web apps built with the technology
+              trusted by top companies worldwide."
+
+[0:20 - 0:32] WEBSITE WALKTHROUGH — Show it's real
+--------------------------------------------------------------------------------
+
+  [0:20 - 0:23] Homepage
+  VISUAL:   Screen recording of the homepage loading.
+            Show the animated stats counter (visits, users, tools, likes).
+            Camera zooms into the "SEE OUR WORK" button.
+  VOICEOVER: "Real users. Real numbers. All live on our platform."
+
+  [0:23 - 0:26] Projects Page
+  VISUAL:   Scroll through project cards. Show likes, stars, comments count.
+            Click into one project — show the 5-star rating, FAQ accordion,
+            comment section.
+  VOICEOVER: "Explore our projects. Rate them. Review them.
+              See exactly what we build."
+
+  [0:26 - 0:29] Signup Flow
+  VISUAL:   Show the signup page. Fill in name, phone, email, password.
+            Click "JOIN NOW". Page redirects to homepage.
+  TEXT:      "Sign up in 30 seconds — completely free"
+  VOICEOVER: "Joining takes 30 seconds. And it's completely free."
+
+  [0:29 - 0:32] Contact & WhatsApp
+  VISUAL:   Show contact page — the email card, Google Maps embed,
+            WhatsApp card. Click WhatsApp — it opens chat.
+  VOICEOVER: "Need help? Reach us on WhatsApp, email,
+              or visit our office in Lahore."
+
+[0:32 - 0:40] SOCIAL PROOF — Build trust
+--------------------------------------------------------------------------------
+  VISUAL:   Animated text/numbers appearing on screen:
+            "99% Success Rate"
+            "2.5s Response Time"
+            "Users across Pakistan, UAE, UK & more"
+            Then show the About page — founder profile, team section.
+  AUDIO:    Music builds to peak energy
+  VOICEOVER: "99% success rate. Lightning-fast support.
+              A growing team of innovators behind every project."
+
+[0:40 - 0:50] TECHNOLOGY — For credibility
+--------------------------------------------------------------------------------
+  VISUAL:   Dark background. Tech logos/icons appear one by one:
+            React - TypeScript - Tailwind CSS - Supabase - Vite
+            Then show a quick code snippet on screen (looks professional).
+            End with the website in both dark mode and light mode side by side.
+  TEXT:      "Built with React 19 | TypeScript | Supabase | Tailwind CSS"
+  VOICEOVER: "Built with React, TypeScript, and Supabase —
+              the same stack used by industry leaders."
+
+  ** NOTE: Only include this section if your audience is tech-savvy.
+     For general audience, skip to the CTA at 0:40 instead. **
+
+[0:50 - 0:60] CALL TO ACTION — Tell them exactly what to do
+--------------------------------------------------------------------------------
+  VISUAL:   Website URL large on screen with a glowing border:
+            "code-vawe-786.vercel.app"
+            Below it: "Sign Up Free Today"
+            WhatsApp icon + "+92 323 8300086"
+            Code Wave AI logo at the bottom.
+  AUDIO:    Music fades to a clean ending. Final bass note.
+  TEXT:      "Code Wave AI — We Make Smart Tech"
+  VOICEOVER: "Visit Code Wave AI today.
+              Sign up for free. Let's build the future together."
+
+  [FINAL FRAME — hold for 3 seconds]
+  Logo centered. URL below. Black background.
+
+
+================================================================================
+VIDEO #2 — SHORT REEL / STORY (15 seconds)
+         "Stop. Watch. Join."
+================================================================================
+
+PURPOSE: Quick attention-grabber for Instagram Reels, Facebook Stories,
+         TikTok. Designed for mobile-first vertical (9:16) format.
+
+TONE: Fast, punchy, energetic
+MUSIC: Trending reel audio or fast tech beat
+
+--------------------------------------------------------------------------------
+
+[0:00 - 0:02] HOOK
+  VISUAL:   Text slams onto screen: "STOP SCROLLING."
+            Background: dark with orange glow pulse
+  AUDIO:    Sharp sound effect (whoosh or impact)
+
+[0:02 - 0:05] PROBLEM + SOLUTION
+  VISUAL:   Split screen —
+            LEFT: "Manual Work" with a red X
+            RIGHT: "Code Wave AI" with a green checkmark
+            Transition: left side shatters, right side expands full screen
+  TEXT:      "There's a smarter way."
+
+[0:05 - 0:08] FEATURES (rapid fire)
+  VISUAL:   3 quick cuts (1 sec each), each with bold text overlay:
+            Cut 1: Chatbot replying -> "AI Chatbot"
+            Cut 2: Dashboard charts -> "Smart Automation"
+            Cut 3: Project gallery -> "Live Projects"
+  AUDIO:    Beat drops sync with each cut
+
+[0:08 - 0:11] PROOF
+  VISUAL:   Screen recording: stats counter animating up on homepage.
+            Numbers fly in: "99% Success" / "Real Users" / "Real Projects"
+  TEXT:      "The numbers don't lie."
+
+[0:11 - 0:15] CTA
+  VISUAL:   Website URL pulses on screen:
+            "code-vawe-786.vercel.app"
+            Below: "Sign Up Free"
+            Logo appears with a glow
+  TEXT:      "Link in bio" (for Instagram) or "Visit Now" (for Facebook)
+  AUDIO:    Music ends clean
+
+
+================================================================================
+VIDEO #3 — WEBSITE DEMO / WALKTHROUGH (90 seconds)
+         "Full Platform Tour"
+================================================================================
+
+PURPOSE: Detailed screen recording showing every feature of the website.
+         Best for YouTube, Facebook Feed, or website embed.
+         This builds trust — people see the real product.
+
+TONE: Professional, clear, educational
+MUSIC: Soft ambient tech background (low volume, don't overpower voiceover)
+
+--------------------------------------------------------------------------------
+
+[0:00 - 0:05] INTRO
+  VISUAL:   Code Wave AI logo on dark background.
+            Text fades in: "Platform Tour — Code Wave AI"
+  VOICEOVER: "Welcome to Code Wave AI. Let me show you
+              everything our platform can do."
+
+[0:05 - 0:20] HOMEPAGE TOUR
+  VISUAL:   Full screen recording of homepage.
+  SHOW:     - Hero section with "WE MAKE SMART AI TECH" headline
+            - Scroll down to animated stats counter
+            - Hover over the three feature cards (Talking AI, Auto Systems,
+              Web Apps) — show the hover zoom effect
+            - Click the chatbot icon in bottom corner — show it open
+            - Type a question, get a response
+            - Tap the mic button for voice input
+  VOICEOVER: "This is our homepage. You can see live visitor stats,
+              explore our three core services, and chat with our
+              AI assistant anytime — it even supports voice input."
+
+[0:20 - 0:40] PROJECTS PAGE TOUR
+  VISUAL:   Navigate to Projects page.
+  SHOW:     - Project grid loading with cards
+            - Hover over a dual-image card (show the image swap effect)
+            - Point out likes count, star rating, comment count on each card
+            - Click into a project detail page
+            - Scroll through: description, media gallery, click an image
+              to open lightbox
+            - Show the FAQ accordion — click to expand/collapse
+            - Show the 5-star rating — click stars to rate
+            - Show the comment section — type and submit a comment
+            - Click the like/heart button
+  VOICEOVER: "Our projects page shows everything we've built. Each project
+              has a media gallery, detailed description, FAQ section,
+              star ratings, and a real comment system. You can like,
+              rate, and review every single project."
+
+[0:40 - 0:55] SIGNUP & AUTH FLOW
+  VISUAL:   Navigate to Signup page.
+  SHOW:     - Fill in: name, phone, email, password
+            - Click "JOIN NOW"
+            - Show the loading spinner, then redirect to homepage
+            - Open WhatsApp notification arriving (if possible)
+            - Navigate to Login page — show the "Forgot Password?" link
+            - Click it, enter email, show "reset email sent" message
+            - Show the dark/light theme toggle in navbar — click it,
+              show the entire site switching themes
+  VOICEOVER: "Signing up takes 30 seconds. You get a WhatsApp welcome
+              message instantly. Forgot your password? One click and
+              you'll get a recovery email. And you can switch between
+              dark and light mode anytime."
+
+[0:55 - 1:10] ABOUT & CONTACT
+  VISUAL:   Navigate to About page.
+  SHOW:     - "Who We Are" section with stats (99% / 2.5s)
+            - Four value cards (Careful Work, Built for You, Safe,
+              Grows with You)
+            - Founder profile section with photo and social links
+            - Team members grid with hover glow effect
+            - Navigate to Contact page
+            - Show email card (click to open Gmail compose)
+            - Show Google Maps embed with office location
+            - Show WhatsApp card (click to open chat)
+            - Fill contact form — click location auto-detect button
+            - Submit the form, show success message
+  VOICEOVER: "Meet our team on the About page — our founder, our values,
+              and the people behind the code. On the Contact page,
+              you can email us, find us on Google Maps, message us on
+              WhatsApp, or fill the contact form — it even detects
+              your location automatically."
+
+[1:10 - 1:20] ADMIN DASHBOARD (optional — show power)
+  VISUAL:   Quick glimpse of admin dashboard.
+  SHOW:     - Analytics charts (Recharts)
+            - Project management (add/edit/delete projects)
+            - Team member management
+            - Settings page
+  VOICEOVER: "Behind the scenes, our admin dashboard gives full control —
+              analytics, project management, team management,
+              and platform settings — all in one place."
+
+  ** NOTE: Only show admin dashboard if you want to demonstrate
+     the platform's full capability. Skip for consumer audiences. **
+
+[1:20 - 1:30] CLOSING CTA
+  VISUAL:   Split screen: website on phone (left) + website on desktop (right)
+            showing it's fully responsive.
+            Fade to: URL + logo + WhatsApp number centered on dark background.
+  TEXT:      "code-vawe-786.vercel.app"
+            "Sign Up Free — Join Code Wave AI Today"
+            "+92 323 8300086"
+  VOICEOVER: "Code Wave AI — fully responsive, completely free to join.
+              Visit us today and be part of the future."
+
+
+================================================================================
+VIDEO #4 — TESTIMONIAL / TRUST VIDEO (30 seconds)
+         "Why People Choose Us"
+================================================================================
+
+PURPOSE: Social proof video. Show real stats, real features, real trust.
+         Works great as a retargeting ad.
+
+TONE: Calm, trustworthy, confident
+MUSIC: Clean, minimal, corporate
+
+--------------------------------------------------------------------------------
+
+[0:00 - 0:03] HOOK
+  VISUAL:   Text on screen: "Why do people trust Code Wave AI?"
+  AUDIO:    Soft piano note
+
+[0:03 - 0:08] STAT 1
+  VISUAL:   Number counter animates: "99%" with text below: "Success Rate"
+            Background: website About page blurred
+  VOICEOVER: "A 99 percent success rate on every solution we deliver."
+
+[0:08 - 0:13] STAT 2
+  VISUAL:   Show the homepage stats section — counter animating up.
+            Highlight "Total Visits" and "New People" numbers.
+  VOICEOVER: "Hundreds of visitors from around the world,
+              and growing every day."
+
+[0:13 - 0:18] STAT 3
+  VISUAL:   Show project detail page — star ratings, comments,
+            likes all visible. Scroll through positive comments.
+  VOICEOVER: "Real user ratings and reviews you can see right
+              on our platform. Nothing hidden."
+
+[0:18 - 0:23] FEATURES
+  VISUAL:   Quick montage:
+            - Contact page with Google Maps (real office)
+            - WhatsApp chat opening
+            - Chatbot responding
+            - Dark/light mode toggle
+  VOICEOVER: "A real office in Lahore. Direct WhatsApp support.
+              AI chatbot. And a platform you can trust."
+
+[0:23 - 0:30] CTA
+  VISUAL:   Logo + URL + "Sign Up Free"
+  VOICEOVER: "Code Wave AI. See it for yourself."
+
+
+================================================================================
+VIDEO #5 — FOUNDER / PERSONAL BRAND VIDEO (45 seconds)
+         "Meet the Person Behind Code Wave AI"
+================================================================================
+
+PURPOSE: Personal connection. People trust people, not logos.
+         Founder speaks directly to camera. Very effective on Facebook/Instagram.
+
+TONE: Friendly, genuine, passionate
+MUSIC: Light acoustic or no music (voice focus)
+
+--------------------------------------------------------------------------------
+
+[0:00 - 0:05] INTRO — Face to camera
+  VISUAL:   Founder sitting/standing in front of computer or workspace.
+            Name tag appears: "[Your Name] — Founder, Code Wave AI"
+  SCRIPT:   "Assalam o Alaikum! I'm [Your Name], and I built Code Wave AI."
+
+[0:05 - 0:15] THE WHY — Why you started
+  VISUAL:   Founder talking. B-roll cuts of website loading in background.
+  SCRIPT:   "I started this because I believe smart technology should be
+             available to everyone — not just big companies.
+             We build AI tools, voice assistants, and modern web apps
+             that actually help real people and real businesses."
+
+[0:15 - 0:25] THE WHAT — What the platform offers
+  VISUAL:   Founder talking. Screen recording plays side-by-side:
+            project showcase, chatbot, signup page.
+  SCRIPT:   "On our platform, you can explore all our projects,
+             rate them, leave reviews, and even chat with our AI assistant.
+             Signing up is free and takes less than a minute."
+
+[0:25 - 0:35] THE PROOF — Why trust you
+  VISUAL:   Founder talking. Quick cuts to:
+            stats counter, team page, contact page with maps.
+  SCRIPT:   "We have real users, real projects, and a real office
+             in Lahore. You can reach us anytime on WhatsApp.
+             We're not just another website — we're building something real."
+
+[0:35 - 0:45] CTA — What to do next
+  VISUAL:   Founder looks at camera, smiles.
+            URL appears at bottom of screen.
+  SCRIPT:   "Visit code-vawe-786.vercel.app and join us today.
+             I'd love to have you on board.
+             Let's build the future together."
+
+  [FINAL FRAME]
+  Logo + URL + WhatsApp number
+
+
+################################################################################
+#                                                                              #
+#                     COMPLETE VIDEO PRODUCTION GUIDE                          #
+#                                                                              #
+################################################################################
+
+
+================================================================================
+STEP 1: WHAT YOU NEED (Equipment & Software)
+================================================================================
+
+RECORDING TOOLS (all free):
+  - Screen Recording:  OBS Studio (free, Windows/Mac)
+                       OR ShareX (free, Windows — lighter)
+                       OR Loom (free tier — easiest to start)
+  - Phone Camera:      Any smartphone with 1080p video (for founder video)
+  - Microphone:        Phone earbuds with mic work fine to start.
+                       Upgrade later: any USB mic (under $20)
+
+EDITING SOFTWARE (all free):
+  - CapCut Desktop     — Best for beginners. Free. Has templates.
+                         Perfect for Reels/Stories.
+  - DaVinci Resolve    — Professional-grade. Free. Best for longer videos.
+  - Canva Video        — Browser-based. Great for simple text animations.
+
+MUSIC & SOUND (royalty-free):
+  - Pixabay Music      — pixabay.com/music (100% free, no attribution)
+  - Mixkit             — mixkit.co/free-stock-music (free)
+  - YouTube Audio      — studio.youtube.com (free music library)
+  - Search keywords:   "cinematic tech", "modern corporate", "upbeat digital"
+
+FONTS (to match your brand):
+  - Use bold, clean fonts: Inter, Poppins, or Montserrat (all free on Google Fonts)
+  - Your website uses Tailwind defaults which pair with these
+
+
+================================================================================
+STEP 2: HOW TO RECORD SCREEN (Step-by-step)
+================================================================================
+
+USING OBS STUDIO:
+  1. Download from obsproject.com and install
+  2. Open OBS -> Click "+" under Sources -> "Display Capture"
+  3. Set resolution: 1920x1080 (for feed videos) or 1080x1920 (for reels)
+  4. Open your website in Chrome -> make it fullscreen (F11)
+  5. Click "Start Recording" in OBS
+  6. Slowly navigate through your website (don't rush — smooth movements)
+  7. Click "Stop Recording" when done
+  8. File saves to your Videos folder automatically
+
+RECORDING TIPS:
+  - Use a clean browser (no bookmarks bar, no extra tabs visible)
+  - Clear browser cache so website loads fresh with animations
+  - Move your mouse slowly and deliberately
+  - Wait 1-2 seconds on each section before scrolling
+  - Record MORE than you need — you'll cut it down in editing
+  - Record each page separately (easier to edit later)
+
+WHAT TO RECORD (checklist):
+  [ ] Homepage loading with animations and floating orbs
+  [ ] Stats counter animating from 0 to final numbers
+  [ ] Hovering over the 3 feature cards (zoom effect)
+  [ ] Chatbot opening, typing a message, getting response
+  [ ] Chatbot voice input button tap
+  [ ] Projects page scrolling through cards
+  [ ] Hovering on dual-image cards (image swap effect)
+  [ ] Clicking into a project detail page
+  [ ] Star rating interaction (clicking stars)
+  [ ] FAQ accordion expanding/collapsing
+  [ ] Comment section — typing and submitting
+  [ ] Like button click (heart animation)
+  [ ] Image lightbox opening
+  [ ] Signup page — filling the form and submitting
+  [ ] Login page with "Forgot Password?" link
+  [ ] About page — founder section, team members
+  [ ] Contact page — email card, maps, WhatsApp card
+  [ ] Contact form — location auto-detect button
+  [ ] Dark/Light mode toggle (full theme switch)
+  [ ] Mobile view (resize browser to phone size, or use phone)
+  [ ] Admin dashboard (optional — charts, project management)
+
+
+================================================================================
+STEP 3: HOW TO RECORD FOUNDER VIDEO
+================================================================================
+
+SETUP:
+  1. Find a clean, well-lit spot (near a window is best for natural light)
+  2. Place your phone at eye level (stack books if needed)
+  3. Use the front camera so you can see yourself
+  4. Background: plain wall, bookshelf, or your computer setup
+  5. Wear a solid color shirt (avoid stripes — they flicker on camera)
+
+RECORDING:
+  1. Open your phone camera app -> switch to Video -> 1080p
+  2. Look directly at the camera lens (not the screen)
+  3. Speak naturally, like you're talking to a friend
+  4. Record the script in short sections (easier to edit)
+  5. Do 2-3 takes of each section — pick the best one later
+  6. Keep each take under 15 seconds for easy editing
+
+SPEAKING TIPS:
+  - Smile when you start talking
+  - Speak slowly and clearly
+  - Pause between sentences (helps in editing)
+  - Use hand gestures (adds energy)
+  - It's OK to read from a screen next to the camera (no one will notice)
+  - Don't try to be perfect — authenticity beats polish
+
+
+================================================================================
+STEP 4: HOW TO EDIT (Using CapCut — Beginner Friendly)
+================================================================================
+
+BASIC EDIT WORKFLOW:
+  1. Open CapCut Desktop (free download from capcut.com)
+  2. Create new project -> 16:9 (for feed) or 9:16 (for reels)
+  3. Import all your screen recordings and founder clips
+  4. Drag clips to timeline in the order from the script
+  5. Trim each clip to the exact duration noted in the script
+  6. Add text overlays (use bold white text with black shadow)
+  7. Add background music (lower volume to 15-20% if using voiceover)
+  8. Add transitions between clips (use "Fade" or "Slide" — keep it simple)
+  9. Export: 1080p, 30fps, MP4 format
+
+TEXT STYLE GUIDE:
+  - Font: Bold / Black weight
+  - Color: White with a subtle black drop shadow
+  - Size: Large enough to read on mobile
+  - Position: Center or lower-third of screen
+  - Animation: "Type In" or "Fade Up" (available in CapCut)
+
+COLOR SCHEME (match your website):
+  - Primary Orange:  #f97316
+  - Red Accent:      #ef4444
+  - Green Accent:    #22c55e
+  - Background:      #000000 (dark) or #ffffff (light)
+  - Text:            #ffffff on dark, #000000 on light
+
+
+================================================================================
+STEP 5: VIDEO FORMATS & SIZES
+================================================================================
+
+  FORMAT               RESOLUTION    RATIO    DURATION      USE FOR
+  ---------------------------------------------------------------------------
+  Facebook Feed        1920x1080     16:9     15-60 sec     Main video ads
+  Facebook Stories     1080x1920     9:16     15 sec max    Story ads
+  Instagram Feed       1080x1080     1:1      15-60 sec     Square feed posts
+  Instagram Reels      1080x1920     9:16     15-30 sec     Reels / Stories
+  YouTube              1920x1080     16:9     Any length    Demo / walkthrough
+  WhatsApp Status      1080x1920     9:16     30 sec max    Status updates
+  ---------------------------------------------------------------------------
+
+  TIP: Record in 16:9 (landscape). You can crop to 9:16 or 1:1 in CapCut.
+       Or record in 9:16 from the start if your primary target is Reels.
+
+
+================================================================================
+STEP 6: EXPORT & UPLOAD CHECKLIST
+================================================================================
+
+BEFORE EXPORTING:
+  [ ] Watch the full video at least twice
+  [ ] Check all text for spelling errors
+  [ ] Make sure website URL is visible in the last 5 seconds
+  [ ] Verify music volume doesn't overpower voiceover
+  [ ] Test on your phone (most people watch on mobile)
+  [ ] Check the first 3 seconds — is the hook strong enough?
+
+EXPORT SETTINGS:
+  - Format: MP4 (H.264)
+  - Resolution: 1080p (1920x1080 or 1080x1920)
+  - Frame Rate: 30 fps
+  - Quality: High
+  - File size: Under 100MB for Facebook, under 250MB for YouTube
+
+UPLOADING TO FACEBOOK ADS MANAGER:
+  1. Go to facebook.com/adsmanager
+  2. Click "+ Create" -> Choose objective:
+     - "Awareness" for Video #1, #4
+     - "Traffic" for Video #3
+     - "Leads" for Video #2, #5
+     - "Engagement" for Reels
+  3. Set your audience (use the targeting from earlier in this file)
+  4. Set budget: Start with Rs. 500-1000/day ($2-4/day)
+  5. Upload video -> Add headline + primary text from the ad scripts above
+  6. Set CTA button -> "Learn More" or "Sign Up"
+  7. Review and publish
+
+
+================================================================================
+STEP 7: CONTENT CALENDAR (What to Post When)
+================================================================================
+
+  WEEK 1 — Launch
+    Day 1: Post Video #1 (Main Promo) as Facebook/Instagram ad
+    Day 2: Post Video #2 (Short Reel) on Instagram Reels + Stories
+    Day 3: Share Video #5 (Founder Video) on personal Facebook + LinkedIn
+    Day 4: Post Ad #5 (WhatsApp ad) — text only
+    Day 5: Share Video #2 on WhatsApp Status
+    Day 6: Rest / check analytics
+    Day 7: Post Ad #1 (text ad) on Facebook page
+
+  WEEK 2 — Growth
+    Day 1: Post Video #4 (Trust Video) as retargeting ad
+    Day 2: New Reel — behind the scenes of building a feature
+    Day 3: Post Ad #3 (Lead Gen) targeting new audience
+    Day 4: Share Video #3 (Full Walkthrough) on YouTube + Facebook
+    Day 5: Post on LinkedIn about your tech stack
+    Day 6: WhatsApp broadcast — "Check out our latest project"
+    Day 7: Review analytics, adjust targeting
+
+  WEEK 3+ — Scale
+    - Create new Reels every 3-4 days (repurpose screen recordings)
+    - Run A/B tests: change thumbnails, headlines, or first 3 seconds
+    - Add retargeting Ad #6 for website visitors who didn't sign up
+    - Post user reviews/ratings as social proof content
+    - Share new projects as they launch
+
+
+================================================================================
+STEP 8: QUICK TIPS FOR BETTER RESULTS
+================================================================================
+
+  1. FIRST 3 SECONDS ARE EVERYTHING
+     -> 65% of people skip ads in the first 3 seconds
+     -> Start with a bold question, shocking stat, or fast visual
+     -> Never start with your logo (nobody cares about logos yet)
+
+  2. ADD CAPTIONS / SUBTITLES
+     -> 85% of Facebook videos are watched on mute
+     -> Use CapCut auto-captions (built-in feature)
+     -> Bold white text with black outline = readable everywhere
+
+  3. MOBILE FIRST
+     -> 90%+ of your audience watches on phones
+     -> Use large text, close-up shots, high contrast
+     -> Test your video on YOUR phone before posting
+
+  4. KEEP IT SHORT
+     -> 15 seconds for Reels/Stories
+     -> 30-60 seconds for feed ads
+     -> Only go 90+ seconds for YouTube/demo videos
+
+  5. ONE VIDEO = ONE MESSAGE
+     -> Don't try to say everything in one video
+     -> Video #1 = "What is Code Wave AI?"
+     -> Video #3 = "Here's how the platform works"
+     -> Video #5 = "Meet the founder"
+
+  6. CALL TO ACTION EVERY TIME
+     -> Every video must end with a clear CTA
+     -> "Visit our website" / "Sign up free" / "Message us on WhatsApp"
+     -> Show the URL on screen for at least 3-5 seconds
+
+  7. POST CONSISTENTLY
+     -> 3-4 times per week minimum
+     -> Reels perform better than static images
+     -> Best posting times for Pakistan: 8-10 PM (after work/school)
+
+  8. USE YOUR OWN FACE
+     -> Videos with faces get 30% more engagement
+     -> The founder video (#5) will likely outperform all others
+     -> People connect with people, not brands
+
+  9. REPURPOSE CONTENT
+     -> One 60-second video = four 15-second Reels
+     -> Screen recordings can become multiple clips
+     -> Every new project on your site = new content
+
+  10. TRACK AND IMPROVE
+      -> Check Facebook Ads Manager every 2-3 days
+      -> Look at: Video Views, ThruPlay rate, CTR, Cost per result
+      -> If CTR is below 1%, change the hook (first 3 seconds)
+      -> If people watch but don't click, change the CTA
+
+
+================================================================================
+                          END OF VIDEO SCRIPTS & GUIDE
+================================================================================

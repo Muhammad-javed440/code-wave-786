@@ -1,6 +1,6 @@
 
-import React, { useState, useRef, useEffect } from 'react';
-import { Plus, Trash2, Edit3, User, X, Loader2, Save, AlertCircle, CheckCircle, Upload } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { Plus, Trash2, Edit3, User, X, Loader2, Save, AlertCircle, CheckCircle, Upload, Move, Crosshair } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { TeamMember } from '../../types';
 
@@ -18,8 +18,12 @@ const AdminTeam: React.FC = () => {
   const [description, setDescription] = useState('');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
+  const [posX, setPosX] = useState(50);
+  const [posY, setPosY] = useState(50);
+  const [isDragging, setIsDragging] = useState(false);
 
   const imageInputRef = useRef<HTMLInputElement>(null);
+  const positionerRef = useRef<HTMLDivElement>(null);
 
   // Fetch members on mount
   useEffect(() => {
@@ -50,10 +54,75 @@ const AdminTeam: React.FC = () => {
     setDescription('');
     setImageFile(null);
     setImagePreview('');
+    setPosX(50);
+    setPosY(50);
     setIsEditing(null);
     setError(null);
   };
 
+  // Handle dragging for image position
+  const handlePositionChange = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    const container = positionerRef.current;
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+    let clientX: number, clientY: number;
+
+    if ('touches' in e) {
+      clientX = e.touches[0].clientX;
+      clientY = e.touches[0].clientY;
+    } else {
+      clientX = e.clientX;
+      clientY = e.clientY;
+    }
+
+    const x = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+    const y = Math.max(0, Math.min(100, ((clientY - rect.top) / rect.height) * 100));
+    setPosX(Math.round(x));
+    setPosY(Math.round(y));
+  }, []);
+
+  const handlePointerDown = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+    handlePositionChange(e);
+  }, [handlePositionChange]);
+
+  useEffect(() => {
+    if (!isDragging) return;
+
+    const handleMove = (e: MouseEvent | TouchEvent) => {
+      const container = positionerRef.current;
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      let clientX: number, clientY: number;
+      if ('touches' in e) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      const x = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+      const y = Math.max(0, Math.min(100, ((clientY - rect.top) / rect.height) * 100));
+      setPosX(Math.round(x));
+      setPosY(Math.round(y));
+    };
+
+    const handleUp = () => setIsDragging(false);
+
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('mouseup', handleUp);
+    window.addEventListener('touchmove', handleMove);
+    window.addEventListener('touchend', handleUp);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('mouseup', handleUp);
+      window.removeEventListener('touchmove', handleMove);
+      window.removeEventListener('touchend', handleUp);
+    };
+  }, [isDragging]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -133,6 +202,7 @@ const AdminTeam: React.FC = () => {
         role: 'Team Member',
         description: description.trim(),
         image_url: imageUrl,
+        image_position: { x: posX, y: posY },
         display_order: existingMember ? existingMember.display_order : members.length,
         updated_at: new Date().toISOString(),
       };
@@ -192,6 +262,8 @@ const AdminTeam: React.FC = () => {
     setName(member.name);
     setDescription(member.description || '');
     setImagePreview(member.image_url || '');
+    setPosX(member.image_position?.x ?? 50);
+    setPosY(member.image_position?.y ?? 50);
     setIsAdding(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -254,16 +326,40 @@ const AdminTeam: React.FC = () => {
                 <div className="aspect-square rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-800 hover:border-orange-500/50 transition-all relative overflow-hidden flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-950 group">
                   {imagePreview ? (
                     <>
-                      <img src={imagePreview} className="w-full h-full object-cover" alt="Preview" />
-                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <button
-                          type="button"
-                          onClick={removeImage}
-                          className="p-3 bg-red-600 text-white rounded-xl shadow-lg"
+                      <img src={imagePreview} className="w-full h-full object-cover" alt="Preview" style={{ objectPosition: `${posX}% ${posY}%` }} />
+                      {/* Draggable position overlay */}
+                      <div
+                        ref={positionerRef}
+                        className="absolute inset-0 cursor-crosshair select-none"
+                        onMouseDown={handlePointerDown}
+                        onTouchStart={handlePointerDown}
+                      >
+                        {/* Crosshair indicator */}
+                        <div
+                          className="absolute w-6 h-6 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10"
+                          style={{ left: `${posX}%`, top: `${posY}%` }}
                         >
-                          <Trash2 className="w-5 h-5" />
-                        </button>
+                          <Crosshair className="w-6 h-6 text-white drop-shadow-[0_0_4px_rgba(0,0,0,0.8)]" />
+                        </div>
+                        {/* Crosshair lines */}
+                        <div className="absolute inset-0 pointer-events-none" style={{ opacity: isDragging ? 0.5 : 0.2 }}>
+                          <div className="absolute bg-white/60 h-px w-full" style={{ top: `${posY}%` }} />
+                          <div className="absolute bg-white/60 w-px h-full" style={{ left: `${posX}%` }} />
+                        </div>
                       </div>
+                      {/* Position label */}
+                      <div className="absolute top-2 left-2 px-2 py-1 bg-black/70 text-white text-[10px] font-bold rounded-lg flex items-center gap-1 z-20 pointer-events-none">
+                        <Move className="w-3 h-3" /> {posX}%, {posY}%
+                      </div>
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-end p-3 pointer-events-none" style={{ opacity: 0 }}>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={removeImage}
+                        className="absolute bottom-2 right-2 p-2 bg-red-600 text-white rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-20"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
                     </>
                   ) : (
                     <>
@@ -280,6 +376,9 @@ const AdminTeam: React.FC = () => {
                     </>
                   )}
                 </div>
+                {imagePreview && (
+                  <p className="text-[10px] text-gray-400 font-bold uppercase text-center">Click &amp; drag on image to set focal point</p>
+                )}
               </div>
 
               {/* Basic Info */}
@@ -353,7 +452,7 @@ const AdminTeam: React.FC = () => {
                 <div className="flex flex-col items-center text-center">
                   <div className="w-28 h-28 rounded-2xl overflow-hidden border-4 border-white dark:border-gray-900 shadow-xl mb-4 bg-gray-100 dark:bg-gray-900">
                     {member.image_url ? (
-                      <img src={member.image_url} alt={member.name} className="w-full h-full object-contain" />
+                      <img src={member.image_url} alt={member.name} className="w-full h-full object-cover" style={{ objectPosition: `${member.image_position?.x ?? 50}% ${member.image_position?.y ?? 50}%` }} />
                     ) : (
                       <div className="w-full h-full bg-orange-500/10 flex items-center justify-center">
                         <User className="w-10 h-10 text-orange-600" />

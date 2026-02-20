@@ -77,6 +77,7 @@ export interface TeamMember {
     twitter?: string;
     github?: string;
   };
+  image_position?: { x: number; y: number };
   display_order: number;
   created_at: string;
   updated_at: string;

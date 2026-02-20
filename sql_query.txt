@@ -107,6 +107,7 @@ CREATE TABLE IF NOT EXISTS team_members (
   image_url TEXT,
   email TEXT,
   social_links JSONB DEFAULT '{}'::jsonb,
+  image_position JSONB DEFAULT '{"x":50,"y":50}',
   display_order INTEGER DEFAULT 0,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
